@@ -22,7 +22,10 @@ const config: Config = {
         "black": '#000',
         "terirary-100":'#F5F5F5',
         "terirary-200":'#F1F1F1',
-        "limegreen": '#11b62f'
+        "terirary-400":'#E6E6E6',
+        
+        "limegreen": '#11b62f',
+        "purple-600" :'#7E2EE7'
       },
       borderRadius: {
         'corner': '4px',
