@@ -14,10 +14,11 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        Poppins: ["var(--font-poppins)"],
+        sans: ['var(--font-poppins)', 'sans-serif'],
       },
       colors:{
-        "green-green": '#f8feeb',
+        "secondary-50": '#f8feeb',
+        "secondary-100": '#E8FBC0',
         "black": '#000',
       },
       borderRadius: {
