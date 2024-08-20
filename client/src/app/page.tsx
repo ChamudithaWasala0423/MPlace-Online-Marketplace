@@ -1,12 +1,13 @@
 import Categorycard from "@/components/ui/Categorycard";
 import Favoritebutton from "@/components/ui/Favoritebutton";
 import Itemcard from "@/components/ui/Itemcard";
+import Notifcard from "@/components/ui/Notifcard";
 import Image from "next/image";
 
 
 export default function Home() {
   return (
-    //<Categorycard category="Electronics" icon="/images/icons8-electronics-100.png" >
+    /*<Categorycard category="Electronics" icon="/images/icons8-electronics-100.png" >
     <Itemcard 
     name="Vintage chair"
     itemImage="/images/chair.jpg" 
@@ -14,6 +15,7 @@ export default function Home() {
     location="Brooklyn, NY"
     price="LKR 5999"
     daysAdded={5}
-    />
+    /> */
+    <Notifcard></Notifcard>
   );
 }
