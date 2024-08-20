@@ -20,6 +20,9 @@ const config: Config = {
         "secondary-50": '#f8feeb',
         "secondary-100": '#E8FBC0',
         "black": '#000',
+        "terirary-100":'#F5F5F5',
+        "terirary-200":'#F1F1F1',
+        "limegreen": '#11b62f'
       },
       borderRadius: {
         'corner': '4px',
