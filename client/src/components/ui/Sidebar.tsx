@@ -24,9 +24,13 @@ const navItems: NavItem[] = [
 
 const Sidebar: React.FC = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleDropdownToggle = (name: string) => {
     setOpenDropdown(openDropdown === name ? null : name);
+  };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
