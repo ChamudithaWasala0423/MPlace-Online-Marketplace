@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { CatchAsyncErrors } from "../middleware/CatchAsyncErrors";
+import { CatchAsyncErrors } from "./CatchAsyncErrors";
 import ErrorHandler from "../utils/ErrorHandler";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import User from "../models/user.model"; 
