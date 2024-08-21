@@ -8,6 +8,7 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
+    { name: 'Profile Overview', href: '#' },
   {
     name: 'Ad Management',
     href: '#',
@@ -30,7 +31,6 @@ const Sidebar: React.FC = () => {
 
   return (
     <aside className="lg:w-[217px] w-full bg-red-300 gap-4 p-4">
-      <h2 className="text-2xl font-bold mb-6">Profile Overview</h2>
       <nav>
         <ul className="space-y-4">
           {navItems.map((item) => (
