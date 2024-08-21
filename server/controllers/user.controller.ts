@@ -236,3 +236,41 @@ export const getUserInfo = CatchAsyncErrors(async(req: Request, res: Response, n
 
 });
 
+
+//update user info
+interface IUpdateUserInfo{
+    name: string;
+    email?: string;
+    avatar: string;
+}
+
+export const updateUserInfo = CatchAsyncErrors(async(req: Request, res: Response, next: NextFunction) => {
+    try{
+        const {name, email} = req.body as IUpdateUserInfo;
+        const userId = req.user?._id;
+        const user = await UserModel.findById(userId);
+
+        if(email && user){
+            const isEmailExist = await UserModel.findOne({email});
+            if(isEmailExist){
+                return next(new ErrorHandler("Email already exists", 400));
+            }
+        }
+
+        if(name && user){
+            user.name = name;
+        }
+
+        await user?.save();
+
+        res.status(200).json({
+            success: true,
+            user,
+        });
+
+    }catch(error: any){
+        return next(new ErrorHandler(error.message, 400));
+
+    }
+});
+
