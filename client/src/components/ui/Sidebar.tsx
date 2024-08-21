@@ -57,7 +57,8 @@ const Sidebar: React.FC = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <nav>
-          <ul className="space-y-4">
+          <ul className="space-y-4" 
+          onClick={handleCloseSidebar}>
             {navItems.map((item) => (
               <li key={item.name}>
                 {item.subItems ? (
