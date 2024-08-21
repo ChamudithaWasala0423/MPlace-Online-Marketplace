@@ -8,6 +8,7 @@ import { accessTokenOptions, refreshTokenOptions, sendToken } from "../utils/jwt
 import ejs from "ejs";
 import path from "path";
 import sendMail from "../utils/sendMail";
+import { getUserById } from "../services/user.service";
 
 
 //register user
@@ -215,3 +216,23 @@ export const updateAccessToken = CatchAsyncErrors(async (req: Request, res: Resp
         return next(new ErrorHandler(error.message, 400));
     }
 });
+
+
+//get user info
+export const getUserInfo = CatchAsyncErrors(async(req: Request, res: Response, next: NextFunction) => {
+    try{
+        const userId = req.user?._id;
+        
+        if (!userId) {
+            // Handle the case where user ID is not available
+            return next(new ErrorHandler('User ID not available', 401));
+        }
+
+        getUserById( userId, res);
+
+    }catch(error: any){
+        return next(new ErrorHandler(error.message, 400));
+    }
+
+});
+

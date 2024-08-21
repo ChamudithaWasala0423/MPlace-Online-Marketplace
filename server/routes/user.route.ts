@@ -4,7 +4,8 @@ import {
     activateUser, 
     loginUser,
     logoutUser,
-    updateAccessToken
+    updateAccessToken,
+    getUserInfo
  } from '../controllers/user.controller';
 
  import { isAuthenticated } from '../middleware/auth';
@@ -31,7 +32,10 @@ userRouter.get("/refresh", (req: any, res: any, next: any) => {
     updateAccessToken(req, res, next); 
 });
   
-  
+
+userRouter.get("/me",isAuthenticated, (req: any, res: any, next: any) => {
+  getUserInfo(req, res, next);
+});
 
 
 export default userRouter;
