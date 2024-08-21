@@ -5,6 +5,9 @@ import ErrorHandler from "../utils/ErrorHandler";
 import { CatchAsyncErrors } from "../middleware/CatchAsyncErrors";
 import jwt, {JwtPayload, Secret} from "jsonwebtoken";
 import { accessTokenOptions, refreshTokenOptions, sendToken } from "../utils/jwt";
+import ejs from "ejs";
+import path from "path";
+import sendMail from "../utils/sendMail";
 
 //register user
 interface IRegistrationBody{
@@ -34,15 +37,15 @@ export const registrationUser = CatchAsyncErrors(async (req: Request, res: Respo
         const activationCode = activationToken.activationCode;
 
         const data = {user: {name:user.name}, activationCode};
-        // const html = await ejs.renderFile(path.join(__dirname, "../mails/activation-mail.ejs"), data);
+        const html = await ejs.renderFile(path.join(__dirname, "../mails/activation-mail.ejs"), data);
 
         try{
-            // await sendMail({
-            //     email: user.email,
-            //     subject: "Activate your account",
-            //     tempalte: "activation-mail.ejs",
-            //     data,
-            // });
+            await sendMail({
+                email: user.email,
+                subject: "Activate your account",
+                tempalte: "activation-mail.ejs",
+                data,
+            });
 
             res.status(200).json({
                 success: true,
