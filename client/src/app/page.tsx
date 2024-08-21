@@ -3,6 +3,7 @@
 import React from 'react';
 import Button from '@/components/ui/button';
 import SearchBar from '@/components/ui/searchbar';
+import Textarea from '@/components/ui/textarea';
 
 const Page: React.FC = () => {
   return (
@@ -15,6 +16,11 @@ const Page: React.FC = () => {
       <div className="flex flex-col items-center p-8 space-y-4">
         <SearchBar onSearch={(value) => console.log(value)} />
       </div>
+      <div className="p-4">
+      <Textarea customWidth="w-[1123px]" customHeight="h-[50px]" /*placeholder="Write something here..."*/ />
+      {/* Adjust width and height as needed */}
+      
+    </div>
     </>
   );
 };
