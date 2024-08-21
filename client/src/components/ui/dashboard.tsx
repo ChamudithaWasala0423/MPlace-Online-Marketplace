@@ -10,8 +10,7 @@ const Dashboard: React.FC = () => {
 
       {/* Main Content */}
       <main className="flex-1 flex-col lg:w-[870px] w-full bg-background-400 pt-[36px] pr-[72px] pb-[36px] pl-[72px] shadow-md ">
-        <div>
-        {/*<div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-semibold text-gray-800">Dashboard</h1>
           <button className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors">
             Create New Ad
@@ -26,7 +25,7 @@ const Dashboard: React.FC = () => {
             <p className="text-gray-500">Detailed analytics of your ads will appear here.</p>
           </div>
 
-          //Add more cardscomponents as needed */}
+          //Add more cardscomponents as needed 
         </div>
       </main>
     </div>
