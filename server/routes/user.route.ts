@@ -2,7 +2,8 @@ import express from 'express';
 import { 
     registrationUser,
     activateUser, 
-    loginUser
+    loginUser,
+    logoutUser
  } from '../controllers/user.controller';
 
  import { isAuthenticated } from '../middleware/auth';
@@ -19,6 +20,10 @@ userRouter.post("/activate-user", (req: any, res: any, next: any) => {
 
 userRouter.post("/login", (req: any, res: any, next: any) => {
     loginUser(req, res, next);
+});
+
+userRouter.get("/logout", isAuthenticated, (req: any, res: any, next: any) => {
+    logoutUser(req, res, next);
   });
   
 
