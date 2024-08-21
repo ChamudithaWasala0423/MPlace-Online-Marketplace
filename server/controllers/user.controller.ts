@@ -274,3 +274,102 @@ export const updateUserInfo = CatchAsyncErrors(async(req: Request, res: Response
     }
 });
 
+
+//update user password
+interface IUpdateUserPassword{
+    oldPassword: string;
+    newPassword: string;
+}
+
+export const updatePassword = CatchAsyncErrors(async(req: Request, res: Response, next: NextFunction) => {
+    try{
+        const {oldPassword, newPassword} = req.body as IUpdateUserPassword;
+
+        if(!oldPassword || !newPassword){
+            return next(new ErrorHandler("please enter new and old password", 400));
+        }
+
+
+        const user = await UserModel.findById(req.user?._id).select("+password");
+
+        if(user?.password === undefined){
+            return next(new ErrorHandler("Inavlied user", 400));
+        }
+
+        const isPasswordMatched = await user?.comaparePassword(oldPassword);
+
+        if(!isPasswordMatched){
+            return next(new ErrorHandler("Old password is incorrect", 400));
+        } 
+
+        user.password = newPassword;
+
+        await user.save();
+
+        res.status(200).json({
+            success: true,
+            user,
+        });
+
+    }catch(error:any){
+        return next(new ErrorHandler(error.message, 400));
+    }
+});
+
+
+
+// export const updateProfilePicture = CatchAsyncErrors(async(req: Request, res: Response, next: NextFunction) => {
+//     try{
+//         const {avatar} = req.body;
+
+//         const userId = req.user?._id;
+
+//         const user = await UserModel.findById(userId);
+
+//         if(avatar && user){
+//             //install cloudinary - npm i cloudinary
+//             //create account on cloudinary
+//             //if user already has avatar then call this if
+//             if(user?.avatar.public_id){
+
+//                 //delete previous image
+//                 await cloudinary.v2.uploader.destroy(user?.avatar?.public_id);
+
+//                 const mycloud =   await cloudinary.v2.uploader.upload(avatar, {
+//                     folder: "avatar",
+//                     width: 150,
+//                     crop: "scale",
+//                 });
+//                 user.avatar = {
+//                     public_id: mycloud.public_id,
+//                     url: mycloud.secure_url,
+//                 }
+
+
+//             }else{
+//             const mycloud =   await cloudinary.v2.uploader.upload(avatar, {
+//                     folder: "avatar",
+//                     width: 150,
+//                     crop: "scale",
+                
+//             });
+//             user.avatar = {
+//                 public_id: mycloud.public_id,
+//                 url: mycloud.secure_url,
+//         }
+//         }
+
+//     }
+
+//     await user?.save();
+//     await redis.set(user?._id.toString(), JSON.stringify(user));
+
+//     res.status(200).json({
+//         success: true,
+//         user,
+//     });
+    
+// }catch(error: any){
+//     return next(new ErrorHandler(error.message, 400));
+// }
+// });

@@ -6,7 +6,8 @@ import {
     logoutUser,
     updateAccessToken,
     getUserInfo,
-    updateUserInfo
+    updateUserInfo,
+    updatePassword
  } from '../controllers/user.controller';
 
  import { isAuthenticated } from '../middleware/auth';
@@ -40,6 +41,10 @@ userRouter.get("/me",isAuthenticated, (req: any, res: any, next: any) => {
 
 userRouter.put("/update-user-info",isAuthenticated,  (req: any, res: any, next: any) => {
   updateUserInfo(req, res, next);
+});
+
+userRouter.put("/update-user-password",isAuthenticated,  (req: any, res: any, next: any) => {
+  updatePassword(req, res, next);
 });
 
 
