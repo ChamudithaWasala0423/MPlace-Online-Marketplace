@@ -1,43 +1,33 @@
 "use client"
-import React, { useState } from 'react';
+import React from 'react';
+import Sidebar from './Sidebar'; // Make sure to import the updated Sidebar
 
 const Dashboard: React.FC = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   return (
-    <div className='flex flex-col lg:flex-row lg:w-[1161px] lg:h-[806px] bg-green-200 justify-center gap-6 lg:gap-[74px] p-4'>
+    <div className="flex flex-col lg:flex-row min-h-screen">
       {/* Sidebar */}
-      <div className='flex flex-col lg:w-[217px] w-full bg-red-300 gap-4 p-4'>
-        {/* Menu button for mobile view */}
-        <button className='lg:hidden text-black text-2xl' onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-          &#9776;
-        </button>
+      <Sidebar />
 
-        {/* Sidebar items */}
-        <div className={`lg:flex flex-col gap-4 ${isDropdownOpen ? 'block' : 'hidden'} lg:block`}>
-          <p className='font-sans text-base text-black'>Profile overview</p>
-          <div className='relative'>
-            <button
-              className='font-sans text-base text-black'
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            >
-              Ad Management
-            </button>
-            {/* Dropdown */}
-            <div className={`absolute bg-red-400 w-full top-full left-0 ${isDropdownOpen ? 'block' : 'hidden'}`}>
-              <p className='font-sans text-base text-black p-2'>My Ads</p>
-              <p className='font-sans text-base text-black p-2'>Drafts</p>
-            </div>
-          </div>
-          <p className='font-sans text-base text-black'>Chat Notifications</p>
-          <p className='font-sans text-base text-black'>Saved Items</p>
+      {/* Main Content */}
+      <main className="flex-1 p-6 bg-gray-100">
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-3xl font-semibold text-gray-800">Dashboard</h1>
+          <button className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors">
+            Create New Ad
+          </button>
         </div>
-      </div>
 
-      {/* Main Content Area */}
-      <div className='flex flex-col lg:w-[870px] w-full bg-blue-500 pt-[36px] pr-[72px] pb-[36px] pl-[72px]'>
-        <div className='flex w-full h-full bg-slate-600'></div>
-      </div>
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {/* Example Card */}
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h3 className="text-xl font-medium text-gray-800 mb-4">Ad Performance</h3>
+            <p className="text-gray-500">Detailed analytics of your ads will appear here.</p>
+          </div>
+
+          {/* Add more cards/components as needed */}
+        </div>
+      </main>
     </div>
   );
 };
