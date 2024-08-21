@@ -9,6 +9,7 @@ import ejs from "ejs";
 import path from "path";
 import sendMail from "../utils/sendMail";
 
+
 //register user
 interface IRegistrationBody{
     name: string;
@@ -167,6 +168,50 @@ export const logoutUser = CatchAsyncErrors(async(req: Request, res: Response, ne
         });
     
     }catch(error: any){
+        return next(new ErrorHandler(error.message, 400));
+    }
+});
+
+
+//update access token
+export const updateAccessToken = CatchAsyncErrors(async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const refresh_token = req.cookies.refreshToken as string;
+        
+        const decoded = jwt.verify(refresh_token, process.env.REFRESH_TOKEN as string) as JwtPayload;
+
+        const message = "Could not refresh token";
+
+        if(!decoded){
+            return next(new ErrorHandler(message, 400));
+        }
+
+        const session = await UserModel.findById(decoded.id);
+
+        if(!session){
+            return next(new ErrorHandler(message, 400));
+        }
+
+        const user = session.toObject();
+
+        const access_token = jwt.sign({id: user._id}, process.env.ACCESS_TOKEN as string, {
+            expiresIn: "5m"
+        });
+
+        const refresh_tokens = jwt.sign({id: user._id}, process.env.REFRESH_TOKEN as string, {
+            expiresIn: "3d"
+        });
+
+        req.user = user;
+
+        res.cookie("access_token", access_token,accessTokenOptions);
+        res.cookie("refresh_token", refresh_tokens,refreshTokenOptions);
+
+        res.status(200).json({
+            success: true,
+            access_token,
+        });
+    } catch (error: any) {
         return next(new ErrorHandler(error.message, 400));
     }
 });

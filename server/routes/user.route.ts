@@ -3,7 +3,8 @@ import {
     registrationUser,
     activateUser, 
     loginUser,
-    logoutUser
+    logoutUser,
+    updateAccessToken
  } from '../controllers/user.controller';
 
  import { isAuthenticated } from '../middleware/auth';
@@ -24,7 +25,12 @@ userRouter.post("/login", (req: any, res: any, next: any) => {
 
 userRouter.get("/logout", isAuthenticated, (req: any, res: any, next: any) => {
     logoutUser(req, res, next);
-  });
+});
+
+userRouter.get("/refresh", (req: any, res: any, next: any) => {
+    updateAccessToken(req, res, next); 
+});
+  
   
 
 
