@@ -28,6 +28,7 @@ const Sidebar: React.FC = () => {
 
   const handleDropdownToggle = (name: string) => {
     setOpenDropdown(openDropdown === name ? null : name);
+    
   };
 
   const handleSidebarToggle = () => {
@@ -65,7 +66,7 @@ const Sidebar: React.FC = () => {
                   <>
                     <button
                       onClick={() => handleDropdownToggle(item.name)}
-                      className="text-gray-700 hover:text-purple-600 transition-colors flex items-center w-full text-[14px] lg:text-base"
+                      className="text-gray-700 hover:text-purple-600 transition-colors flex items-center w-full lg:text-[16px] text-[14px] lg:text-base gap-4 sm:gap-2 font-sans"
                     >
                       {item.name}
                       <span
