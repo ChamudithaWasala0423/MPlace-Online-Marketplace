@@ -38,12 +38,12 @@ const ItemsSection: React.FC<Props> = ({ items = defaultItems }) => {
         {items.map((item) => (
           <Itemcard
             key={item.id}
-            name={item.name}
-            description={item.description}
-            price={item.price}
-            location={item.location}
-            daysAdded={item.daysAdded}
-            itemImage={item.itemImage}
+            name={item.name || 'Default Category'}
+            description={item.description || 'Default description'}
+            price={item.price || 'Default price'}
+            location={item.location || 'Default location'}
+            daysAdded={item.daysAdded || 0}
+            itemImage={item.itemImage || '/images/chair.jpg'}
           />
         ))}
       </div>
