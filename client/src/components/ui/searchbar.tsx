@@ -25,13 +25,13 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
       <input
         type="search"
         placeholder="What are you looking for?"
-        className="bg-white h-10 px-4 pr-12 w-full rounded text-sm border border-transparent focus:border-[#7e2ee7] transition-colors duration-200"
+        className="bg-tertiary-500 h-10 px-4 pr-12 w-full rounded text-sm border-2 border-transparent hover:border-primary-500 focus:border-primary-500 focus:outline-none transition-colors duration-200"
         onChange={searchHandler}
         onKeyDown={handleKeyDown}
         value={value}
       />
       <button type="submit" className="absolute right-0 top-0 bottom-2 mt-2 mr-3">
-        <FaSearch className="h-4 w-4 text-gray-600" />
+        <FaSearch className="h-4 w-4 text-[#7e2ee7]" />
       </button>
     </div>
     </>

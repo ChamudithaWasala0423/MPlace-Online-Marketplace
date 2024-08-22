@@ -17,6 +17,15 @@ const config: Config = {
         sans: ['var(--font-poppins)', 'sans-serif'],
       
       },
+      colors: {
+        tertiary: {
+          500: "#E0E0E0", // Custom tertiary color
+        },
+        primary: {
+          500: "#7e2ee7", // Custom primary color
+        },
+        // You can add more custom colors as needed
+      },
     },
   },
   plugins: [],
