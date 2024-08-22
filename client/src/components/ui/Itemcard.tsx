@@ -11,7 +11,8 @@ type ItemcardProps = {
   itemImage: string;
 }
 
-const Itemcard = ({ name, description, price, location, daysAdded, itemImage }: ItemcardProps) => {
+const Itemcard: React.FC <ItemcardProps>=({ 
+  name, description, price, location, daysAdded, itemImage }: ItemcardProps) => {
   return (
     <div className='bg-terirary-100 h-[359px] w-[339px] flex flex-col m-4 rounded-corner hover:bg-terirary-400 
                     lg:h-[500px] lg:w-[437px]'>
