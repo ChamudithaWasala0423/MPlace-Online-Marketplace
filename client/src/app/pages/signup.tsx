@@ -1,14 +1,15 @@
 import React from 'react';
 import Button from '@/components/ui/button';
 import Textarea from '@/components/ui/textarea';
+import LoginPage from './loginpage';
 
-interface LoginPageProps {}
+interface SignupProps {}
 
-const LoginPage: React.FC<LoginPageProps> = () => {
+const Signup: React.FC<SignupProps> = () => {
   return (
     <div className="w-full  flex-col bg-white">
       {/* Main Content */}
-      <div className="flex flex-grow ">
+      <div className="flex flex-grow">
         {/* Left Side with Image */}
         <div className="flex-shrink-0 w-1/2 relative">
           <img
@@ -24,7 +25,17 @@ const LoginPage: React.FC<LoginPageProps> = () => {
             <div className="text-center text-black text-5xl font-semibold font-inter leading-tight mb-8">
               Welcome Back!
             </div>
+
+
             <div className="w-full flex flex-col gap-4">
+            <div className="opacity-40 text-black text-base font-normal font-['Poppins'] leading-normal mb-1">
+                  Name
+                </div>
+             
+              <Textarea
+                className="h-[50px] w-[551px] bg-white rounded p-3"
+             
+              />
             <div className="opacity-40 text-black text-base font-normal font-['Poppins'] leading-normal mb-1">
                   Email or Phone Number
                 </div>
@@ -34,7 +45,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
              
               />
                <div className="opacity-40 text-black text-base font-normal font-['Poppins'] leading-normal mb-1">
-                  Email or Phone Number
+                  Password
                 </div>
               <Textarea
                 className="h-[50px] w-[551px] bg-white rounded p-3"
@@ -48,12 +59,11 @@ const LoginPage: React.FC<LoginPageProps> = () => {
             <div className="mt-6  flex justify-between items-center">
               <div className="text-left text-black/70 text-base font-normal font-poppins leading-normal">
                 <span>Don't have an account?</span>
-                <a href="/signup" className="text-[#7e2ee7] ml-1">Sign Up</a>
+                <a href="./loginpage" className="text-[#7e2ee7] ml-1">Login</a>
               </div>
-              <a href="/forget-password" className="text-[#7e2ee7] text-base font-normal font-poppins leading-normal">
-                Forgot Password
-              </a>
+              
             </div>
+            <Button variant="secondary" title="Forgot Password "  />
 
            
           </div>
@@ -70,4 +80,4 @@ const LoginPage: React.FC<LoginPageProps> = () => {
   );
 };
 
-export default LoginPage;
+export default Signup;

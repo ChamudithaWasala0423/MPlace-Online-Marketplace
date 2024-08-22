@@ -3,6 +3,8 @@ import React from 'react';
 type ButtonProps = {
   title: string;
   variant: 'primary' | 'small' | 'secondary' | 'login';
+  customWidth?: string;
+  customHeight?: string;
 };
 
 const Button: React.FC<ButtonProps> = ({ title, variant }) => {
