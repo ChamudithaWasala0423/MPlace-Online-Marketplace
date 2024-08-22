@@ -7,9 +7,8 @@ import SearchBar from "../components/ui/searchbar";
 
 export default function Home() {
   return (
-    <div>
-      <Navbar /> 
-
+    <div className=" ">
+      <Footer /> 
     </div>
   );
 }
