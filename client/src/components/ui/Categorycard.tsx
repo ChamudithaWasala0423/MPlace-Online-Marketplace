@@ -2,14 +2,11 @@ import React from "react";
 import Image from "next/image";
 
 type CategorycardProps = {
-  category?: string;
-  icon?: string;
+  category: string;
+  icon: string;
 };
 
-const Categorycard: React.FC<CategorycardProps> = ({
-  category = "Electronics",
-  icon = "/images/electronics.png",
-}) => {
+const Categorycard: React.FC<CategorycardProps> = ({ category, icon }: CategorycardProps) => {
   return (
     <div className="w-[200px] h-[200px] rounded-corner bg-secondary-50 flex flex-col justify-center items-center gap-3 hover:bg-secondary-100 sm:w-[115px] sm:h-[115px]">
       <Image
