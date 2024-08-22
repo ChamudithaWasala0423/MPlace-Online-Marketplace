@@ -26,16 +26,26 @@ const defaultItems: Item[] = [
     daysAdded: 5,
     itemImage: "/images/chair.jpg",
   },
-  
 ];
 
-const ItemsSection: React.FC<Props>= ({items=defaultItems}) => {
+const ItemsSection: React.FC<Props> = ({ items = defaultItems }) => {
   return (
     <section className="w-full flex flex-col items-center justify-center py-8 px-8 bg-gray-50">
       <h2 className="text-3xl font-bold font-sans mb-12 text-center text-black">
         Categories
       </h2>
       <div className="flex flex-wrap items-center justify-center gap-8">
+        {items.map((item) => (
+          <Itemcard
+            key={item.id}
+            name={item.name}
+            description={item.description}
+            price={item.price}
+            location={item.location}
+            daysAdded={item.daysAdded}
+            itemImage={item.itemImage}
+          />
+        ))}
       </div>
     </section>
   );
