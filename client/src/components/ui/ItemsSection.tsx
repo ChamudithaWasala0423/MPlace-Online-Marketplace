@@ -85,7 +85,12 @@ const ItemsSection: React.FC<Props> = ({ items = defaultItems ,title}) => {
           />
         ))}
       </div>
-      
+      <div className="flex flex-col items-center justify-center py-2 px-auto">
+        //Add view all button here
+        <button className="bg-purple-600 text-white py-2 px-4 rounded">
+            View All
+        </button>
+      </div>
     </section>
   );
 };
