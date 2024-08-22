@@ -21,17 +21,17 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   };
 
   return (
-    <div className="relative flex items-center w-2/3 md:w-1/4 p-2 rounded-full bg-gray-500">
+    <div className="relative flex items-center w-2/3 md:w-1/4 p-2 rounded-full bg-gray-300">
       <input
         type="search"
         placeholder="What are you looking for?"
-        className="w-full h-10 px-4 pr-10 text-sm text-black placeholder-gray-300 bg-gray-500 rounded-full border-2 border-transparent focus:outline-none hover:border-primary-500 focus:border-primary-500 transition-colors duration-200"
+        className="w-full h-10 px-4 pr-10 text-sm text-black placeholder-gray-500 bg-gray-300 rounded-full border-2 border-transparent focus:outline-none hover:border-primary-500 focus:border-primary-500 transition-colors duration-200"
         onChange={searchHandler}
         onKeyDown={handleKeyDown}
         value={value}
       />
       <button type="submit" className="absolute right-6 top-1/2 transform -translate-y-1/2">
-        <FaSearch className="h-4 w-4 text-[#7e2ee7]" />
+        <FaSearch className="h-4 w-4 text-[#0b0513]" />
       </button>
     </div>
   );
