@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
+import Image from "next/image";
 
 const Herosection = () => {
   return (
@@ -21,17 +22,20 @@ const Herosection = () => {
         </div>
         <div className="w-full flex flex-col items-center justify-center">
           <div className="w-full flex justify-center items-center py-8 md:py-12">
-            <div className="w-full max-w-[1168px] flex flex-col md:flex-row items-center justify-between bg-secondary-100 rounded-lg overflow-hidden shadow-lg">
+            <div className="w-full max-w-[1168px] flex flex-col md:flex-row items-center justify-between bg-secondary-100 rounded-lg overflow-hidden object-cover p-0 h-full">
               {/* Text Section */}
-              <div className="flex flex-col justify-center p-6 md:p-10 text-center md:text-left md:w-1/2">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-wide leading-tight mb-4">
+              <div className="flex flex-col justify-center p-6 md:p-10 text-center md:text-left">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-sans font-semibold tracking-wide leading-tight mb-4">
                   Start Adding Your Ads Today!
                 </h2>
-                <p className="text-base md:text-lg leading-relaxed mb-4">
+                <p
+                  className="text-base md:text-lg leading-relaxed mb-4
+                font-sans font-normal"
+                >
                   Ready to showcase your products or services to a wide
                   audience? Adding your ads to our platform is quick and easy!
                 </p>
-                <p className="text-base md:text-lg leading-relaxed mb-8">
+                <p className="text-base md:text-lg leading-relaxed mb-8 font-sans font-normal">
                   By listing your items here, you'll connect with eager buyers
                   and increase your visibility.
                 </p>
@@ -49,11 +53,11 @@ const Herosection = () => {
               </div>
 
               {/* Image Section */}
-              <div className="w-full h-full object-cover md:w-1/2">
+              <div className="w-full md:w-1/2">
                 <img
                   src="/images/banner.jpg"
                   alt="Banner Image"
-                  className="w-full h-full object-fill rounded-tr-none rounded-tl-none md:rounded-bl-none md:rounded-tr-lg"
+                  className="w-full h-[346px] object-cover rounded-tr-none rounded-tl-none md:rounded-bl-none md:rounded-tr-lg"
                 />
               </div>
             </div>
