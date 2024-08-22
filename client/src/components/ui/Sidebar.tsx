@@ -1,5 +1,5 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 
 type NavItem = {
   name: string;
@@ -8,18 +8,18 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { name: 'Profile Overview', href: '#' },
+  { name: "Profile Overview", href: "#" },
   {
-    name: 'Ad Management',
-    href: '#',
+    name: "Ad Management",
+    href: "#",
     subItems: [
-      { name: 'My Ads', href: '#' },
-      { name: 'Drafts', href: '#' },
+      { name: "My Ads", href: "#" },
+      { name: "Drafts", href: "#" },
     ],
   },
-  { name: 'Notifications', href: '#' },
-  { name: 'Chat', href: '#' },
-  { name: 'Saved Items', href: '#' },
+  { name: "Notifications", href: "#" },
+  { name: "Chat", href: "#" },
+  { name: "Saved Items", href: "#" },
 ];
 
 const Sidebar: React.FC = () => {
@@ -28,7 +28,6 @@ const Sidebar: React.FC = () => {
 
   const handleDropdownToggle = (name: string) => {
     setOpenDropdown(openDropdown === name ? null : name);
-    
   };
 
   const handleSidebarToggle = () => {
@@ -52,14 +51,13 @@ const Sidebar: React.FC = () => {
       <aside
         className={`lg:w-[217px] w-full h- full lg:p-4 p-2 bg-background-400 fixed lg:relative top-auto lg:top-auto z-50 transform ${
           isSidebarOpen
-            ? 'left-[28px] opacity-100'
-            : 'left-[-100%] lg:left-0 opacity-0 lg:opacity-100'
+            ? "left-[28px] opacity-100"
+            : "left-[-100%] lg:left-0 opacity-0 lg:opacity-100"
         } transition-all duration-300] lg:h-auto`}
         onClick={(e) => e.stopPropagation()}
       >
         <nav>
-          <ul className="space-y-4" 
-          onClick={handleCloseSidebar}>
+          <ul className="space-y-4" onClick={handleCloseSidebar}>
             {navItems.map((item) => (
               <li key={item.name}>
                 {item.subItems ? (
@@ -71,7 +69,7 @@ const Sidebar: React.FC = () => {
                       {item.name}
                       <span
                         className={`ml-2 transition-transform ${
-                          openDropdown === item.name ? 'rotate-180' : ''
+                          openDropdown === item.name ? "rotate-180" : ""
                         }`}
                       >
                         ▼

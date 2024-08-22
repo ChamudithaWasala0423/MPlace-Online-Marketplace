@@ -1,6 +1,6 @@
-"use client"
-import React from 'react';
-import Sidebar from './Sidebar'; // Make sure to import the updated Sidebar
+"use client";
+import React from "react";
+import Sidebar from "./Sidebar"; // Make sure to import the updated Sidebar
 
 const Dashboard: React.FC = () => {
   return (
@@ -16,16 +16,18 @@ const Dashboard: React.FC = () => {
             Create New Ad
           </button>
         </div>
-
         // Content Grid *
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          //Example Card 
+          //Example Card
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-medium text-gray-800 mb-4">Ad Performance</h3>
-            <p className="text-gray-500">Detailed analytics of your ads will appear here.</p>
+            <h3 className="text-xl font-medium text-gray-800 mb-4">
+              Ad Performance
+            </h3>
+            <p className="text-gray-500">
+              Detailed analytics of your ads will appear here.
+            </p>
           </div>
-
-          //Add more cardscomponents as needed 
+          //Add more cardscomponents as needed
         </div>
       </main>
     </div>

@@ -23,6 +23,7 @@ const config: Config = {
         "terirary-100":'#F5F5F5',
         "terirary-200":'#F1F1F1',
         "terirary-400":'#E6E6E6',
+        "secondary-900":'#4C6616',
         "background-400":'#FFFBFB',
         "background-500":'#FFFAFA',
         "limegreen": '#11b62f',
