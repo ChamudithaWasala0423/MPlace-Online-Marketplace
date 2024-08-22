@@ -6,20 +6,21 @@ type CategorycardProps = {
   icon: string;
 };
 
-const Categorycard: React.FC<CategorycardProps> = ({ category, icon }: CategorycardProps) => {
+const Categorycard: React.FC<CategorycardProps> = ({
+  category,
+  icon,
+}: CategorycardProps) => {
   return (
-    <div className="w-[200px] h-[200px] rounded-corner bg-secondary-50 flex flex-col justify-center items-center gap-3 hover:bg-secondary-100 sm:w-[115px] sm:h-[115px]">
+    <div className="w-[200px] h-[200px] rounded-corner bg-secondary-50 flex flex-col justify-center items-center gap-3 hover:bg-secondary-100">
       <Image
         src={icon}
         alt={category}
         width={100}
         height={100}
-        className="sm:w-[50px] sm:h-[50px]"
+        className="h-auto w-auto"
       />
       <p
-        className="text-black font-sans text-[20px] font-normal 
-                   sm:text-[14px]"
-      >
+        className="text-black font-sans text-[20px] font-normal">
         {category}
       </p>
     </div>
