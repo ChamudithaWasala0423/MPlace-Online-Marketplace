@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import SearchBar from "../ui/searchbar";
-import Button from "../ui/button";
+import Button from "../ui/Button";
 
 // Define the props interface
 interface NavbarProps {
@@ -47,10 +47,14 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
                 </button>
 
                 <div
-                    className={`${isOpen ? "block" : "hidden"} w-full md:block md:w-auto`}
+                    className={`${isOpen ? "block" : "hidden"} w-full md:flex md:items-center md:w-auto`}
                     id="navbar-solid-bg"
                 >
-                    {/* Remove other buttons and only include the two buttons */}
+                    <ul className="flex flex-col md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent dark:bg-transparent md:dark:bg-transparent dark:border-gray-700">
+                        {/* Navigation items */}
+                    </ul>
+
+                    {/* The two buttons aligned to the right */}
                     <div className="flex space-x-4 mt-4 md:mt-0 md:ml-auto">
                         <Button title="Login" variant="primary" />
                         <Button title="Post an Ad" variant="primary" />

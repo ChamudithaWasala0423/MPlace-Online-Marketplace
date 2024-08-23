@@ -4,13 +4,14 @@ import globals from "globals";
 import Navbar from "../components/ui/navbar";
 import Button from "../components/ui/button";
 import SearchBar from "../components/ui/searchbar";
+import Contact from "@/pages/contact";
 
 export default function Home() {
   return (
-    <div className=" ">
+    <div >
+      <Contact title={""} />
 
-      <Navbar/> 
-      
+
     </div>
   );
 }
