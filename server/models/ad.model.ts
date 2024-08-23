@@ -20,7 +20,6 @@ interface IComment extends Document {
     ImageThree: object;
     tags: string;
     level: string;
-    benefits: { title: string[] };
     comments: IComment[];
   }
 
@@ -68,7 +67,7 @@ interface IComment extends Document {
           // required : true,
         },
       },
-      ImageThree: {
+    ImageThree: {
         public_id: {
           type: String,
           // required : true,
@@ -84,15 +83,14 @@ interface IComment extends Document {
     },
     level: {
       type: String,
-      required: true,
+      required: false,
     },
-    benefits: [{ title: String }],
     comments: [commentSchema],
     
   });
   
 
 
-  const AdModel: Model<IAd> = mongoose.model("Course", adSchema);
+  const AdModel: Model<IAd> = mongoose.model("Ad", adSchema);
 
   export default AdModel;

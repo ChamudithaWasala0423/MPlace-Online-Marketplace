@@ -11,7 +11,7 @@ import { createAd } from "../services/ad.service";
 
 
 //upload Ad
-export const uploadCourse = CatchAsyncErrors(
+export const uploadAd = CatchAsyncErrors(
     async (req: Request, res: any, next: NextFunction) => {
       try {
         const data = req.body;
