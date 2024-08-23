@@ -5,9 +5,12 @@ import { FaSearch } from 'react-icons/fa';
 
 type SearchBarProps = {
   onSearch: (value: string) => void;
+  customWidth?: string; // Add customWidth prop
+  placeholder?: string;
+
 };
 
-const SearchBar = ({ onSearch }: SearchBarProps) => {
+const SearchBar = ({ onSearch,customWidth ,placeholder}: SearchBarProps) => {
   const [value, setValue] = useState('');
 
   const searchHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -21,10 +24,10 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   };
 
   return (<>
-    <div className="relative w-1/4 h-auto p-2  rounded flex items-center">
+    <div className="relative ${customWidth} h-auto p-2  rounded flex items-center">
       <input
         type="search"
-        placeholder="What are you looking for?"
+        placeholder={placeholder || "What are you looking for?"}
         className="bg-tertiary-500 h-10 px-4 pr-12 w-full rounded text-sm border-2 border-transparent hover:border-primary-500 focus:border-primary-500 focus:outline-none transition-colors duration-200"
         onChange={searchHandler}
         onKeyDown={handleKeyDown}

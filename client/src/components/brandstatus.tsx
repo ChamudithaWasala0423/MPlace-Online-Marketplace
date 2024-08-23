@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface BrandStatusProps {
-  status: string;
+  initialStatus: string;
 }
 
-const BrandStatus: React.FC<BrandStatusProps> = ({ status }) => {
+const BrandStatus: React.FC<BrandStatusProps> = ({ initialStatus }) => {
+  const [status, setStatus] = useState(initialStatus);
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setStatus(event.target.value);
+  };
+
   return (
-    <div className="w-[120px] h-[37px] px-3 py-2 bg-[#7e2ee7]/0 rounded border border-black justify-center items-center gap-2 inline-flex">
-      <div className="w-[13px] h-[12.93px] relative">
-        {/* Optional: You can add an icon here */}
-      </div>
-      <div className="text-[#6b6969] text-sm font-normal font-['Poppins'] leading-[21px]">
-        {status}
-      </div>
+    <div className="w-[120px] h-[37px] px-3 py-2 bg-[#7e2ee7]/0 rounded border border-black flex justify-center items-center gap-2">
+      <select 
+        value={status} 
+        onChange={handleChange} 
+        className="text-[#6b6969] text-sm font-normal font-['Poppins'] leading-[21px] bg-transparent outline-none">
+        <option value="Brand new">Brand new</option>
+        <option value="Handmade">Handmade</option>
+      </select>
     </div>
   );
 };

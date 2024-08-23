@@ -11,7 +11,7 @@ import PostAdPage from './pages/postadd';
 const Page: React.FC = () => {
   return (
     <>
-      <LoginPage />
+      <PostAdPage />
     </>
   );
 };
