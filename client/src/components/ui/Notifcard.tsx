@@ -7,7 +7,8 @@ type NotifcardProps = {
   message: string;
 };
 
-const Notifcard = () => {
+const Notifcard:React.FC <NotifcardProps> =  ({
+  type,previewImage,message}: NotifcardProps) =>{
   return (
     <div
       className="flex w-[320px] h-[80px] flex-row space-x-[10px] bg-terirary-200 hover:bg-terirary-400 rounded-corner p-3 
@@ -18,7 +19,7 @@ const Notifcard = () => {
                       lg:w-[75px] lg:h-[75px]"
       >
         <Image
-          src={"/images/chair.jpg"}
+          src={previewImage}
           width={50}
           height={50}
           alt={"preview image"}
