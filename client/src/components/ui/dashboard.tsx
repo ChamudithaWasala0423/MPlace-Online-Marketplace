@@ -6,7 +6,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="flex flex-col lg:flex-row lg:w-[1161px] lg:h-[806px] bg-background-400 justify-center gap-6 lg:gap-[74px] p-4">
       {/* Sidebar */}
-      <Sidebar />
+
 
       {/* Main Content */}
       <main className="flex-1 flex-col lg:w-[870px] w-full bg-background-400 pt-[36px] pr-[72px] pb-[36px] pl-[72px] shadow-md ">
