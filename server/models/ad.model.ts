@@ -9,25 +9,19 @@ interface IComment extends Document {
 }
 
 
-interface IAdData extends Document {
-    title: string;
-    description: string;
-    thumbnailImage: object;
-    suggestion: string;
-    questions: IComment[];
-  }
-
 
   interface IAd extends Document {
     name: string;
     description: string;
     price: number;
     estimatedPrice: number;
-    thumbnail: object;
+    ImageOne: object;
+    ImageTwo: object;
+    ImageThree: object;
     tags: string;
     level: string;
     benefits: { title: string[] };
-    adData: IAdData[];
+    comments: IComment[];
   }
 
   const commentSchema = new Schema<IComment>({
@@ -35,16 +29,6 @@ interface IAdData extends Document {
     question: String,
     questionReplies: [Object],
   });
-
-
-  //Ad Data Schema
-  const adDataSchema = new Schema<IAdData>({
-    title: String,
-    description: String,
-    suggestion: String,
-    questions: [commentSchema],
-  });
-
 
 
   //Ad Schema
@@ -64,7 +48,7 @@ interface IAdData extends Document {
     estimatedPrice: {
       type: Number,
     },
-    thumbnail: {
+    ImageOne: {
       public_id: {
         type: String,
         // required : true,
@@ -74,6 +58,26 @@ interface IAdData extends Document {
         // required : true,
       },
     },
+    ImageTwo: {
+        public_id: {
+          type: String,
+          // required : true,
+        },
+        url: {
+          type: String,
+          // required : true,
+        },
+      },
+      ImageThree: {
+        public_id: {
+          type: String,
+          // required : true,
+        },
+        url: {
+          type: String,
+          // required : true,
+        },
+      },
     tags: {
       type: String,
       required: true,
@@ -83,7 +87,7 @@ interface IAdData extends Document {
       required: true,
     },
     benefits: [{ title: String }],
-    adData: [adDataSchema],
+    comments: [commentSchema],
     
   });
   
