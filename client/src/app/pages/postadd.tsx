@@ -3,10 +3,12 @@ import Button from '@/components/button';
 import Textarea from '@/components/textarea';
 import SearchBar from '@/components/searchbar';
 import BrandStatus from '@/components/brandstatus';
+import InputArea from '@/components/inputarea';
 
 const PostAdPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+        
       <h1 className="text-2xl font-bold text-black mb-8 items-left justify-left">Basic Information</h1>
 
       <form className="flex flex-col gap-4 w-4/5 md:w-3/5 lg:w-2/5">
@@ -14,7 +16,7 @@ const PostAdPage: React.FC = () => {
           Title
         </label>
         
-        <Textarea customWidth="w-full" customHeight="h-4" placeholder="Enter ad title here..." />
+        <InputArea customWidth="w-full" customHeight="h-4" placeholder="Enter ad title here..." />
         <label className="w-[1123px] opacity-50 text-[#ff0004] text-sm font-normal font-['Poppins'] leading-[21px]">
   Title cannot contain special characters. Please use only letters, numbers, and spaces.
         </label>
@@ -30,7 +32,7 @@ const PostAdPage: React.FC = () => {
           Tags
         </label>
         
-        <Textarea customWidth="w-full" customHeight="h-12" placeholder="Add relevant keywords to help buyers find your ad (e.g., 'electronics,' 'vintage,' 'handmade')"   />
+        <InputArea customWidth="w-full" customHeight="h-12" placeholder="Add relevant keywords to help buyers find your ad (e.g., 'electronics,' 'vintage,' 'handmade')"   />
         <label className="w-[1123px] opacity-50 text-[#ff0004] text-sm font-normal font-['Poppins'] leading-[21px]">
   Title cannot contain special characters. Please use only letters, numbers, and spaces.
         </label>

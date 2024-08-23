@@ -3,6 +3,7 @@ import Button from '@/components/button';
 import Textarea from '@/components/textarea';
 import SearchBar from '@/components/searchbar';
 import Footer from '@/components/footer';
+import InputArea from '@/components/inputarea';
 
 interface LoginPageProps {}
 
@@ -31,14 +32,14 @@ const LoginPage: React.FC<LoginPageProps> = () => {
                   Email or Phone Number
                 </div>
              
-              <Textarea
+              <InputArea
                 className="h-[50px] w-[551px] bg-white rounded p-3"
              
               />
                <div className="opacity-40 text-black text-base font-normal font-['Poppins'] leading-normal mb-1">
                   Email or Phone Number
                 </div>
-              <Textarea
+              <InputArea
                 className="h-[50px] w-[551px] bg-white rounded p-3"
                
               />
