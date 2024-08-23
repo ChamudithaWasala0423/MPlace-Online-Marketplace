@@ -54,4 +54,72 @@ export const uploadAd = CatchAsyncErrors(
         return next(new ErrorHandler(errors.message, 500));
       }
     }
+);
+
+
+//Edit Ad
+export const editAd = CatchAsyncErrors(
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const data = req.body;
+  
+        const ImageOne = data.ImageOne;
+        if (ImageOne) {
+          await cloudinary.v2.uploader.destroy(ImageOne.public_id);
+  
+          const myCloud = await cloudinary.v2.uploader.upload(ImageOne, {
+            folder: "Ads",
+          });
+  
+          data.thumbnail = {
+            url: myCloud.secure_url,
+            cloudinary_id: myCloud.public_id,
+          };
+        }
+
+        const ImageTwo = data.ImageTwo;
+        if (ImageTwo) {
+          await cloudinary.v2.uploader.destroy(ImageTwo.public_id);
+  
+          const myCloud = await cloudinary.v2.uploader.upload(ImageTwo, {
+            folder: "Ads",
+          });
+  
+          data.thumbnail = {
+            url: myCloud.secure_url,
+            cloudinary_id: myCloud.public_id,
+          };
+        }
+
+        const ImageThree = data.ImageThree;
+        if (ImageThree) {
+          await cloudinary.v2.uploader.destroy(ImageThree.public_id);
+  
+          const myCloud = await cloudinary.v2.uploader.upload(ImageThree, {
+            folder: "Ads",
+          });
+  
+          data.thumbnail = {
+            url: myCloud.secure_url,
+            cloudinary_id: myCloud.public_id,
+          };
+        }
+
+
+        const adId = req.params.id;
+  
+        const ad = await AdModel.findByIdAndUpdate(
+          adId,
+          { $set: data },
+          { new: true }
+        );
+  
+        res.status(200).json({
+          success: true,
+          ad,
+        });
+      } catch (errors: any) {
+        return next(new ErrorHandler(errors.message, 500));
+      }
+    }
   );
