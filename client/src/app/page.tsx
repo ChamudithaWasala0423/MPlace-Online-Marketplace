@@ -6,12 +6,12 @@ import SearchBar from '@/components/ui/searchbar';
 import Textarea from '@/components/ui/textarea';
 import LoginPage from './pages/loginpage';
 import Signup from './pages/signup';
-
+import PostAdPage from './pages/postadd';
 
 const Page: React.FC = () => {
   return (
     <>
-      <Signup />
+      <PostAdPage />
     </>
   );
 };
