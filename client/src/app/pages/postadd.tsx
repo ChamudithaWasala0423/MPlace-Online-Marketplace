@@ -14,7 +14,7 @@ const PostAdPage: React.FC = () => {
           Title
         </label>
         
-        <Textarea customWidth="w-full" customHeight="h-12" placeholder="Enter ad title here..." />
+        <Textarea customWidth="w-full" customHeight="h-4" placeholder="Enter ad title here..." />
         <label className="w-[1123px] opacity-50 text-[#ff0004] text-sm font-normal font-['Poppins'] leading-[21px]">
   Title cannot contain special characters. Please use only letters, numbers, and spaces.
         </label>

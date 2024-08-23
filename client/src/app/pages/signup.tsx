@@ -2,25 +2,26 @@ import React from 'react';
 import Button from '@/components/button';
 import Textarea from '@/components/textarea';
 import LoginPage from './loginpage';
+import Footer from '@/components/footer';
 
 interface SignupProps {}
 
 const Signup: React.FC<SignupProps> = () => {
   return (
-    <div className="w-full  flex-col bg-white">
+    <div className="w-full  h-[1364px] flex-col bg-white">
       {/* Main Content */}
-      <div className="flex flex-grow">
+      <div className="flex flex-grow  h-[940px]">
         {/* Left Side with Image */}
-        <div className="flex-shrink-0 w-1/2 relative">
+        <div className="flex-shrink-0 w-1/2 h-[940px] relative">
           <img
-            className="w-full h-full object-cover "
+            className="w-full  object-cover "
             src="/loginpageimage.jpeg" // Make sure this image is in the public directory
             alt="Login Screen Background"
           />
         </div>
 
         {/* Right Side with Login Form */}
-        <div className="flex-shrink-0 w-1/2 flex justify-center items-center bg-[#f3ebff]">
+        <div className="flex-shrink-0 w-1/2 h-[940px] flex justify-center items-center bg-[#f3ebff]">
           <div className="w-[720px] p-8 bg-[#f3ebff]rounded-lg ">
             <div className="text-center text-black text-5xl font-semibold font-inter leading-tight mb-8">
               Welcome Back!
@@ -53,7 +54,7 @@ const Signup: React.FC<SignupProps> = () => {
               />
             </div>
             <div className="mt-6 w-full">
-            <Button variant="login" title="Log In" />
+            <Button variant="login" title="Sign up" />
             </div>
            
             <div className="mt-6  flex justify-between items-center">
@@ -63,7 +64,7 @@ const Signup: React.FC<SignupProps> = () => {
               </div>
               
             </div>
-            <Button variant="secondary" title="Forgot Password "  />
+            {/*<Button variant="secondary" title="Forgot Password "  />*/}
 
            
           </div>
@@ -72,9 +73,7 @@ const Signup: React.FC<SignupProps> = () => {
 
       {/* Footer (Placeholder) */}
       <div className="w-full h-[100px] bg-gray-200 flex items-center justify-center">
-        <p className="text-black/70 text-base font-normal font-poppins">
-          Footer content goes here.
-        </p>
+        <Footer/>
       </div>
     </div>
   );

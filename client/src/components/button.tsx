@@ -21,7 +21,8 @@ const Button: React.FC<ButtonProps> = ({ title, variant }) => {
     primary: 'text-[#FAFAFA] text-base font-Poppins font-medium leading-6',
     small: 'text-[#FAFAFA] text-base font-Poppins font-medium leading-6',
     secondary: 'text-black text-base font-Poppins font-medium leading-6',
-    login: 'text-[#f9f9f9] text-[19px] font-medium font-medium leading-6' // New 'login' text styles
+    login: 'text-[#f9f9f9] text-[19px] font-medium font-medium leading-6', // New 'login' text styles
+    Signup: 'text-[#f9f9f9] text-[19px] font-medium font-medium leading-6',
   };
 
   return (
