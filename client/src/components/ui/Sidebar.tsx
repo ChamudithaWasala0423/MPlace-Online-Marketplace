@@ -49,11 +49,11 @@ const Sidebar: React.FC = () => {
 
       {/* Sidebar */}
       <aside
-        className={`lg:w-[217px] w-full h- full lg:p-4 p-2 bg-background-400 fixed lg:relative top-auto lg:top-auto z-50 transform ${
+        className={`lg:w-[217px] w-full h-full lg:p-4 p-2 bg-background-400 fixed lg:relative top-auto lg:top-auto z-50 transform ${
           isSidebarOpen
             ? "left-[28px] opacity-100"
             : "left-[-100%] lg:left-0 opacity-0 lg:opacity-100"
-        } transition-all duration-300] lg:h-auto`}
+        } transition-all duration-300`}
         onClick={(e) => e.stopPropagation()}
       >
         <nav>
@@ -106,7 +106,7 @@ const Sidebar: React.FC = () => {
 
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black opacity-0 z-40"
+          className="fixed inset-0 bg-black opacity-50 z-40" // Changed opacity to 0.5 to make the overlay visible
           onClick={handleCloseSidebar}
         ></div>
       )}
