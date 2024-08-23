@@ -105,7 +105,6 @@ export const editAd = CatchAsyncErrors(
           };
         }
 
-
         const adId = req.params.id;
   
         const ad = await AdModel.findByIdAndUpdate(
@@ -122,4 +121,28 @@ export const editAd = CatchAsyncErrors(
         return next(new ErrorHandler(errors.message, 500));
       }
     }
-  );
+);
+
+
+//get single Ad - public
+export const getSingleAd = CatchAsyncErrors(
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const adId = req.params.id;
+
+        const ad = await AdModel.findById(adId);
+  
+        // console.log("hitting database");
+  
+        res.status(200).json({
+            success: true,
+            ad,
+          });
+        
+      } catch (errors: any) {
+        return next(new ErrorHandler(errors.message, 500));
+      }
+    }
+);
+
+
