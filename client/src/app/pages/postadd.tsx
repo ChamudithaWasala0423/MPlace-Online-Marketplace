@@ -1,6 +1,8 @@
 import React from 'react';
-import Button from '@/components/ui/button';
-import Textarea from '@/components/ui/textarea';
+import Button from '@/components/button';
+import Textarea from '@/components/textarea';
+import SearchBar from '@/components/searchbar';
+import BrandStatus from '@/components/brandstatus';
 
 const PostAdPage: React.FC = () => {
   return (
@@ -19,9 +21,21 @@ const PostAdPage: React.FC = () => {
         <label className=" text-black text-base font-bold font-Poppins leading-normal">
           Category
         </label>
+        <label className="w-[1123px] opacity-50 text-[#ff0004] text-sm font-normal font-['Poppins'] leading-[21px]">
+  Title cannot contain special characters. Please use only letters, numbers, and spaces.
+        </label>
+        <label className=" text-black text-base font-bold font-Poppins leading-normal">
+          Tags
+        </label>
         
-        
-
+        <Textarea customWidth="w-full" customHeight="h-12" placeholder="Add relevant keywords to help buyers find your ad (e.g., 'electronics,' 'vintage,' 'handmade')"   />
+        <label className="w-[1123px] opacity-50 text-[#ff0004] text-sm font-normal font-['Poppins'] leading-[21px]">
+  Title cannot contain special characters. Please use only letters, numbers, and spaces.
+        </label>
+        <div className="mt-6  flex justify-between items-center">
+        <BrandStatus status="Brand new" />
+        <BrandStatus status="Handmade" />
+        </div>
 
         <label className="opacity-40 text-black text-base font-normal font-Poppins leading-normal">
           Description
