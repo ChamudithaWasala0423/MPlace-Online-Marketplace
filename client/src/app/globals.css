@@ -16,6 +16,8 @@
   }
 }
 
+
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -30,4 +32,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .lg:grid-cols-sidebar-main {
+    grid-template-columns: 217px 1fr; /* Sidebar width + flexible content */
+  }
+
 }
