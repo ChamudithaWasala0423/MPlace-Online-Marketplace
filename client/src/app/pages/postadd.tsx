@@ -6,7 +6,7 @@ import BrandStatus from '@/components/brandstatus';
 import InputArea from '@/components/inputarea';
 import DragAndDrop from '@/components/draganddrop';
 import Footer from '@/components/footer';
-
+import Navbar from '@/components/navbar';
 const PostAdPage: React.FC = () => {
     const [currency, setCurrency] = useState('LKR');
 
@@ -21,8 +21,9 @@ const PostAdPage: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen bg-white">
+            <Navbar/>
             <div className="flex flex-col flex-grow items-center justify-center">
-                 <h1 className="text-2xl font-bold text-black mb-8 self-start">Content</h1>
+                 <h1 className="text-2xl font-bold text-black mb-8 items-center justify-center">Basic Information</h1>
 
                 <form className="flex flex-col gap-4 w-4/5 md:w-3/5 lg:w-2/5">
                 
@@ -62,7 +63,7 @@ const PostAdPage: React.FC = () => {
                         <BrandStatus initialStatus="Brand new" />
                     </div>
 
-                    <h1 className="text-2xl font-bold text-black mb-8 self-start">Content</h1>
+                    <h1 className="text-2xl font-bold text-black mb-8 ">Content</h1>
 
                     <label className="text-black text-base font-bold font-Poppins leading-normal">
                         Add photos
