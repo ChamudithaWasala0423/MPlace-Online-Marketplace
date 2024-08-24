@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 
 type NavItem = {
   name: string;
@@ -8,18 +9,18 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { name: "Profile Overview", href: "#" },
+  { name: "Profile Overview", href: "/dashboard/profileoverview" },
   {
     name: "Ad Management",
     href: "#",
     subItems: [
-      { name: "My Ads", href: "#" },
-      { name: "Drafts", href: "#" },
+      { name: "My Ads", href: "/dashboard/myads" },
+      { name: "Drafts", href: "/dashboard/draftads" },
     ],
   },
-  { name: "Notifications", href: "#" },
-  { name: "Chat", href: "#" },
-  { name: "Saved Items", href: "#" },
+  { name: "Notifications", href: "/dashboard/notification" },
+  { name: "Chat", href: "/dashboard/chat" },
+  { name: "Saved Items", href: "/dashboard/saveditems" },
 ];
 
 const Sidebar: React.FC = () => {
