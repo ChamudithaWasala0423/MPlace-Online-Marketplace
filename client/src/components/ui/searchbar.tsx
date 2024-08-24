@@ -21,7 +21,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   };
 
   return (
-    <div className="relative flex items-center w-2/3 md:w-1/4 p-2 rounded-full bg-gray-300">
+    <div className="relative flex items-center w-3/4 md:w-1/4 p-2 rounded-full bg-gray-300">
       <input
         type="search"
         placeholder="What are you looking for?"

@@ -1,68 +1,55 @@
-'use client';
+// pages/contact.tsx
+import React from 'react';
+import Navbar from '../components/ui/navbar'; // Ensure this path is correct
+import { FaPhone, FaEnvelope } from 'react-icons/fa';
+import Textarea from '@/components/ui/textarea';
 
-import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
-import SearchBar from "../ui/searchbar";
-import Button from "../ui/Button";
-
-// Define the props interface
-interface NavbarProps {
-    title: string;  // This prop is required
-    subtitle?: string;  // This prop is optional
-}
-
-const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggleDrawer = () => {
-        setIsOpen(!isOpen);
-    };
-
+const Contact: React.FC = () => {
     return (
-        <nav className="border-white-200 bg-white dark:bg-white dark:border-white">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <div className="flex flex-col">
-                    <p className="self-center text-2xl font-semibold whitespace-nowrap dark:text-black font-Inter">
-                        {title}
+        <div className="min-h-screen bg-white">
+            <Navbar title="Mplace" />
+
+
+
+            <div className='flex flex-col md:flex-row p-8 mt-11'>
+                {/* Notes Section */}
+                <div className='text-black w-full md:w-1/2 mr-4 mx-11'>
+                    <p className='my-5 flex items-center font-bold'>
+                        <span className='mr-2'>
+                        <FaPhone className='text-xl text-purple-700' />  {/* Call icon */}
+                        </span>
+                        Contact us
                     </p>
-                    {subtitle && (
-                        <p className="self-center text-lg font-normal whitespace-nowrap dark:text-gray-700 font-Inter">
-                            {subtitle}
-                        </p>
-                    )}
+                    <p className='my-5 text-sm'>We are available 24/7, 7 days a week.</p>
+                    <p className='my-5 text-sm'>Phone: 0452240290</p>
+
+                    {/* Horizontal Black Bar */}
+                    <div className='w-3/4 h-1 bg-black my-4'></div>
+
+                    <p className='my-5 flex items-center font-bold'>
+                        <span className='mr-2'>
+                        <FaEnvelope className='text-xl  text-purple-700' />  {/* Email icon */}
+                        </span>
+                        Write to us
+                    </p>
+                    <p className='my-5 text-sm'>Fill out our form and we will contact you within 24 hours.</p>
+                    <p className='my-5 text-sm'>Emails: mplace@gmail.com</p>
                 </div>
 
-                {/* Conditionally render the search bar for mobile screens */}
-                <div className="flex-grow md:flex-grow-0 mx-4 md:mx-0">
-                    <div className="md:hidden">
-                        <SearchBar onSearch={(value) => console.log('Search:', value)} />
-                    </div>
-                </div>
-
-                <button
-                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    onClick={toggleDrawer}
-                >
-                    {isOpen ? <FaTimes /> : <FaBars />}
-                </button>
-
-                <div
-                    className={`${isOpen ? "block" : "hidden"} w-full md:flex md:items-center md:w-auto`}
-                    id="navbar-solid-bg"
-                >
-                    <ul className="flex flex-col md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent dark:bg-transparent md:dark:bg-transparent dark:border-gray-700">
-                        {/* Navigation items */}
-                    </ul>
-
-                    {/* The two buttons aligned to the right */}
-                    <div className="flex space-x-4 mt-4 md:mt-0 md:ml-auto">
-                        <Button title="Login" variant="primary" />
-                        <Button title="Post an Ad" variant="primary" />
-                    </div>
+                {/* Textarea Section */}
+                <div className='w-full md:w-1/2'>
+                    <Textarea
+                        customWidth="w-full"
+                        customHeight="h-80"
+                        
+                    />
                 </div>
             </div>
-        </nav>
+
+
+
+        </div>
     );
 };
 
-export default Navbar;
+export default Contact;

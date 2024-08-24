@@ -5,13 +5,12 @@ import Navbar from "../components/ui/navbar";
 import Button from "../components/ui/button";
 import SearchBar from "../components/ui/searchbar";
 import Contact from "@/pages/contact";
+import Textarea from "@/components/ui/textarea"
 
 export default function Home() {
   return (
     <div >
-      <Contact title={""} />
-
-
+      <Contact />
     </div>
   );
 }
