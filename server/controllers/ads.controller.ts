@@ -9,6 +9,7 @@ import ejs from "ejs";
 import path from "path";
 import sendMail from "../utils/sendMail";
 import UserModel from "../models/user.model";
+import notificationModel from "../models/notification.model";
 
 //upload Ad
 export const uploadAd = CatchAsyncErrors(
@@ -223,6 +224,51 @@ export const deleteAd = CatchAsyncErrors(
       res.status(200).json({
         success: true,
         message: "Ad deleted successfully",
+      });
+    } catch (errors: any) {
+      return next(new ErrorHandler(errors.message, 500));
+    }
+  }
+);
+
+
+//add question in Ad
+interface IAddQuestion {
+  question: string;
+  adId: string;
+}
+export const addQuestion = CatchAsyncErrors(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { question, adId}: IAddQuestion = req.body;
+      const ad = await AdModel.findById(adId);
+
+      if (!mongoose.Types.ObjectId.isValid(adId)) {
+        return next(new ErrorHandler("Invalid content Id", 400));
+      }
+      //create a new question object
+      const newQuestion: any = {
+        user: req.user?.id,
+        question,
+        questionReplies: [],
+      };
+
+      //add this question to our course content
+      ad?.questions.push(newQuestion);
+
+      await notificationModel.create({
+        user: req.user?._id,
+        title: "New Question Resived",
+        message: `You have successfully question in ${ad?.name}`,
+      });
+
+      //save the updated course
+      await ad?.save();
+
+      res.status(200).json({
+        success: true,
+        message: "Question added successfully",
+        ad,
       });
     } catch (errors: any) {
       return next(new ErrorHandler(errors.message, 500));
