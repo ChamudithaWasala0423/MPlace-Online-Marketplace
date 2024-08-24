@@ -4,11 +4,16 @@ import Textarea from '@/components/textarea';
 import SearchBar from '@/components/searchbar';
 import BrandStatus from '@/components/brandstatus';
 import InputArea from '@/components/inputarea';
+import DragAndDrop from '@/components/draganddrop';
 
 const PostAdPage: React.FC = () => {
+    const handleFileDrop = (acceptedFiles: File[]) => {
+        console.log(acceptedFiles);
+        // Handle the file uploads here
+      };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-        
+
       <h1 className="text-2xl font-bold text-black mb-8 items-left justify-left">Basic Information</h1>
 
       <form className="flex flex-col gap-4 w-4/5 md:w-3/5 lg:w-2/5">
@@ -40,6 +45,15 @@ const PostAdPage: React.FC = () => {
           <BrandStatus initialStatus="Brand new" />
           
         </div>
+        <h1 className="text-2xl font-bold text-black mb-8 items-left justify-left">Content</h1>
+        <label className=" text-black text-base font-bold font-Poppins leading-normal">
+          Add photos
+        </label>
+        <label className="w-[1123px] opacity-50 text-black text-sm font-normal font-['Poppins'] leading-[21px]">
+        Upload clear, high-quality photos of your item. Showcase all angles to attract buyers.
+        </label>
+        <DragAndDrop onDrop={handleFileDrop} />
+        
 
         <label className="opacity-40 text-black text-base font-normal font-Poppins leading-normal">
           Description
