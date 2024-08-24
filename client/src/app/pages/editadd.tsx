@@ -7,7 +7,7 @@ import InputArea from '@/components/inputarea';
 import DragAndDrop from '@/components/draganddrop';
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
-const PostAdPage: React.FC = () => {
+const EditAddPage: React.FC = () => {
     const [currency, setCurrency] = useState('LKR');
 
     const handleFileDrop = (acceptedFiles: File[]) => {
@@ -138,7 +138,7 @@ const PostAdPage: React.FC = () => {
 
                     {/* Primary Button on the Right Side */}
                     <div className="flex justify-end mt-8">
-                        <Button title="Post Ad" variant="primary" />
+                        <Button title="Save changes" variant="primary" />
                     </div>
                 </form>
             </div>
@@ -149,4 +149,4 @@ const PostAdPage: React.FC = () => {
     );
 };
 
-export default PostAdPage;
+export default EditAddPage;

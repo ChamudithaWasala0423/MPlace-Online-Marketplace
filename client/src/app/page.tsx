@@ -7,11 +7,12 @@ import SearchBar from '@/components/searchbar';
 import LoginPage from './pages/loginpage';
 import Signup from './pages/signup';
 import PostAdPage from './pages/postadd';
+import EditAddPage from './pages/editadd';
 
 const Page: React.FC = () => {
   return (
     <>
-      <PostAdPage />
+      <EditAddPage />
     </>
   );
 };
