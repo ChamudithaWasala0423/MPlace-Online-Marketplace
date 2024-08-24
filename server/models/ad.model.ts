@@ -20,6 +20,7 @@ interface IComment extends Document {
     ImageThree: object;
     tags: string;
     level: string;
+    userId : IUser;
     comments: IComment[];
   }
 
@@ -84,6 +85,11 @@ interface IComment extends Document {
     level: {
       type: String,
       required: false,
+    },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
     comments: [commentSchema],
     

@@ -2,15 +2,16 @@ import express from 'express';
 import { 
     uploadAd,
     editAd,
-    getSingleAd
+    getSingleAd,
+    getAdsByUser
  } from '../controllers/ads.controller';
 
-import { isAuthenticated } from '../middleware/auth';
+import { authorizeRoles, isAuthenticated } from '../middleware/auth';
 
 const adRouter = express.Router();
 
 //upload Ad
-adRouter.post("/upload-ad",isAuthenticated, (req: any, res: any, next: any) => {
+adRouter.post("/upload-ad",isAuthenticated, authorizeRoles("user"), (req: any, res: any, next: any) => {
   uploadAd(req, res, next);
 });
 
@@ -21,8 +22,13 @@ adRouter.put("/edit-ad/:id",isAuthenticated,  (req: any, res: any, next: any) =>
 });
 
 //get single ad - public
-adRouter.get("/get-single-ad/:id",  (req: any, res: any, next: any) => {
+adRouter.get("/get-ad/:id",  (req: any, res: any, next: any) => {
     getSingleAd(req, res, next);
+});
+
+//get ad by user - authenticated
+adRouter.get("/get-single-ad/:id",isAuthenticated,  (req: any, res: any, next: any) => {
+    getAdsByUser(req, res, next);
 });
 
 

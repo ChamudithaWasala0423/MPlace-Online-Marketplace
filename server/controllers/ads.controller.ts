@@ -1,21 +1,24 @@
 import { Request, Response, NextFunction, response } from "express";
 import ErrorHandler from "../utils/ErrorHandler";
 import { CatchAsyncErrors } from "../middleware/CatchAsyncErrors";
+import AdModel from "../models/ad.model";
+import cloudinary from "cloudinary"; //for upload media files to cloudinary
+import { createAd } from "../services/ad.service";
 import mongoose from "mongoose";
 import ejs from "ejs";
 import path from "path";
 import sendMail from "../utils/sendMail";
-import AdModel from "../models/ad.model";
-import cloudinary from "cloudinary";
-import { createAd } from "../services/ad.service";
+import UserModel from "../models/user.model";
 
 
 //upload Ad
 export const uploadAd = CatchAsyncErrors(
     async (req: Request, res: any, next: NextFunction) => {
+        
       try {
         const data = req.body;
-  
+        const userId = req.user?._id;
+
         const ImageOne = data.ImageOne;
         if (ImageOne) {
           const myCloud = await cloudinary.v2.uploader.upload(ImageOne, {
@@ -48,8 +51,12 @@ export const uploadAd = CatchAsyncErrors(
             cloudinary_id: myCloud.public_id,
           };
         }
+
+        // add user id for Ad Model
+        data.userId = userId;
   
         createAd(data, res, next);
+        
       } catch (errors: any) {
         return next(new ErrorHandler(errors.message, 500));
       }
@@ -146,3 +153,23 @@ export const getSingleAd = CatchAsyncErrors(
 );
 
 
+// Get all ads for an authenticated user
+export const getAdsByUser = CatchAsyncErrors(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      // Find all ads created by the authenticated user
+      const userAds = await AdModel.find({ userId: req.user?._id });
+
+      if (!userAds || userAds.length === 0) {
+        return next(new ErrorHandler("No ads found for this user", 404));
+      }
+
+      res.status(200).json({
+        success: true,
+        ads: userAds,
+      });
+    } catch (errors: any) {
+      return next(new ErrorHandler(errors.message, 500));
+    }
+  }
+);
