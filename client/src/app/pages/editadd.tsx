@@ -52,10 +52,9 @@ const EditAddPage: React.FC = () => {
         return isValid;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (handleValidation()) {
-            // Submit the form
             console.log('Form submitted');
         }
     };
@@ -83,6 +82,9 @@ const EditAddPage: React.FC = () => {
         <div className="flex flex-col min-h-screen bg-white">
             <Navbar />
             <div className="flex-grow px-4 sm:px-6 lg:px-8 ml-2.5 sm:ml-1 lg:ml-15 mr-2.5 sm:mr-1 lg:mr-3.75">
+              
+
+                <div className="max-w-7xl mx-auto">
                 <div className='flex flex-col w-full justify-start mt-10'>
                     <div className='flex w-full justify-start mt-10'>
                         <p className='text-sm text-gray-500'>
@@ -91,9 +93,7 @@ const EditAddPage: React.FC = () => {
                     </div>
                     <h1 className="text-2xl font-bold text-black mb-8 text-left mt-10">Basic Information</h1>
                 </div>
-
-                <div className="max-w-7xl mx-auto">
-                    <form className="space-y-6" onSubmit={handleSubmit}>
+                    <form className="space-y-6" onSubmit={handleFormSubmit}>
                         <div className="space-y-2">
                             <label className="block text-black text-base font-bold font-Poppins">Title</label>
                             <p className="text-sm text-gray-500">Upload clear, high-quality photos of your item. Showcase all angles to attract buyers.</p>
@@ -232,8 +232,9 @@ const EditAddPage: React.FC = () => {
                             </div>
                         </div>
                         <div className="flex justify-end mt-8">
-                <Button  title="Save changes" variant="primary" />
-                {/*onClick={handleSubmit}*/}
+                        <Button title="Save changes" variant="primary" />
+                        {/* onClick={handleFormSubmit} */}
+
             </div>
 
                     </form>
