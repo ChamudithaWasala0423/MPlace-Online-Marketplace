@@ -10,148 +10,157 @@ import path from "path";
 import sendMail from "../utils/sendMail";
 import UserModel from "../models/user.model";
 
-
 //upload Ad
 export const uploadAd = CatchAsyncErrors(
-    async (req: Request, res: any, next: NextFunction) => {
-        
-      try {
-        const data = req.body;
-        const userId = req.user?._id;
-
-        const ImageOne = data.ImageOne;
-        if (ImageOne) {
-          const myCloud = await cloudinary.v2.uploader.upload(ImageOne, {
-            folder: "Ads",
-          });
-          data.ImageOne = {
-            url: myCloud.secure_url,
-            cloudinary_id: myCloud.public_id,
-          };
-        }
-
-        const ImageTwo = data.ImageTwo;
-        if (ImageTwo) {
-          const myCloud = await cloudinary.v2.uploader.upload(ImageTwo, {
-            folder: "Ads",
-          });
-          data.ImageTwo = {
-            url: myCloud.secure_url,
-            cloudinary_id: myCloud.public_id,
-          };
-        }
-
-        const ImageThree = data.ImageThree;
-        if (ImageThree) {
-          const myCloud = await cloudinary.v2.uploader.upload(ImageThree, {
-            folder: "Ads",
-          });
-          data.ImageThree = {
-            url: myCloud.secure_url,
-            cloudinary_id: myCloud.public_id,
-          };
-        }
-
-        // add user id for Ad Model
-        data.userId = userId;
-  
-        createAd(data, res, next);
-        
-      } catch (errors: any) {
-        return next(new ErrorHandler(errors.message, 500));
+  async (req: Request, res: any, next: NextFunction) => {
+    try {
+      const data = req.body;
+      const userId = req.user?._id;
+      if (!userId) {
+        return next(new ErrorHandler("User not found", 404));
       }
-    }
-);
 
+      const ImageOne = data.ImageOne;
+      if (ImageOne) {
+        const myCloud = await cloudinary.v2.uploader.upload(ImageOne, {
+          folder: "Ads",
+        });
+        data.ImageOne = {
+          url: myCloud.secure_url,
+          cloudinary_id: myCloud.public_id,
+        };
+      }
+
+      const ImageTwo = data.ImageTwo;
+      if (ImageTwo) {
+        const myCloud = await cloudinary.v2.uploader.upload(ImageTwo, {
+          folder: "Ads",
+        });
+        data.ImageTwo = {
+          url: myCloud.secure_url,
+          cloudinary_id: myCloud.public_id,
+        };
+      }
+
+      const ImageThree = data.ImageThree;
+      if (ImageThree) {
+        const myCloud = await cloudinary.v2.uploader.upload(ImageThree, {
+          folder: "Ads",
+        });
+        data.ImageThree = {
+          url: myCloud.secure_url,
+          cloudinary_id: myCloud.public_id,
+        };
+      }
+
+      // add user id for Ad Model
+      data.userId = userId;
+
+      createAd(data, res, next);
+    } catch (errors: any) {
+      return next(new ErrorHandler(errors.message, 500));
+    }
+  }
+);
 
 //Edit Ad
 export const editAd = CatchAsyncErrors(
-    async (req: Request, res: Response, next: NextFunction) => {
-      try {
-        const data = req.body;
-  
-        const ImageOne = data.ImageOne;
-        if (ImageOne) {
-          await cloudinary.v2.uploader.destroy(ImageOne.public_id);
-  
-          const myCloud = await cloudinary.v2.uploader.upload(ImageOne, {
-            folder: "Ads",
-          });
-  
-          data.thumbnail = {
-            url: myCloud.secure_url,
-            cloudinary_id: myCloud.public_id,
-          };
-        }
-
-        const ImageTwo = data.ImageTwo;
-        if (ImageTwo) {
-          await cloudinary.v2.uploader.destroy(ImageTwo.public_id);
-  
-          const myCloud = await cloudinary.v2.uploader.upload(ImageTwo, {
-            folder: "Ads",
-          });
-  
-          data.thumbnail = {
-            url: myCloud.secure_url,
-            cloudinary_id: myCloud.public_id,
-          };
-        }
-
-        const ImageThree = data.ImageThree;
-        if (ImageThree) {
-          await cloudinary.v2.uploader.destroy(ImageThree.public_id);
-  
-          const myCloud = await cloudinary.v2.uploader.upload(ImageThree, {
-            folder: "Ads",
-          });
-  
-          data.thumbnail = {
-            url: myCloud.secure_url,
-            cloudinary_id: myCloud.public_id,
-          };
-        }
-
-        const adId = req.params.id;
-  
-        const ad = await AdModel.findByIdAndUpdate(
-          adId,
-          { $set: data },
-          { new: true }
-        );
-  
-        res.status(200).json({
-          success: true,
-          ad,
-        });
-      } catch (errors: any) {
-        return next(new ErrorHandler(errors.message, 500));
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userId = req.user?._id;
+      if (!userId) {
+        return next(new ErrorHandler("User not found", 404));
       }
-    }
-);
 
+      const adId = req.params.id;
+      const ad = await AdModel.findById(adId);
+
+      // Check if the ad exists and belongs to the authenticated user
+      if (!ad || ad.userId.toString() !== userId.toString()) {
+        return next(
+          new ErrorHandler("You are not authorized to edit this ad", 403)
+        );
+      }
+
+      const data = req.body;
+
+      const ImageOne = data.ImageOne;
+      if (ImageOne) {
+        await cloudinary.v2.uploader.destroy(ImageOne.public_id);
+
+        const myCloud = await cloudinary.v2.uploader.upload(ImageOne, {
+          folder: "Ads",
+        });
+
+        data.thumbnail = {
+          url: myCloud.secure_url,
+          cloudinary_id: myCloud.public_id,
+        };
+      }
+
+      const ImageTwo = data.ImageTwo;
+      if (ImageTwo) {
+        await cloudinary.v2.uploader.destroy(ImageTwo.public_id);
+
+        const myCloud = await cloudinary.v2.uploader.upload(ImageTwo, {
+          folder: "Ads",
+        });
+
+        data.thumbnail = {
+          url: myCloud.secure_url,
+          cloudinary_id: myCloud.public_id,
+        };
+      }
+
+      const ImageThree = data.ImageThree;
+      if (ImageThree) {
+        await cloudinary.v2.uploader.destroy(ImageThree.public_id);
+
+        const myCloud = await cloudinary.v2.uploader.upload(ImageThree, {
+          folder: "Ads",
+        });
+
+        data.thumbnail = {
+          url: myCloud.secure_url,
+          cloudinary_id: myCloud.public_id,
+        };
+      }
+
+      const updatedAd = await AdModel.findByIdAndUpdate(
+        adId,
+        { $set: data },
+        { new: true }
+      );
+
+      res.status(200).json({
+        success: true,
+        updatedAd,
+      });
+    } catch (errors: any) {
+      return next(new ErrorHandler(errors.message, 500));
+    }
+  }
+);
 
 //get single Ad - public
 export const getSingleAd = CatchAsyncErrors(
-    async (req: Request, res: Response, next: NextFunction) => {
-      try {
-        const adId = req.params.id;
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const adId = req.params.id;
 
-        const ad = await AdModel.findById(adId);
-  
-        // console.log("hitting database");
-  
-        res.status(200).json({
-            success: true,
-            ad,
-          });
-        
-      } catch (errors: any) {
-        return next(new ErrorHandler(errors.message, 500));
-      }
+      const ad = await AdModel.findById(adId);
+
+      // console.log("hitting database");
+
+      res.status(200).json({
+        success: true,
+        ad,
+      });
+    } catch (errors: any) {
+      return next(new ErrorHandler(errors.message, 500));
     }
+  }
 );
-
 
 // Get all ads for an authenticated user
 export const getAdsByUser = CatchAsyncErrors(
@@ -174,20 +183,41 @@ export const getAdsByUser = CatchAsyncErrors(
   }
 );
 
-
 //get all ads
 export const getAllAds = CatchAsyncErrors(
-    async (req: Request, res: Response, next: NextFunction) => {
-      try {
-        const ads = await AdModel.find();
-  
-        res.status(200).json({
-          success: true,
-          ads,
-        });
-      } catch (errors: any) {
-        return next(new ErrorHandler(errors.message, 500));
-      }
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const ads = await AdModel.find();
+
+      res.status(200).json({
+        success: true,
+        ads,
+      });
+    } catch (errors: any) {
+      return next(new ErrorHandler(errors.message, 500));
     }
-  );
-  
+  }
+);
+
+//delete Ad
+export const deleteAd = CatchAsyncErrors(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userId = req.user?._id;
+      const adId = req.params.id;
+
+      const ad = await AdModel.findById(adId).where({ userId });
+
+      if (!ad) {
+        return next(new ErrorHandler("Ad not found", 404));
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Ad is deleted",
+      });
+    } catch (errors: any) {
+      return next(new ErrorHandler(errors.message, 500));
+    }
+  }
+);
