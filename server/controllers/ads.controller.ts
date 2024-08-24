@@ -204,17 +204,25 @@ export const deleteAd = CatchAsyncErrors(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userId = req.user?._id;
-      const adId = req.params.id;
+      const { id } = req.params;
 
-      const ad = await AdModel.findById(adId).where({ userId });
+      const ad = await AdModel.findById(id);
+      // Check if the ad exists and belongs to the authenticated user
+      if (!ad || ad.userId.toString() !== userId?.toString()) {
+        return next(
+          new ErrorHandler("You are not authorized to delete this ad", 403)
+        );
+      }
 
       if (!ad) {
-        return next(new ErrorHandler("Ad not found", 404));
+        return next(new ErrorHandler("Ad not found", 400));
       }
+
+      await ad.deleteOne({ id });
 
       res.status(200).json({
         success: true,
-        message: "Ad is deleted",
+        message: "Ad deleted successfully",
       });
     } catch (errors: any) {
       return next(new ErrorHandler(errors.message, 500));
