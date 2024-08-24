@@ -93,6 +93,31 @@ const PostAdPage: React.FC = () => {
           </select>
           <InputArea customWidth="w-50px" customHeight="h-6" placeholder="Price"/>
         </div>
+        <label className=" text-black text-base font-bold font-Poppins leading-normal">
+        Details
+        </label>
+        <label className="w-[1123px] opacity-50 text-black text-sm font-normal font-['Poppins'] leading-[21px]">
+        Provide a detailed description of your item. Include key features, condition, and any important information buyers should know.
+        </label>
+        <Textarea customWidth="w-full" customHeight="h-4"  />
+        <label className=" text-black text-base font-bold font-Poppins leading-normal">
+        Instructions for buyers
+        </label>
+        <label className="w-[1123px] opacity-50 text-black text-sm font-normal font-['Poppins'] leading-[21px]">
+        include any special instructions for your buyers, such as payment methods, delivery options, or specific details they should consider before purchasing.
+        </label>
+        <Textarea customWidth="w-full" customHeight="h-4"  />
+        <label className=" text-black text-base font-bold font-Poppins leading-normal">
+        Location
+        </label>
+        <label className="w-[1123px] opacity-50 text-black text-sm font-normal font-['Poppins'] leading-[21px]">
+        Include any special instructions for your buyers, such as payment methods, delivery options, or specific details they should consider before purchasing.
+        </label>
+        <div className="mt-2 flex space-x-4 items-center">
+          <InputArea customWidth="w-20px" customHeight="h-6" placeholder="City"/>
+          <InputArea customWidth="w-20px" customHeight="h-6" placeholder="Province"/>
+          <InputArea customWidth="w-20px" customHeight="h-6" placeholder="Country"/>
+        </div>
 
         
 
