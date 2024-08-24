@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import Rating from './Rating';
+import Rating from '../ui/rating';
 import { FaMapMarkerAlt } from 'react-icons/fa'; // Import location icon from react-icons
 
 interface ProductDetailsProps {
