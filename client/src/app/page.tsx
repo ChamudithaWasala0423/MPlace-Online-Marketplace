@@ -7,11 +7,12 @@ import SearchBar from "../components/ui/searchbar";
 import Contact from "@/pages/contact";
 import Textarea from "@/components/ui/textarea"
 import ProductDetails from "@/components/ui/productDetails";
+import About from "@/pages/about";
 
 export default function Home() {
   return (
     <div >
-      <Contact />
+      <About />
       
     </div>
   );
