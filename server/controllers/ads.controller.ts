@@ -173,3 +173,21 @@ export const getAdsByUser = CatchAsyncErrors(
     }
   }
 );
+
+
+//get all ads
+export const getAllAds = CatchAsyncErrors(
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const ads = await AdModel.find();
+  
+        res.status(200).json({
+          success: true,
+          ads,
+        });
+      } catch (errors: any) {
+        return next(new ErrorHandler(errors.message, 500));
+      }
+    }
+  );
+  
