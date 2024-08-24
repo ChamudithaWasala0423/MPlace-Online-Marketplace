@@ -12,7 +12,7 @@ import EditAddPage from './pages/editadd';
 const Page: React.FC = () => {
   return (
     <>
-      <EditAddPage />
+      <PostAdPage />
     </>
   );
 };
