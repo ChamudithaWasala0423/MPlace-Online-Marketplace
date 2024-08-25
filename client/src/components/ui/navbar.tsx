@@ -1,5 +1,4 @@
-'use client';
-
+"use client"; 
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import SearchBar from "../ui/searchbar";
