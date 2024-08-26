@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Navbar from '@/components/ui/navbar';
 import React from 'react';
 import { FaShippingFast, FaDollarSign, FaUsers, FaWallet } from 'react-icons/fa';
+import EmployeeCard from '@/components/ui/employcard';
 
 const About: React.FC = () => {
     return (
@@ -10,8 +11,8 @@ const About: React.FC = () => {
 
             <div className='flex flex-col md:flex-row w-full pt-20 h-fit bg-white'>
                 <div className='basis-full md:basis-1/2 h-full'>
-                    <div className='p-11'>
-                        <p className='font-bold text-4xl text-black'>Our Story</p>
+                    <div className='p-11 m-10'>
+                        <p className='font-bold text-4xl text-black font-Inter'>Our Story</p>
                         <p className='mt-5 text-black'>
                             Launched in 2024, MPlace has quickly become a leading online marketplace,
                             connecting buyers and sellers across Sri Lanka. With a strong commitment to
@@ -27,7 +28,7 @@ const About: React.FC = () => {
 
                 <div className='basis-full md:basis-1/2 bg-blue-600 h-full flex justify-center items-center'>
                     <Image
-                        src="/images/image.jpeg"  // This should work if the image is in the public/images folder
+                        src="/images/image.jpeg"  // Corrected the image path
                         alt="Image"
                         layout="intrinsic"
                         width={600}
@@ -40,27 +41,27 @@ const About: React.FC = () => {
             {/* Four White Boxes in a Row */}
             <div className='flex flex-wrap justify-around bg-slate-100 p-8'>
                 <div className='w-full md:w-1/4 p-4'>
-                    <div className='bg-white p-6 rounded-lg flex flex-col items-center text-black'>
+                    <div className='bg-white p-6 rounded-lg flex flex-col items-center text-black border border-black'>
                         <div className='text-black border border-black rounded-full p-3'>
                             <FaShippingFast className='text-4xl' />
                         </div>
                         <p className='mt-6 text-4xl font-bold'>10.5k</p>
-                        <p className='mt-6 text-xl font-bold'>Sallers active our site</p>
+                        <p className='mt-6 text-xl font-bold'>Sellers active on our site</p>
                     </div>
                 </div>
 
                 <div className='w-full md:w-1/4 p-4'>
-                    <div className='bg-purple-600 p-6 rounded-lg flex flex-col items-center text-white'>
+                    <div className='bg-purple-600 p-6 rounded-lg flex flex-col items-center text-white border border-black'>
                         <div className='text-white border border-white rounded-full p-3'>
                             <FaDollarSign className='text-4xl' />
                         </div>
                         <p className='mt-6 text-4xl font-bold'>33k</p>
-                        <p className='mt-6 text-xl font-bold'>Customer active in our site</p>
+                        <p className='mt-6 text-xl font-bold'>Customers active on our site</p>
                     </div>
                 </div>
 
                 <div className='w-full md:w-1/4 p-4'>
-                    <div className='bg-white p-6 rounded-lg flex flex-col items-center text-black'>
+                    <div className='bg-white p-6 rounded-lg flex flex-col items-center text-black border border-black'>
                         <div className='text-black border border-gray-300 rounded-full p-3'>
                             <FaUsers className='text-4xl' />
                         </div>
@@ -70,19 +71,50 @@ const About: React.FC = () => {
                 </div>
 
                 <div className='w-full md:w-1/4 p-4'>
-                    <div className='bg-white p-6 rounded-lg flex flex-col items-center text-black'>
+                    <div className='bg-white p-6 rounded-lg flex flex-col items-center text-black border border-black'>
                         <div className='text-black border border-gray-300 rounded-full p-3'>
                             <FaWallet className='text-4xl' />
                         </div>
                         <p className='mt-6 text-4xl font-bold'>25k</p>
-                        <p className='mt-6 text-xl font-bold'>Anual gross sale in our site</p>
+                        <p className='mt-6 text-lg font-bold'>Annual gross sales on our site</p>
                     </div>
                 </div>
             </div>
 
+            {/* Employee Cards */}
+            <div className='flex flex-wrap justify-center bg-slate-100 p-8'>
+                <div className='w-full md:w-1/4 p-4'>
+                    <EmployeeCard
+                        name="John Doe"
+                        position="CEO"
+                        avatar="/images/avatar1.jpg"
+                    />
+                </div>
 
+                <div className='w-full md:w-1/4 p-4'>
+                    <EmployeeCard
+                        name="Jane Smith"
+                        position="CTO"
+                        avatar="/images/avatar2.jpg"
+                    />
+                </div>
 
-            
+                <div className='w-full md:w-1/4 p-4'>
+                    <EmployeeCard
+                        name="Alice Johnson"
+                        position="COO"
+                        avatar="/images/avatar3.jpg"
+                    />
+                </div>
+
+                <div className='w-full md:w-1/4 p-4'>
+                    <EmployeeCard
+                        name="Bob Williams"
+                        position="CFO"
+                        avatar="/images/avatar4.jpg"
+                    />
+                </div>
+            </div>
         </div>
     );
 };
