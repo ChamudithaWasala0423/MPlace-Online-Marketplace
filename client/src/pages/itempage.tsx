@@ -1,6 +1,6 @@
 "use client"
 import { FC } from 'react';
-import ProductDetails from '@/components/ui/ProductDetails';
+import ProductDetails from '@/components/ui/productDetails';
 import Button from '@/components/ui/button';
 import ItemDisplaySmall from '@/components/ui/ItemDisplaySmall';
 
