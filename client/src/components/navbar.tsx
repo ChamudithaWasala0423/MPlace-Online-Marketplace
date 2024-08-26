@@ -16,6 +16,7 @@ const Navbar = () => {
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <p className="self-center text-2xl font-semibold whitespace-nowrap dark:text-black font-Inter">
                     Mplace
+                    
                 </p>
 
                 {/* Conditionally render the search bar for mobile screens */}

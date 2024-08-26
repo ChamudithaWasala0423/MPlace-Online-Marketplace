@@ -50,11 +50,13 @@ const LoginPage: React.FC<LoginPageProps> = () => {
                 />
               </div>
               <div className="space-y-1">
-                <div className='w-full'>
-                  
-                  <Button  variant="login" title="Log In" />
-                </div>
-              </div>
+  <div className="w-full">
+
+      <Button variant="login" title="Log In" />
+    
+  </div>
+</div>
+
             </form>
             
             <div className="mt-6 flex flex-col sm:flex-row justify-between items-center">
