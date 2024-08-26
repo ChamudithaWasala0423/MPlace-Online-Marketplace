@@ -10,11 +10,12 @@ import ProductDetails from "@/components/ui/productDetails";
 import About from "@/pages/about";
 import ItemDisplaySmall from "@/components/ui/itemDisplaySmall";
 import FeaturedAdvertisement from "@/pages/featuredAdvertisement";
+import Category from "@/pages/category";
 
 export default function Home() {
   return (
     <div >
-      <FeaturedAdvertisement />
+      <Category />
     </div>
   );
 }
