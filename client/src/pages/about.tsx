@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import Navbar from '@/components/ui/navbar';
 import React from 'react';
-import { FaShippingFast, FaDollarSign, FaUsers, FaWallet } from 'react-icons/fa';
+import { FaShippingFast, FaDollarSign, FaUsers, FaWallet, FaHeadset, FaCheckCircle } from 'react-icons/fa';
 import EmployeeCard from '@/components/ui/employcard';
+import Footer from '@/components/ui/footer';
 
 const About: React.FC = () => {
     return (
@@ -26,9 +27,9 @@ const About: React.FC = () => {
                     </div>
                 </div>
 
-                <div className='basis-full md:basis-1/2 bg-blue-600 h-full flex justify-center items-center'>
+                <div className='basis-full md:basis-1/2 bg-white h-full flex justify-center items-center'>
                     <Image
-                        src="/images/image.jpeg"  // Corrected the image path
+                        src="/images/image.jpeg"  //image path
                         alt="Image"
                         layout="intrinsic"
                         width={600}
@@ -39,7 +40,7 @@ const About: React.FC = () => {
             </div>
 
             {/* Four White Boxes in a Row */}
-            <div className='flex flex-wrap justify-around bg-slate-100 p-8'>
+            <div className='flex flex-wrap justify-around bg-white p-8'>
                 <div className='w-full md:w-1/4 p-4'>
                     <div className='bg-white p-6 rounded-lg flex flex-col items-center text-black border border-black'>
                         <div className='text-black border border-black rounded-full p-3'>
@@ -82,10 +83,10 @@ const About: React.FC = () => {
             </div>
 
             {/* Employee Cards */}
-            <div className='flex flex-wrap justify-center bg-slate-100 p-8'>
+            <div className='flex flex-wrap justify-center bg-white p-8'>
                 <div className='w-full md:w-1/4 p-4'>
                     <EmployeeCard
-                        name="John Doe"
+                        name="Chamuditha Wasala"
                         position="CEO"
                         avatar="/images/avatar1.jpg"
                     />
@@ -93,7 +94,7 @@ const About: React.FC = () => {
 
                 <div className='w-full md:w-1/4 p-4'>
                     <EmployeeCard
-                        name="Jane Smith"
+                        name="Nalina Herath"
                         position="CTO"
                         avatar="/images/avatar2.jpg"
                     />
@@ -101,7 +102,7 @@ const About: React.FC = () => {
 
                 <div className='w-full md:w-1/4 p-4'>
                     <EmployeeCard
-                        name="Alice Johnson"
+                        name="Thilhara Senadhi"
                         position="COO"
                         avatar="/images/avatar3.jpg"
                     />
@@ -109,12 +110,40 @@ const About: React.FC = () => {
 
                 <div className='w-full md:w-1/4 p-4'>
                     <EmployeeCard
-                        name="Bob Williams"
+                        name="Tharuka"
                         position="CFO"
                         avatar="/images/avatar4.jpg"
                     />
                 </div>
             </div>
+
+            {/* Three White Boxes Under Employee Cards */}
+            <div className="flex flex-wrap justify-center p-8 bg-white">
+                <div className="w-full md:w-1/3 p-4">
+                    <div className="bg-white rounded-lg p-6 h-full flex flex-col items-center text-center text-black">
+                        <FaShippingFast className="text-4xl mb-4 text-black" />
+                        <p className="text-xl font-bold">FREE AND EASY AD POSTING</p>
+                        <p className="mt-4">Post your ads effortlessly without any fees.</p>
+                    </div>
+                </div>
+
+                <div className="w-full md:w-1/3 p-4">
+                    <div className="bg-white rounded-lg p-6 h-full flex flex-col items-center text-center text-black">
+                        <FaHeadset className="text-4xl mb-4 text-black" />
+                        <p className="text-xl font-bold">24/7 SUPPORT FOR SELLERS & BUYERS</p>
+                        <p className="mt-4">Get friendly assistance whenever you need it.</p>
+                    </div>
+                </div>
+
+                <div className="w-full md:w-1/3 p-4">
+                    <div className="bg-white rounded-lg p-6 h-full flex flex-col items-center text-center text-black">
+                        <FaCheckCircle className="text-4xl mb-4 text-black" />
+                        <p className="text-xl font-bold">SATISFACTION GUARANTEED</p>
+                        <p className="mt-4">If your ad doesn’t work out, we’ve got you covered.</p>
+                    </div>
+                </div>
+            </div>
+            <Footer/>
         </div>
     );
 };

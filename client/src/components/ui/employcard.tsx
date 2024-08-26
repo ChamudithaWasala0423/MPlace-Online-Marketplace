@@ -10,7 +10,7 @@ interface EmployeeCardProps {
 
 const EmployeeCard: React.FC<EmployeeCardProps> = ({ name, position, avatar }) => {
     return (
-        <div className='bg-white p-6 rounded-lg flex flex-col items-center text-black border border-gray-300 w-64'>
+        <div className='bg-white p-6 rounded-lg flex flex-col items-center border-gray-400 w-64'>
             <Image
                 src={avatar}
                 alt={`${name}'s avatar`}
