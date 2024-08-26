@@ -1,18 +1,16 @@
 import { FunctionComponent } from 'react';
+import { FaStar, FaRegStar } from 'react-icons/fa';
 
 interface RatingProps {
-  rating: number;
+  rating: number; // The rating value (e.g., 3 for 3 stars)
 }
 
 const Rating: FunctionComponent<RatingProps> = ({ rating }) => {
   // Create an array with 5 elements and map through them to render stars
   const stars = Array.from({ length: 5 }, (_, index) => (
-    <img
-      key={index}
-      className={`w-5 h-5 ${index < rating ? 'opacity-100' : 'opacity-25'}`}
-      alt="star"
-      src="/path-to-your-icons/Vector.svg"
-    />
+    <span key={index} className="text-yellow-500" style={{ fontSize: '25px' }}>
+      {index < rating ? <FaStar /> : <FaRegStar />}
+    </span>
   ));
 
   return <div className="flex space-x-1">{stars}</div>;
