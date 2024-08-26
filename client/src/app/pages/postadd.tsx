@@ -110,7 +110,7 @@ const PostAdPage: React.FC = () => {
                             <label className="block text-black text-base font-bold font-Poppins">Category</label>
                             <SearchBar
                                 onSearch={(value) => setCategory(value)}
-                                customWidth="w-full"
+                              
                                 placeholder="Search categories (e.g., Cars, Real estate, Books...)"
                             />
                             {categoryError && <p className="text-sm text-red-500">{categoryError}</p>}
