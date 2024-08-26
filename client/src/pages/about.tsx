@@ -29,7 +29,7 @@ const About: React.FC = () => {
 
                 <div className='basis-full md:basis-1/2 bg-white h-full flex justify-center items-center'>
                     <Image
-                        src="/images/image.jpeg"  //image path
+                        src="/images/image.jpeg"  // Ensure this path is correct
                         alt="Image"
                         layout="intrinsic"
                         width={600}
@@ -88,7 +88,7 @@ const About: React.FC = () => {
                     <EmployeeCard
                         name="Chamuditha Wasala"
                         position="CEO"
-                        avatar="/client/public/images/1.png"
+                        avatar="/images/1.png"  // Corrected path
                     />
                 </div>
 
@@ -96,7 +96,7 @@ const About: React.FC = () => {
                     <EmployeeCard
                         name="Nalina Herath"
                         position="CTO"
-                        avatar="/client/public/images/2.jpg"
+                        avatar="/images/2.jpg"  // Corrected path
                     />
                 </div>
 
@@ -104,7 +104,7 @@ const About: React.FC = () => {
                     <EmployeeCard
                         name="Thilhara Senadhi"
                         position="COO"
-                        avatar="/client/public/images/3.png"
+                        avatar="/images/4.png"  // Corrected path
                     />
                 </div>
 
@@ -112,7 +112,7 @@ const About: React.FC = () => {
                     <EmployeeCard
                         name="Tharuka"
                         position="CFO"
-                        avatar="/client/public/images/4.png"
+                        avatar="/images/3.png"  // Corrected path
                     />
                 </div>
             </div>
