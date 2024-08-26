@@ -8,11 +8,12 @@ import Contact from "@/pages/contact";
 import Textarea from "@/components/ui/textarea"
 import ProductDetails from "@/components/ui/productDetails";
 import About from "@/pages/about";
+import ItemDisplaySmall from "@/components/ui/itemDisplaySmall";
 
 export default function Home() {
   return (
     <div >
-      <About />
+      <ItemDisplaySmall  />
     </div>
   );
 }
