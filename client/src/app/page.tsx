@@ -9,11 +9,12 @@ import Textarea from "@/components/ui/textarea"
 import ProductDetails from "@/components/ui/productDetails";
 import About from "@/pages/about";
 import ItemDisplaySmall from "@/components/ui/itemDisplaySmall";
+import FeaturedAdvertisement from "@/pages/featuredAdvertisement";
 
 export default function Home() {
   return (
     <div >
-      <ItemDisplaySmall  />
+      <FeaturedAdvertisement />
     </div>
   );
 }
