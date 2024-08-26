@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import ProductDetails from '@/components/ui/productDetails';
 import Button from '@/components/ui/button';
-import ItemDisplaySmall from '@/components/ui/ItemDisplaySmall';
+import ItemDisplaySmall from '@/components/ui/itemDisplay';
 
 const Frame: FC = () => {
   return (

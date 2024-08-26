@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Navbar from '@/components/ui/navbar';
 import React from 'react';
 import { FaShippingFast, FaDollarSign, FaUsers, FaWallet, FaHeadset, FaCheckCircle } from 'react-icons/fa';
-import EmployeeCard from '@/components/ui/employcard';
+import EmployeeCard from '@/components/ui/employCard';
 import Footer from '@/components/ui/footer';
 
 const About: React.FC = () => {
@@ -83,12 +83,12 @@ const About: React.FC = () => {
             </div>
 
             {/* Employee Cards */}
-            <div className='flex flex-wrap justify-center bg-white p-8'>
+            <div className='flex flex-wrap justify-center bg-white p-8 text-black'>
                 <div className='w-full md:w-1/4 p-4'>
                     <EmployeeCard
                         name="Chamuditha Wasala"
                         position="CEO"
-                        avatar="/images/avatar1.jpg"
+                        avatar="/client/public/images/1.png"
                     />
                 </div>
 
@@ -96,7 +96,7 @@ const About: React.FC = () => {
                     <EmployeeCard
                         name="Nalina Herath"
                         position="CTO"
-                        avatar="/images/avatar2.jpg"
+                        avatar="/client/public/images/2.jpg"
                     />
                 </div>
 
@@ -104,7 +104,7 @@ const About: React.FC = () => {
                     <EmployeeCard
                         name="Thilhara Senadhi"
                         position="COO"
-                        avatar="/images/avatar3.jpg"
+                        avatar="/client/public/images/3.png"
                     />
                 </div>
 
@@ -112,7 +112,7 @@ const About: React.FC = () => {
                     <EmployeeCard
                         name="Tharuka"
                         position="CFO"
-                        avatar="/images/avatar4.jpg"
+                        avatar="/client/public/images/4.png"
                     />
                 </div>
             </div>
