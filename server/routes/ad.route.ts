@@ -6,6 +6,7 @@ import {
   getAdsByUser,
   getAllAds,
   deleteAd,
+  addQuestion,
 } from "../controllers/ads.controller";
 
 import { authorizeRoles, isAuthenticated } from "../middleware/auth";
@@ -58,5 +59,16 @@ adRouter.delete(
     deleteAd(req, res, next);
   }
 );
+
+
+//add question in course
+adRouter.put(
+  "/add-question",
+  isAuthenticated,
+  (req: any, res: any, next: any) => {
+    addQuestion(req, res, next);
+  }
+);
+
 
 export default adRouter;
