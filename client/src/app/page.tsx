@@ -11,11 +11,12 @@ import About from "@/pages/about";
 import ItemDisplaySmall from "@/components/ui/itemDisplaySmall";
 import FeaturedAdvertisement from "@/pages/featuredAdvertisement";
 import Category from "@/pages/category";
+import RecentlyAdded from "@/pages/recentlyAdded";
 
 export default function Home() {
   return (
     <div >
-      <Category />
+      <RecentlyAdded />
     </div>
   );
 }
