@@ -13,7 +13,7 @@ const Page: React.FC = () => {
   return (
     <>
     
-    <EditAddPage/>
+    <PostAdPage/>
   {/* <LoginPage/> */}
     </>
   );
