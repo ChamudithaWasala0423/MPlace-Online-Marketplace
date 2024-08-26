@@ -18,6 +18,25 @@ const Frame: FC = () => {
             />
           </div>
         </div>
+        {/* Product details */}
+        <div className="relative flex flex-col lg:ml-8 lg:w-[402px] mt-6 lg:mt-0">
+          <ProductDetails />
+
+          <div className="flex flex-row items-center justify-between mt-6 space-x-4 text-base font-title-16px-medium">
+            <Button
+              title="Contact Seller"
+              variant="primary"
+              onClick={() => console.log('Contact Seller clicked')}
+            />
+            <Button
+              title="Save Item"
+              variant="secondary"
+              onClick={() => console.log('Save Item clicked')}
+            />
+          </div>
+        </div>
+      </div>
+
 
         
     </section>
