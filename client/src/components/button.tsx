@@ -24,14 +24,14 @@ const Button: React.FC<ButtonProps> = ({ title, variant, onClick }) => {
   };
 
   return (
-    <div
-      className={`${baseStyles} ${variantStyles[variant]}`}
-      onClick={onClick}
-    >
-      <p className={`${textStyles[variant]} break-words text-center`}>
-        {title}
-      </p>
-    </div>
+    <button
+    className={`${baseStyles} ${variantStyles[variant]}`}
+    onClick={onClick}
+  >
+    <p className={`${textStyles[variant]} break-words text-center`}>
+      {title}
+    </p>
+  </button>
   );
 };
 
