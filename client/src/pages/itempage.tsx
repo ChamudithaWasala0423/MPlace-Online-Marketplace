@@ -36,6 +36,14 @@ const Frame: FC = () => {
           </div>
         </div>
       </div>
+      {/* Horizontal line with specific length and spacing */}
+      <hr className="mt-32 w-[1000px] border-t-2 border-gray-400" />
+
+      {/* Add ItemDisplaySmall component below the Frame */}
+      <div className="w-full mt-[64px]">
+        <ItemDisplaySmall />
+      </div>
+
 
 
         
