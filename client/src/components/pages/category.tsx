@@ -1,4 +1,4 @@
-import Navbar from '@/components/ui/navbar';
+import Navbar from '../ui/Navbar';
 import React from 'react';
 import ItemDisplaySmall from '@/components/ui/itemDisplaySmall';
 import Footer from '@/components/ui/footer';

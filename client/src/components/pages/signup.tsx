@@ -1,7 +1,9 @@
 import React from 'react';
-import Button from '@/components/button';
 import InputArea from '@/components/ui/inputarea';
-import Footer from '@/components/footer';
+import Image from 'next/image';
+import Button from '../ui/button';
+import Footer from '../ui/footer';
+
 
 interface SignupProps {}
 
@@ -12,7 +14,7 @@ const Signup: React.FC<SignupProps> = () => {
       <div className="flex flex-grow flex-col md:flex-row w-full">
         {/* Left Side with Image */}
         <div className="w-full md:w-1/2 h-64 md:h-auto relative">
-          <img
+          <Image
             className="w-full h-full object-cover md:object-contain"
             src="/loginpageimage.jpeg"
             alt="Signup Screen Background"

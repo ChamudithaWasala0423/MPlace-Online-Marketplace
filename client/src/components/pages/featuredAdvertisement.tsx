@@ -1,7 +1,8 @@
-import Navbar from '@/components/ui/navbar';
+
 import React from 'react';
 import ItemDisplaySmall from '@/components/ui/itemDisplaySmall';
 import Footer from '@/components/ui/footer';
+import Navbar from '../ui/Navbar';
 
 const FeaturedAdvertisement: React.FC = () => {
     return (

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Button from '@/components/button';
 import Textarea from '@/components/textarea';
 import SearchBar from '@/components/ui/searchbar';
-import BrandStatus from '@/components/brandstatus';
 import InputArea from '@/components/ui/inputarea';
 import DragAndDrop from '@/components/ui/draganddrop';
-import Footer from '@/components/footer';
-import Navbar from '@/components/navbar';
+import Navbar from '../ui/Navbar';
+import Button from '../ui/button';
+import Footer from '../ui/footer';
+
 
 const EditAddPage: React.FC = () => {
     const [title, setTitle] = useState('');
@@ -85,7 +85,7 @@ const EditAddPage: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen bg-white">
-            <Navbar />
+            <Navbar title={''} />
             <div className="flex-grow px-4 sm:px-6 lg:px-8 ml-2.5 sm:ml-1 lg:ml-15 mr-2.5 sm:mr-1 lg:mr-3.75">
                 <div className="max-w-7xl mx-auto">
                     <div className='flex flex-col w-full justify-start mt-10'>
@@ -121,7 +121,7 @@ const EditAddPage: React.FC = () => {
 
                         <div className="space-y-2">
                             <label className="block text-black text-base font-bold font-Poppins">Tags</label>
-                            <p className="text-sm text-gray-500">Add relevant keywords to help buyers find your ad (e.g., 'electronics,' 'vintage,' 'handmade...')</p>
+                            <p className="text-sm text-gray-500">Add relevant keywords to help buyers find your ad (e.g.,electronics...)</p>
                             <InputArea
                                 customWidth="w-full"
                                 customHeight="h-12"
@@ -162,7 +162,7 @@ const EditAddPage: React.FC = () => {
 
                         <div className="space-y-2">
                             <label className="block text-black text-base font-bold font-Poppins">Price details</label>
-                            <p className="text-sm text-gray-500">Enter the price you're asking for in your preferred currency.</p>
+                            <p className="text-sm text-gray-500">Enter the price you&apos;re asking for in your preferred currency.</p>
                             <div className="flex flex-wrap items-center gap-2">
                                 <select
                                     className="text-black text-xs font-normal font-['Poppins'] leading-normal bg-white border border-gray-300 rounded-lg p-2"
@@ -245,7 +245,7 @@ const EditAddPage: React.FC = () => {
                        
 
                         <div className="flex justify-end mt-8">
-                        <Button variant="primary" title="Save Changes" onClick={handleFormSubmit} />
+                        <Button variant="primary" title="Save Changes"  />
 
                         </div>
                     </form>

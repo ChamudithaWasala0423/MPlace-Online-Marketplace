@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import SearchBar from "./searchbar";
-import Button from "./button";
+import Button from "@/components/ui/button";
 
 interface NavbarProps {
     title: string;

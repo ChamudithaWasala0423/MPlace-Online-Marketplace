@@ -1,8 +1,9 @@
 import React from 'react';
-import Navbar from '../components/ui/navbar'; // Ensure this path is correct
+import Navbar from '../ui/Navbar';// Ensure this path is correct
 import { FaPhone, FaEnvelope } from 'react-icons/fa';
 import Textarea from '@/components/ui/textarea';
-import Footer from '../components/ui/footer'; // Import the Footer component
+import Footer from '../ui/footer';
+ // Import the Footer component
 
 const Contact: React.FC = () => {
     return (

@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import Navbar from '@/components/ui/navbar';
 import React from 'react';
 import { FaShippingFast, FaDollarSign, FaUsers, FaWallet, FaHeadset, FaCheckCircle } from 'react-icons/fa';
-import EmployeeCard from '@/components/ui/employCard';
+import EmployeeCard from '@/components/ui/employcard';
 import Footer from '@/components/ui/footer';
+import Navbar from '../ui/Navbar';
 
 const About: React.FC = () => {
     return (

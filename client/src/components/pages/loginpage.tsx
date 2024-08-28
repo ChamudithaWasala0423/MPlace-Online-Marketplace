@@ -1,7 +1,8 @@
-import React from 'react';
-import Button from '@/components/button';
-import InputArea from '@/components/ui/inputarea';
-import Footer from '@/components/footer';
+import React from "react";
+import InputArea from "@/components/ui/inputarea";
+import Image from "next/image";
+import Button from "../ui/button";
+import Footer from "../ui/footer";
 
 interface LoginPageProps {}
 
@@ -9,7 +10,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // Handle form submission logic here
-    console.log('Form submitted');
+    console.log("Form submitted");
   };
 
   return (
@@ -18,7 +19,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
       <div className="flex flex-grow flex-col md:flex-row w-full">
         {/* Left Side with Image */}
         <div className="w-full md:w-1/2 h-64 md:h-auto relative">
-          <img
+          <Image
             className="w-full h-full object-cover md:object-contain"
             src="/loginpageimage.jpeg"
             alt="Login Screen Background"
@@ -31,14 +32,15 @@ const LoginPage: React.FC<LoginPageProps> = () => {
             <div className="text-center text-black text-3xl md:text-5xl font-semibold font-inter leading-tight mb-8">
               Welcome Back!
             </div>
-            <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
+            <form
+              onSubmit={handleSubmit}
+              className="w-full flex flex-col gap-4"
+            >
               <div className="space-y-1">
                 <div className="opacity-40 text-black text-sm md:text-base font-normal font-['Poppins'] leading-normal">
                   Email or Phone Number
                 </div>
-                <InputArea
-                  className="h-12 w-full bg-white rounded p-3"
-                />
+                <InputArea className="h-12 w-full bg-white rounded p-3" />
               </div>
               <div className="space-y-1">
                 <div className="opacity-40 text-black text-sm md:text-base font-normal font-['Poppins'] leading-normal">
@@ -50,21 +52,23 @@ const LoginPage: React.FC<LoginPageProps> = () => {
                 />
               </div>
               <div className="space-y-1">
-  <div className="w-full">
-
-      <Button variant="login" title="Log In" />
-    
-  </div>
-</div>
-
+                <div className="w-full">
+                  <Button variant="login" title="Log In" />
+                </div>
+              </div>
             </form>
-            
+
             <div className="mt-6 flex flex-col sm:flex-row justify-between items-center">
               <div className="text-center sm:text-left text-black/70 text-sm md:text-base font-normal font-poppins leading-normal mb-2 sm:mb-0">
-                <span>Don't have an account?</span>
-                <a href="/signup" className="text-[#7e2ee7] ml-1">Sign Up</a>
+                <span>Don&apos;t have an account?</span>
+                <a href="/signup" className="text-[#7e2ee7] ml-1">
+                  Sign Up
+                </a>
               </div>
-              <a href="/forget-password" className="text-[#7e2ee7] text-sm md:text-base font-normal font-poppins leading-normal">
+              <a
+                href="/forget-password"
+                className="text-[#7e2ee7] text-sm md:text-base font-normal font-poppins leading-normal"
+              >
                 Forgot Password
               </a>
             </div>
