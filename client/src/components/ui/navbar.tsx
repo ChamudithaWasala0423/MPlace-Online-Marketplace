@@ -69,14 +69,14 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
                   About
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/signup"
                   className="text-black dark:text-black hover:text-purple-600 font-sans"
                 >
                   Sign Up
                 </Link>
-              </li>
+              </li> */}
             </ul>
             <SearchBar onSearch={(value) => console.log("Search:", value)} />
                 
@@ -84,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
             <Link href= "/login">
               <Button title="Login" variant="primary" />
               </Link>
-              <Link href= "/dashboard/myads">
+              <Link href= "/dashboard/postAd">
               <Button title="Post an Ad" variant="secondary" />
               </Link>
             </div>

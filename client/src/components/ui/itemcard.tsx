@@ -22,7 +22,8 @@ const Itemcard: React.FC <ItemcardProps>=({
           className="object-cover w-full h-full rounded-t-corner" 
           src={itemImage} 
           alt="Product Image" 
-          layout="fill"
+          width={700}
+          height={700}
         />
         <div className='absolute top-0 right-0 mt-3 mr-3 w-[34px] h-[34px] bg-terirary-100 hover:bg-terirary-400 
                         rounded-full border-purple-600 flex justify-center items-center'>

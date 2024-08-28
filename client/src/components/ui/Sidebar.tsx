@@ -15,7 +15,7 @@ const navItems: NavItem[] = [
     href: "#",
     subItems: [
       { name: "My Ads", href: "/dashboard/myads" },
-      { name: "Drafts", href: "/dashboard/draftads" },
+      { name: "Drafts", href: "/dashboard/draftsad" },
     ],
   },
   { name: "Notifications", href: "/dashboard/notification" },

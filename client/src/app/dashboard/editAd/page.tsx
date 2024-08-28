@@ -1,11 +1,13 @@
+'use client'
 import React, { useState } from "react";
 import Textarea from "@/components/textarea";
 import SearchBar from "@/components/ui/searchbar";
 
 import DragAndDrop from "@/components/ui/draganddrop";
-import Button from "../ui/button";
-import Footer from "../ui/footer";
-import InputArea from "../ui/Inputarea";
+import SearchBarMain from "@/components/ui/SearchBarMain";
+import Footer from "@/components/ui/footer";
+import Button from "@/components/ui/button";
+import InputArea from "@/components/ui/Inputarea";
 
 const EditAddPage: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -90,7 +92,6 @@ const EditAddPage: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-
       <div className="flex-grow px-4 sm:px-6 lg:px-8 ml-2.5 sm:ml-1 lg:ml-15 mr-2.5 sm:mr-1 lg:mr-3.75">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col w-full justify-start mt-10">
@@ -132,9 +133,9 @@ const EditAddPage: React.FC = () => {
               <p className="text-sm text-gray-500">
                 Choose the category that best fits your item or service.
               </p>
-              <SearchBar
+              <SearchBarMain
                 onSearch={(value) => setCategory(value)}
-               
+                placeholder="Search categories (e.g., Cars, Real estate, Books...)"
               />
               {categoryError && (
                 <p className="text-sm text-red-500">{categoryError}</p>
@@ -147,7 +148,7 @@ const EditAddPage: React.FC = () => {
               </label>
               <p className="text-sm text-gray-500">
                 Add relevant keywords to help buyers find your ad
-                (e.g.,electronics)
+                (e.g.,electronics...)
               </p>
               <InputArea
                 customWidth="w-full"
@@ -314,7 +315,7 @@ const EditAddPage: React.FC = () => {
             </div>
 
             <div className="flex justify-end mt-8">
-              <Button variant="primary" title="Post Adds" />
+              <Button variant="primary" title="Save Changes" />
             </div>
           </form>
         </div>

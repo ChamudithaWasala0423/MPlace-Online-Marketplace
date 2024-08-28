@@ -1,11 +1,13 @@
+'use client'
 import React, { useState } from "react";
 import Textarea from "@/components/textarea";
 import SearchBar from "@/components/ui/searchbar";
 
 import DragAndDrop from "@/components/ui/draganddrop";
-import Button from "../ui/button";
-import Footer from "../ui/footer";
-import InputArea from "../ui/Inputarea";
+import InputArea from "@/components/ui/Inputarea";
+import Button from "@/components/ui/button";
+import Footer from "@/components/ui/footer";
+
 
 const EditAddPage: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -19,7 +21,6 @@ const EditAddPage: React.FC = () => {
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   const [country, setCountry] = useState("");
-
   const [titleError, setTitleError] = useState("");
   const [categoryError, setCategoryError] = useState("");
   const [tagsError, setTagsError] = useState("");

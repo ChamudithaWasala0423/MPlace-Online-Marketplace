@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Textarea from '@/components/textarea';
 import SearchBar from '@/components/ui/searchbar';
-import InputArea from '@/components/ui/inputarea';
+
 import DragAndDrop from '@/components/ui/draganddrop';
 
 import Button from '../ui/button';
 import Footer from '../ui/footer';
 import SearchBarMain from '../ui/SearchBarMain';
+import InputArea from '../ui/Inputarea';
 
 
 const EditAddPage: React.FC = () => {

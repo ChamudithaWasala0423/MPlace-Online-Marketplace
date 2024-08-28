@@ -25,10 +25,10 @@ const Herosection = () => {
           
         </div>
         <div className="w-full flex flex-col items-center justify-center">
-          <div className="w-full flex justify-center items-center py-8 md:py-12">
-            <div className="w-full max-w-[1168px] flex flex-col md:flex-row items-center justify-between bg-secondary-100 rounded-lg overflow-hidden object-cover p-0 h-full">
+          <div className="w-full flex justify-center items-center md:py-12">
+            <div className="w-full max-w-[1168px] flex flex-col md:flex-row items-center justify-between bg-secondary-100 rounded-lg overflow-hidden object-cover h-full">
               {/* Text Section */}
-              <div className="flex flex-col justify-center p-6 md:p-10 text-center md:text-left">
+              <div className=" w-1/2 marker:flex flex-col justify-center md:p-10 text-center md:text-left">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-sans font-semibold tracking-wide leading-tight mb-4">
                   Start Adding Your Ads Today!
                 </h2>
@@ -46,27 +46,29 @@ const Herosection = () => {
 
                 {/* Buttons Section */}
                 <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-                  <div className="flex items-center justify-center text-secondary-900 cursor-pointer gap-2">
+                  {/* <div className="flex items-center justify-center text-secondary-900 cursor-pointer gap-2">
                     <div>
+                    
                       <FaArrowRight className="w-6 h-6 md:w-8 md:h-8  " />
+
                     </div>
-                  </div>
-                  <div className="py-2 px-6 rounded-lg">
-                    <button className="w-full h-full bg-primary-100 text-white font-sans font-semibold text-base md:text-lg rounded-lg py-2 px-6">
-                      Get Started
+                  </div> */}
+                  <div className=" rounded-lg">
+                    <button className="w-full h-full bg-primary-100 text-white font-sans font-semibold text-base md:text-lg rounded-lg py-2 px-6 bg-purple-600 ">
+                      Create an account
                     </button>
                   </div>
                 </div>
               </div>
 
               {/* Image Section */}
-              <div className="w-full md:w-1/2">
+              <div className="w-1/2 md:w-1/2">
                 <Image
                   src="/images/banner.jpg"
                   alt="Banner Image"
-                  width={100}
-                  height={100}
-                  className="w-full h-[346px] object-cover rounded-tr-none rounded-tl-none md:rounded-bl-none md:rounded-tr-lg"
+                  width={700}
+                  height={700}
+                  className="w-full h-full object-cover rounded-tr-none rounded-tl-none md:rounded-bl-none md:rounded-tr-lg"
                 />
               </div>
             </div>

@@ -1,5 +1,6 @@
 
 import Itemcard from '@/components/ui/itemcard';
+import Link from 'next/link';
 import React from 'react'
 
 type MyAds = {
@@ -68,6 +69,7 @@ const MyAds: React.FC<Props> = ({drafts=defaultAds}) => {
   return (
     <div className="w-full relative flex flex-row items-center justify-center flex-wrap content-center py-9 px-0 box-border gap-6">
         {drafts.map((item) => (
+          <Link href="./sellerAdDisplayMyAds">
           <Itemcard
             key={item.id}
             name={item.name || "Default Category"}
@@ -76,6 +78,7 @@ const MyAds: React.FC<Props> = ({drafts=defaultAds}) => {
             location={item.location || "Default location"}
             daysAdded={item.daysAdded || 0}
             itemImage={item.itemImage || "/images/chair.jpg"}/>
+            </Link>
         ))}
     </div>
   )

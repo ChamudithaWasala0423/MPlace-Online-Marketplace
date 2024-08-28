@@ -1,8 +1,9 @@
 import React from 'react';
-import InputArea from '@/components/ui/inputarea';
+
 import Image from 'next/image';
 import Button from '../ui/button';
 import Footer from '../ui/footer';
+import InputArea from '../ui/Inputarea';
 
 
 interface SignupProps {}

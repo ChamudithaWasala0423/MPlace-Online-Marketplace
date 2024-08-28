@@ -12,6 +12,7 @@ type Item = {
   location?: string;
   daysAdded?: number;
   itemImage?: string;
+ 
 };
 
 type ItemsSectionProps={
@@ -20,6 +21,7 @@ type ItemsSectionProps={
 type Props = {
   items?: Item[];
   title?: string,
+  allUrl : any;
   
 };
 
@@ -68,7 +70,7 @@ const defaultItems: Item[] = [
   },
 ];
 
-const ItemsSection: React.FC<Props> = ({ items = defaultItems ,title}) => {
+const ItemsSection: React.FC<Props> = ({ items = defaultItems ,title,  allUrl}) => {
   return (
     <section className="w-full flex flex-col items-center justify-center py-8 px-8 bg-gray-50">
       <h2 className="text-3xl font-bold font-sans mb-12 text-center text-black">
@@ -90,9 +92,11 @@ const ItemsSection: React.FC<Props> = ({ items = defaultItems ,title}) => {
         ))}
       </div>
       <div className="flex flex-col items-center justify-center py-2 px-auto">
+        <Link href={allUrl}>
         <button className="bg-purple-600 text-white py-2 px-4 rounded">
             View All
         </button>
+        </Link>
       </div>
     </section>
   );

@@ -15,9 +15,8 @@ const Home: React.FC = () => {
 
       <Categorysection />
 
-      <ItemsSection title="Featured Advertisments" />
-
-      <ItemsSection title="Recently Added" />
+      <ItemsSection title="Featured Advertisments" allUrl="/featuresAds" />
+      <ItemsSection title="Recently Added"  allUrl="/recentlyAdded"/>
       <Footer />
     </div>
   );

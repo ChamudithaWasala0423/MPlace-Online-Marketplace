@@ -1,8 +1,9 @@
 import React from "react";
-import InputArea from "@/components/ui/inputarea";
+
 import Image from "next/image";
 import Footer from "@/components/ui/footer";
 import Button from "@/components/ui/button";
+import InputArea from "@/components/ui/Inputarea";
 
 
 interface LoginPageProps {}
