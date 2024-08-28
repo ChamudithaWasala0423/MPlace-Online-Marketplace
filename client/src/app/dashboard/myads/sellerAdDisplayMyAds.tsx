@@ -1,8 +1,9 @@
 "use client"
 import { FC } from 'react';
-import ProductDetails from '@/components/ui/ProductDetails';
+import ProductDetails from '@/components/ui/productDetails';
 import Button from '@/components/ui/button';
-import ItemDisplaySmall from '@/components/ui/ItemDisplaySmall';
+import ItemDisplaySmall from '@/components/ui/itemDisplaySmall';
+import Image from 'next/image';
 
 const SellerAdDisplayMyAds: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const SellerAdDisplayMyAds: React.FC = () => {
         {/* Image container */}
         <div className="relative w-full lg:w-[700px] h-auto lg:h-auto flex-shrink-0">
           <div className="relative w-full h-full rounded bg-foundation-terirary-terirary-300 overflow-hidden">
-            <img
+            <Image
               className="w-full h-full object-cover"
               alt="Product"
               src="/images/chair.jpg"
