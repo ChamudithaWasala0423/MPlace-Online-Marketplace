@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
                         <p>Buy, Sell and Explore</p>
                     </div>
                     <div className="mt-4 text-sm md:text-base text-black w-full font-Poppins">
-                        <p>mplace is your go-to platform for connecting with others whether you're looking to sell</p>
+                        <p>mplace is your go-to platform for connecting with others whether you&apos;re looking to sell</p>
                     </div>
                     <div className="mt-2 text-sm md:text-base text-black w-full font-Poppins">
                         <p>or discover great deals. Join our community and start trading today.</p>
