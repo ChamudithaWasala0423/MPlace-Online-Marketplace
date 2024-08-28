@@ -8,7 +8,7 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 const Textarea: React.FC<TextareaProps> = ({ customWidth, customHeight, ...props }) => {
     return (
         <div
-            className={`relative bg-neutral-100 rounded transition-colors duration-300 focus:outline-none border border-2 p-6 ${customWidth} ${customHeight}`}
+            className={`relative bg-neutral-100 rounded transition-colors duration-300 focus:outline-none border-2 p-6 ${customWidth} ${customHeight}`}
         >
             {/* Name Input */}
             <input
@@ -43,7 +43,7 @@ const Textarea: React.FC<TextareaProps> = ({ customWidth, customHeight, ...props
             <div className="flex justify-end">
                 <button
                     type="submit"
-                    className="p-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors duration-300"
+                    className="mt-4 p-4 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors duration-300"
                 >
                     Send Message
                 </button>
