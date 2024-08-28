@@ -9,16 +9,14 @@ const Home: React.FC = () => {
   return (
     <div className="bg-background-500">
       <section className="navbarsec bg-black h-[100px]"></section>
-      //Hero Section
-      <Herosection></Herosection>
-      //Categories Section
+      <Herosection/>
+  
       <Categorysection/>
-      //Featured Advertisments section
+     
       <ItemsSection title="Featured Advertisments"/>
-      //Recently added section
+   
       <ItemsSection title="Recently Added"/>
-      //Footer
-    
+  
     </div>
   );
 };
