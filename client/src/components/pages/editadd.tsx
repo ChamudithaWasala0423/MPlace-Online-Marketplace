@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Button from '@/components/button';
 import Textarea from '@/components/textarea';
-import SearchBar from '@/components/searchbar';
+import SearchBar from '@/components/ui/searchbar';
 import BrandStatus from '@/components/brandstatus';
-import InputArea from '@/components/inputarea';
-import DragAndDrop from '@/components/draganddrop';
+import InputArea from '@/components/ui/inputarea';
+import DragAndDrop from '@/components/ui/draganddrop';
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 

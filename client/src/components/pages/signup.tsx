@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@/components/button';
-import InputArea from '@/components/inputarea';
+import InputArea from '@/components/ui/inputarea';
 import Footer from '@/components/footer';
 
 interface SignupProps {}
