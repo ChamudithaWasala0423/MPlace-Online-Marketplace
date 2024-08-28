@@ -15,6 +15,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-poppins)', 'sans-serif'],
+
       },
       colors:{
         "secondary-50": '#f8feeb',
@@ -31,6 +32,7 @@ const config: Config = {
       },
       borderRadius: {
         'corner': '4px',
+
       },
     },
   },
