@@ -3,9 +3,10 @@ import Textarea from '@/components/textarea';
 import SearchBar from '@/components/ui/searchbar';
 import InputArea from '@/components/ui/inputarea';
 import DragAndDrop from '@/components/ui/draganddrop';
-import Navbar from '../ui/Navbar';
+
 import Button from '../ui/button';
 import Footer from '../ui/footer';
+import SearchBarMain from '../ui/SearchBarMain';
 
 
 const EditAddPage: React.FC = () => {
@@ -85,7 +86,7 @@ const EditAddPage: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen bg-white">
-            <Navbar title={''} />
+     
             <div className="flex-grow px-4 sm:px-6 lg:px-8 ml-2.5 sm:ml-1 lg:ml-15 mr-2.5 sm:mr-1 lg:mr-3.75">
                 <div className="max-w-7xl mx-auto">
                     <div className='flex flex-col w-full justify-start mt-10'>
@@ -112,7 +113,7 @@ const EditAddPage: React.FC = () => {
                         <div className="space-y-2">
                             <label className="block text-black text-base font-bold font-Poppins">Category</label>
                             <p className="text-sm text-gray-500">Choose the category that best fits your item or service.</p>
-                            <SearchBar
+                            <SearchBarMain
                                 onSearch={(value) => setCategory(value)}
                                 placeholder="Search categories (e.g., Cars, Real estate, Books...)"
                             />

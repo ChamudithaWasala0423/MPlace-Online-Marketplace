@@ -1,14 +1,15 @@
 import React from "react";
 import { FaPhone, FaEnvelope } from "react-icons/fa";
 import Textarea from "@/components/ui/textarea";
-import Footer from "../ui/footer";
-// Import the Footer component
 
-const Contact: React.FC = () => {
+import Footer from "@/components/ui/footer";
+
+
+const Page: React.FC = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col justify-between">
       <div>
-
+        
         <div className="flex flex-col md:flex-row p-8 mt-11 font-Poppins">
           {/* Notes Section */}
           <div className="text-black w-full md:w-1/2 mr-4 mx-11">
@@ -52,4 +53,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact;
+export default Page;

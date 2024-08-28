@@ -61,7 +61,7 @@ const ProductDetails: FunctionComponent<ProductDetailsProps> = ({
       <div className="flex flex-col w-full lg:w-[407px] mt-6 gap-4">
         <h2 className="text-lg font-medium text-black/50">Seller</h2>
         <div className="flex items-center gap-2">
-          <img className="w-8 h-8 rounded-full" alt="seller" src={sellerImage} />
+          {/* <img className="w-8 h-8 rounded-full" alt="seller" src={sellerImage} /> */}
           <span className="text-[14px]">{seller}</span>
           <div className="border-r border-black/50 h-5 mx-2" />
           <Rating rating={sellerRating} />

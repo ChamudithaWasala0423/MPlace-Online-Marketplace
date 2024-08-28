@@ -1,4 +1,5 @@
-import Itemcard from '@/components/ui/Itemcard'
+
+import Itemcard from '@/components/ui/itemcard';
 import React from 'react'
 
 type MyAds = {

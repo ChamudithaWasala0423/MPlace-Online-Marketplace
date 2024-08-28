@@ -1,5 +1,6 @@
 import React from "react";
 import Categorycard from "../ui/Categorycard";
+import Link from "next/link";
 
 type Category = {
   id?: number;
@@ -25,11 +26,15 @@ const Categorysection: React.FC<Props> = ({ categories = defaultCategories }) =>
       </h2>
       <div className="flex flex-wrap items-center justify-center gap-8">
         {categories.map((category) => (
+          // eslint-disable-next-line react/jsx-key
+          <Link href="/category">
+          
           <Categorycard
             key={category.id}
             category={category.name || 'Default Category'}
             icon={category.icon || 'Default Category'}
           />
+          </Link>
         ))}
       </div>
     </section>

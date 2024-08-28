@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import Navbar from "../components/ui/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -24,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
 
 
-      <body className={`${inter.className} ${poppins.variable}`}>{children}
+      <body className={`${inter.className} ${poppins.variable}`}><Navbar title="Mplace" />{children}
       </body>
     </html>
 

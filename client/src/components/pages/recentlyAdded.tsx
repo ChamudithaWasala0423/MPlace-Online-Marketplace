@@ -1,4 +1,3 @@
-import Navbar from '../ui/Navbar';
 import React from 'react';
 import ItemDisplaySmall from '@/components/ui/itemDisplaySmall';
 import Footer from '@/components/ui/footer';
@@ -6,7 +5,7 @@ import Footer from '@/components/ui/footer';
 const RecentlyAdded: React.FC = () => {
     return (
         <div className='bg-white text-black'>
-            <Navbar title={'Mplace'} subtitle='' />
+            
             <div className='bg-white text-black'>
                 <p className='font-black text-center text-5xl mt-20'>Recently Added</p>
                 

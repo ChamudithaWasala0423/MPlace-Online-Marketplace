@@ -1,6 +1,8 @@
 import React from "react";
-import Itemcard from "./Itemcard";
+
 import { title } from "process";
+import Itemcard from "../ui/itemcard";
+import Link from "next/link";
 
 type Item = {
   id?: number;
@@ -74,6 +76,7 @@ const ItemsSection: React.FC<Props> = ({ items = defaultItems ,title}) => {
       </h2>
       <div className="flex flex-wrap items-center justify-center gap-8">
         {items.map((item) => (
+          <Link href="/items">
           <Itemcard
             key={item.id}
             name={item.name || "Default Category"}
@@ -83,10 +86,10 @@ const ItemsSection: React.FC<Props> = ({ items = defaultItems ,title}) => {
             daysAdded={item.daysAdded || 0}
             itemImage={item.itemImage || "/images/chair.jpg"}
           />
+          </Link>
         ))}
       </div>
       <div className="flex flex-col items-center justify-center py-2 px-auto">
-        //Add view all button here
         <button className="bg-purple-600 text-white py-2 px-4 rounded">
             View All
         </button>
