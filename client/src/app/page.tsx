@@ -1,8 +1,8 @@
 
 import Categorysection from "@/components/sections/Categorysection";
-import Footer from "@/components/ui/Footer";
 import Herosection from "@/components/sections/Herosection";
 import ItemsSection from "@/components/sections/ItemsSection";
+import Footer from "@/components/ui/footer";
 import React from "react";
 //import Navbar from '@/components/Navbar'; // Import your Navbar component
 
@@ -17,6 +17,7 @@ const Home: React.FC = () => {
       <ItemsSection title="Featured Advertisments" />
 
       <ItemsSection title="Recently Added" />
+      <Footer />
     </div>
   );
 };
