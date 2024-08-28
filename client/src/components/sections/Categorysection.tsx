@@ -1,5 +1,5 @@
 import React from "react";
-import Categorycard from "./Categorycard";
+import Categorycard from "../ui/Categorycard";
 
 type Category = {
   id?: number;
