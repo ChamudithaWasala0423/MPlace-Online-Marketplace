@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Favoritebutton from './Favoritebutton';
+import Favoritebutton from './favouritebutton';
 
 type ItemcardProps = {
   name: string;
