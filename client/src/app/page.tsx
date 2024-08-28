@@ -1,22 +1,26 @@
-'use client';  // Add this line at the top
 
-import React from 'react';
-import Button from '@/components/button';
-import Textarea from '@/components/textarea';
-import SearchBar from '@/components/searchbar';
-import LoginPage from './pages/loginpage';
-import Signup from './pages/signup';
-import PostAdPage from './pages/postadd';
-import EditAddPage from './pages/editadd';
 
-const Page: React.FC = () => {
+import Categorysection from "@/components/sections/Categorysection";
+import Footer from "@/components/ui/Footer";
+import Herosection from "@/components/sections/Herosection";
+import ItemsSection from "@/components/sections/ItemsSection";
+import React from "react";
+//import Navbar from '@/components/Navbar'; // Import your Navbar component
+
+const Home: React.FC = () => {
   return (
-    <>
-    
-    <PostAdPage/>
-  {/* <LoginPage/> */}
-    </>
+    <div className="bg-background-500">
+      <section className="navbarsec bg-black h-[100px]"></section>
+      <Herosection />
+
+      <Categorysection />
+
+      <ItemsSection title="Featured Advertisments" />
+
+      <ItemsSection title="Recently Added" />
+    </div>
   );
 };
 
-export default Page;
+
+export default Home;
