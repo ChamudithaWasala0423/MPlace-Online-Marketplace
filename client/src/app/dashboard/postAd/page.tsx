@@ -1,103 +1,80 @@
 'use client'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Textarea from "@/components/textarea";
-import SearchBar from "@/components/ui/searchbar";
-
 import DragAndDrop from "@/components/ui/draganddrop";
 import InputArea from "@/components/ui/inputarea";
 import Button from "@/components/ui/button";
 import Footer from "@/components/ui/footer";
-
+import { useCreateAdsMutation } from "@/redux/features/ads/adsApi";
+import toast from "react-hot-toast";
 
 const EditAddPage: React.FC = () => {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [tagInput, setTagInput] = useState("");
-  const [currency, setCurrency] = useState("LKR");
-  const [price, setPrice] = useState("");
-  const [details, setDetails] = useState("");
-  const [instructions, setInstructions] = useState("");
-  const [city, setCity] = useState("");
-  const [province, setProvince] = useState("");
-  const [country, setCountry] = useState("");
-  const [titleError, setTitleError] = useState("");
-  const [categoryError, setCategoryError] = useState("");
-  const [tagsError, setTagsError] = useState("");
+  const [createAds, { isLoading, isSuccess, error }] = useCreateAdsMutation();
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const [adData, setAdData] = useState({
+    name: "",
+    description: "",
+    price: "",
+    estimatedPrice: "",
+    tags: "",
+    level: "",
+    imageOne: null, // This will store the image file
+  });
 
-    let isValid = true;
-
-    // Validate title
-    if (!title.trim()) {
-      setTitleError(
-        "Title cannot contain special characters. Please use only letters, numbers, and spaces"
-      );
-      isValid = false;
-    } else {
-      setTitleError("");
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Advertisement created successfully");
     }
 
-    // Validate category
-    if (!category.trim()) {
-      setCategoryError(
-        "Category cannot contain special characters. Please use only letters, numbers, and spaces"
-      );
-      isValid = false;
-    } else {
-      setCategoryError("");
+    if (error) {
+      if ("data" in error) {
+        const errorMessage = error as any;
+        toast.error(errorMessage.data.message);
+      }
+    }
+  }, [isLoading, isSuccess, error]);
+
+  const handleFormSubmit = async (e: any) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+
+    // Validate required fields
+    if (!adData.name || !adData.description || !adData.price || !adData.tags) {
+      toast.error("Please fill out all required fields.");
+      return;
     }
 
-    // Validate tags
-    if (tags.length === 0) {
-      setTagsError(
-        "Tags cannot contain special characters. Please use only letters, numbers, and spaces"
-      );
-      isValid = false;
-    } else {
-      setTagsError("");
+    const formData = new FormData();
+
+    // Append form fields
+    formData.append("name", adData.name);
+    formData.append("description", adData.description);
+    formData.append("price", adData.price);
+    formData.append("estimatedPrice", adData.estimatedPrice || ""); // Optional
+    formData.append("tags", adData.tags);
+    formData.append("level", adData.level || ""); // Optional
+    if (adData.imageOne) {
+      formData.append("imageOne", adData.imageOne);
     }
 
-    if (isValid) {
-      // Handle form submission logic here
-      console.log("Form submitted successfully");
+    if (!isLoading) {
+      await createAds(formData);
     }
   };
 
-  const handleFileDrop = (acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
-    // Handle the file uploads here
-  };
-
-  const handleCurrencyChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setCurrency(event.target.value);
-  };
-
-  const handleTagInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && tagInput.trim() !== "") {
-      setTags([...tags, tagInput.trim()]);
-      setTagInput("");
-      e.preventDefault();
-    }
-  };
-
-  const removeTag = (index: number) => {
-    setTags(tags.filter((_, i) => i !== index));
-  };
+  // const handleFileDrop = (acceptedFiles: File[]) => {
+  //   if (acceptedFiles.length > 0) {
+  //     setAdData({ ...adData, imageOne: acceptedFiles[0] });
+  //   }
+  // };
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-
       <div className="flex-grow px-4 sm:px-6 lg:px-8 ml-2.5 sm:ml-1 lg:ml-15 mr-2.5 sm:mr-1 lg:mr-3.75">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col w-full justify-start mt-10">
             <div className="flex w-full justify-start mt-10">
               <p className="text-sm text-gray-500">
-                Home{" "}
+                Home
                 <span className="text-black text-base font-bold font-Poppins">
                   /Post An Advertisement
                 </span>
@@ -118,12 +95,11 @@ const EditAddPage: React.FC = () => {
               <InputArea
                 customWidth="w-full"
                 customHeight="h-12"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                name="name"
+                value={adData.name}
+                onChange={(e) => setAdData({ ...adData, name: e.target.value })}
+                type="text"
               />
-              {titleError && (
-                <p className="text-sm text-red-500">{titleError}</p>
-              )}
             </div>
 
             <div className="space-y-2">
@@ -132,14 +108,15 @@ const EditAddPage: React.FC = () => {
               </label>
               <p className="text-sm text-gray-500">
                 Choose the category that best fits your item or service.
+                (e.g.,Electronics, Lands, Furniture).
               </p>
-              <SearchBar
-                onSearch={(value) => setCategory(value)}
-               
+              <input
+                type="text"
+                name="level"
+                value={adData.level}
+                onChange={(e) => setAdData({ ...adData, level: e.target.value })}
+                className="w-full h-12 border-gray-300 rounded-md"
               />
-              {categoryError && (
-                <p className="text-sm text-red-500">{categoryError}</p>
-              )}
             </div>
 
             <div className="space-y-2">
@@ -148,32 +125,15 @@ const EditAddPage: React.FC = () => {
               </label>
               <p className="text-sm text-gray-500">
                 Add relevant keywords to help buyers find your ad
-                (e.g.,electronics)
+                (e.g., iPhone, Samsung).
               </p>
               <InputArea
+                type="text"
                 customWidth="w-full"
                 customHeight="h-12"
-                value={tagInput}
-                onChange={(e) => setTagInput(e.target.value)}
-                onKeyDown={handleTagInputKeyDown}
+                value={adData.tags}
+                onChange={(e) => setAdData({ ...adData, tags: e.target.value })}
               />
-              {tagsError && <p className="text-sm text-red-500">{tagsError}</p>}
-              <div className="flex flex-wrap gap-2 mt-2">
-                {tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-gray-200 text-gray-700 px-2 py-1 rounded border w-max h-10 p-2 flex items-center"
-                  >
-                    {tag}
-                    <button
-                      onClick={() => removeTag(index)}
-                      className="ml-2 text-black-700 hover:text-black-900"
-                    >
-                      &times;
-                    </button>
-                  </span>
-                ))}
-              </div>
             </div>
 
             <h2 className="text-2xl font-bold text-black mb-8">Content</h2>
@@ -186,48 +146,38 @@ const EditAddPage: React.FC = () => {
                 Upload clear, high-quality photos of your item. Showcase all
                 angles to attract buyers.
               </p>
-              <DragAndDrop onDrop={handleFileDrop} />
+              {/* <DragAndDrop /> */}
             </div>
 
-            <div className="space-y-2">
-              <label className="block text-black text-base font-bold font-Poppins">
-                Thumbnail
-              </label>
-              <p className="text-sm text-gray-500">
-                Select the main image that best represents your item. This will
-                be the thumbnail shown in search results.
-              </p>
-            </div>
-
-            <h2 className="text-2xl font-bold text-black mb-8">
-              Price Details
-            </h2>
+            <h2 className="text-2xl font-bold text-black mb-8">Price Details</h2>
 
             <div className="space-y-2">
               <label className="block text-black text-base font-bold font-Poppins">
                 Price details
               </label>
-              <p className="text-sm text-gray-500">
-                Enter the price you&apos;re asking for in your preferred
-                currency.
-              </p>
               <div className="flex flex-wrap items-center gap-2">
-                <select
-                  className="text-black text-xs font-normal font-['Poppins'] leading-normal bg-white border border-gray-300 rounded-lg p-2"
-                  value={currency}
-                  onChange={handleCurrencyChange}
-                >
-                  <option value="LKR">LKR</option>
-                  <option value="USD">USD</option>
-                  <option value="EUR">EUR</option>
-                  <option value="GBP">GBP</option>
-                </select>
                 <InputArea
+                  type="text"
                   customWidth="w-32"
                   customHeight="h-10"
                   placeholder="Price"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  value={adData.price}
+                  onChange={(e) => setAdData({ ...adData, price: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="block text-black text-base font-bold font-Poppins">
+                Estimated Price details
+              </label>
+              <div className="flex flex-wrap items-center gap-2">
+                <InputArea
+                  type="text"
+                  customWidth="w-32"
+                  customHeight="h-10"
+                  placeholder="Estimated Price"
+                  value={adData.estimatedPrice}
+                  onChange={(e) => setAdData({ ...adData, estimatedPrice: e.target.value })}
                 />
               </div>
             </div>
@@ -244,25 +194,8 @@ const EditAddPage: React.FC = () => {
               <Textarea
                 customWidth="w-full"
                 customHeight="h-32"
-                value={details}
-                onChange={(e) => setDetails(e.target.value)}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-black text-base font-bold font-Poppins">
-                Instructions for buyers
-              </label>
-              <p className="text-sm text-gray-500">
-                Include any special instructions for your buyers, such as
-                payment methods, delivery options, or specific details they
-                should consider before purchasing.
-              </p>
-              <Textarea
-                customWidth="w-full"
-                customHeight="h-32"
-                value={instructions}
-                onChange={(e) => setInstructions(e.target.value)}
+                value={adData.description}
+                onChange={(e) => setAdData({ ...adData, description: e.target.value })}
               />
             </div>
 
@@ -278,38 +211,9 @@ const EditAddPage: React.FC = () => {
                 <InputArea
                   customWidth="w-full"
                   customHeight="h-12"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-black text-base font-bold font-Poppins">
-                  Province
-                </label>
-                <p className="text-sm text-gray-500">
-                  Enter the province where the item is located.
-                </p>
-                <InputArea
-                  customWidth="w-full"
-                  customHeight="h-12"
-                  value={province}
-                  onChange={(e) => setProvince(e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-black text-base font-bold font-Poppins">
-                  Country
-                </label>
-                <p className="text-sm text-gray-500">
-                  Enter the country where the item is located.
-                </p>
-                <InputArea
-                  customWidth="w-full"
-                  customHeight="h-12"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
+                  value="Colombo"
+                  type="text"
+                  readOnly // ReadOnly for now, as it's hardcoded
                 />
               </div>
             </div>

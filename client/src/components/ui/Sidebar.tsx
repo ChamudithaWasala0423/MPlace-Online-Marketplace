@@ -18,9 +18,9 @@ const navItems: NavItem[] = [
       { name: "Drafts", href: "/dashboard/draftsad" },
     ],
   },
-  { name: "Notifications", href: "/dashboard/notification" },
-  { name: "Chat", href: "/dashboard/chat" },
-  { name: "Saved Items", href: "/dashboard/saveditems" },
+  // { name: "Notifications", href: "/dashboard/notification" },
+  // { name: "Chat", href: "/dashboard/chat" },
+  
 ];
 
 const Sidebar: React.FC = () => {

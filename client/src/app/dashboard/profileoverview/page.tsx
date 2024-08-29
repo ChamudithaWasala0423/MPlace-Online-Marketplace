@@ -3,19 +3,26 @@
 import React, { useState, useEffect } from "react";
 import InputArea from "@/components/ui/inputarea";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
-import { useUpdateUserMutation } from "@/redux/features/user/userapi";
+import { useUpdateUserMutation } from "@/redux/features/user/userApi";
+import { useLogoutMutation } from "@/redux/features/api/apiSlice";
+import { userLoggedOut} from "@/redux/features/auth/authSlice";
 
 const ProfileOverview: React.FC = () => {
   // Initialize mutation hook
   const [updateUser, { isLoading }] = useUpdateUserMutation();
+  const [logout] = useLogoutMutation();
 
   // State management for input values
   const [name, setName] = useState("");
 
   // Get the current user from the Redux store
   const user = useSelector((state: any) => state.auth.user);
+
+  const dispatch = useDispatch();
+
+  
 
   // Load current user data into state
   useEffect(() => {
@@ -33,6 +40,14 @@ const ProfileOverview: React.FC = () => {
     } catch (error) {
       toast.success("Profile updated successfully");
       console.error("Request failed:", error);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout(null);
+    } catch (error: any) {
+      console.log(error);
     }
   };
 
@@ -90,16 +105,12 @@ const ProfileOverview: React.FC = () => {
 
       {/* Actions */}
       <div className="flex justify-end gap-4 mt-8">
-        {/* <button 
-          className="px-6 py-2 text-sm lg:text-base bg-gray-200 rounded-lg"
-          onClick={() => {
-            setName(user.name || '');
-            setEmail(user.email || '');
-            setAddress(user.address || '');
-          }}
+        <button 
+          className="px-6 py-2 text-sm lg:text-base bg-black rounded-lg"
+          onClick={handleLogout}
         >
-          Cancel
-        </button> */}
+          Logout
+        </button>
         <button
           className="px-6 py-2 text-sm lg:text-base bg-purple-600 text-white rounded-lg"
           onClick={handleSaveChanges}
@@ -112,4 +123,10 @@ const ProfileOverview: React.FC = () => {
   );
 };
 
+
+
 export default ProfileOverview;
+function userLogout(arg0: null) {
+  throw new Error("Function not implemented.");
+}
+

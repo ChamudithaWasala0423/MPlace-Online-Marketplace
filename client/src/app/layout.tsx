@@ -6,6 +6,7 @@ import "./globals.css";
 import Navbar from "../components/ui/navbar";
 import { Toaster } from "react-hot-toast";
 import { Providers } from "./Provider";
+import Heading from "@/components/ui/Heading";
 
 
 
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} ${poppins.variable}`}>
         <Providers>
+        <Heading title="LMS P1" description="LMS P1" keywords="LMS P1" />
           <Navbar title="Mplace" />
           {children}
           <Toaster position="top-center" reverseOrder={false} />

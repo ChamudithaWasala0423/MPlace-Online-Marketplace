@@ -2,6 +2,7 @@ import React from "react";
 import Categorycard from "../ui/Categorycard";
 import Link from "next/link";
 
+
 type Category = {
   id?: number;
   name?: string;
