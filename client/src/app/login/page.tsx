@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Image from "next/image";
 import Footer from "@/components/ui/footer";
 import Button from "@/components/ui/button";
 import InputArea from "@/components/ui/Inputarea";
+import { useLoginMutation } from "@/redux/auth/authApi";
+import { toast } from "react-hot-toast";
 
 
-interface LoginPageProps {}
+type Props = {
+  setRoute: (route: string) => void;
+  setOpen: (open: boolean) => void;
+};
 
-const LoginPage: React.FC<LoginPageProps> = () => {
-//   const handleSubmit = (event: React.FormEvent) => {
-//     event.preventDefault();
-//     // Handle form submission logic here
-//     console.log("Form submitted");
-//   };
+const Login = async({ setRoute, setOpen }: Props) =>{
+  const [show, setShow] = useState(false);
+  const [login, { isSuccess, isError, data, error }] = useLoginMutation();
 
   return (
     <div className="min-h-screen flex flex-col bg-white w-full mt-14">
@@ -88,4 +90,4 @@ const LoginPage: React.FC<LoginPageProps> = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
