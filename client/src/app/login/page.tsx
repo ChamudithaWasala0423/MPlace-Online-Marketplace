@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useRouter }  from 'next/router';
+import { useRouter } from 'next/navigation';
 
 
 const schema = Yup.object().shape({
@@ -25,6 +25,7 @@ interface LoginPageProps {}
 const LoginPage: React.FC<LoginPageProps> = () => {
   const [show, setShow] = useState(false);
   const [login, { isSuccess, isError, data, error }] = useLoginMutation();
+  const router = useRouter()
 
 
 
@@ -43,7 +44,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Login Successfully!");
-
+        router.push("../dashboard/profileoverview");
       
     }
     if (isError) {

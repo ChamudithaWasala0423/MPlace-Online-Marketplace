@@ -25,7 +25,7 @@ export default function Verification() {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Account activated successfully");
-      router.push("../verfication");
+      router.push("../login");
     }
     if (error) {
       if ("data" in error) {
