@@ -6,6 +6,7 @@ import Button from "@/components/ui/button";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 interface NavbarProps {
   title: string;
@@ -14,7 +15,9 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
   const [isOpen, setIsOpen] = useState(false);
+  // Get the current user from the Redux store
   const user = useSelector((state: any) => state.auth.user);
+  const router = useRouter()
 
   console.log(user);
 
@@ -88,7 +91,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
             <div className="flex space-x-4">
               {user ? (
                 <>
-                  <Link href={"/profile"}>
+                  <Link href="#">
                     <Image
                       src="/images/user.jpg"
                       alt="avatar"
@@ -103,10 +106,18 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
                   <Button title="Login" variant="primary" />
                 </Link>
               )}
-
-              <Link href="/dashboard/postAd">
-                <Button title="Post an Ad" variant="secondary" />
-              </Link>
+              {user ? (
+                <>
+                 <Link href="/dashboard/postAd">
+                  <Button title="Post an Ad" variant="secondary" />
+                </Link>
+               
+                </>
+              ) : (
+                <Link href="/login">
+                  <Button title="Post an Ad" variant="secondary" />
+                </Link>
+              )}
             </div>
           </div>
 
