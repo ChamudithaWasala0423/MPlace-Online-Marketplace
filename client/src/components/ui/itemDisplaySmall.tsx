@@ -51,6 +51,7 @@ const ItemDisplaySmall: FunctionComponent<ItemDisplaySmallProps> = ({ items = de
       <p className="text-2xl font-bold lg:text-3xl text-black text-center">{title}</p>
       <div className="flex items-center justify-center gap- mt-8 flex-wrap">
       {items.map((item, index) => (
+        
           <Itemcard
             key={index}
             name={item.name || "Default Product Name"}
