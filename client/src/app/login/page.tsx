@@ -7,12 +7,21 @@ import InputArea from "@/components/ui/Inputarea";
 import { useLoginMutation } from "@/redux/auth/authApi";
 import { toast } from "react-hot-toast";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 
 type Props = {
   setRoute: (route: string) => void;
   setOpen: (open: boolean) => void;
 };
+
+//check form validation for login using Yup
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid emnail!")
+    .required("Please enter your email"),
+  password: Yup.string().required("Please Enter your password!").min(8),
+});
 
 const Login = async({ setRoute, setOpen }: Props) =>{
   const [show, setShow] = useState(false);
