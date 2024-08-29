@@ -16,7 +16,6 @@ const ProfileOverview: React.FC = () => {
 
   return (
     <div className="w-full bg-background-400 shadow-md p-6 lg:p-9 rounded-lg">
-      {/* Profile Header */}
       <div className="flex items-center gap-6 mb-8">
         <Image
           className="w-12 h-12 lg:w-16 lg:h-16 rounded-full"

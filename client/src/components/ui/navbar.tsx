@@ -4,15 +4,19 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import SearchBar from "./searchbar";
 import Button from "@/components/ui/button";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import Image from "next/image";
 
 interface NavbarProps {
   title: string;
   subtitle?: string;
-  
 }
 
 const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const user = useSelector((state: any) => state.auth.user);
+
+  console.log(user);
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
@@ -80,14 +84,28 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
               </li> */}
             </ul>
             <SearchBar onSearch={(value) => console.log("Search:", value)} />
-                
-            <div className="flex space-x-4">
 
-            <Link href= "/login" >
-              <Button title="Login" variant="primary" />
-              </Link>
-              <Link href= "/dashboard/postAd">
-              <Button title="Post an Ad" variant="secondary" />
+            <div className="flex space-x-4">
+              {user ? (
+                <>
+                  <Link href={"/profile"}>
+                    <Image
+                      src="/images/user.jpg"
+                      alt="avatar"
+                      className="w-[50px] h-[50px] rounded-full cursor-pointer"
+                      width={200}
+                      height={200}
+                    />
+                  </Link>
+                </>
+              ) : (
+                <Link href="/login">
+                  <Button title="Login" variant="primary" />
+                </Link>
+              )}
+
+              <Link href="/dashboard/postAd">
+                <Button title="Post an Ad" variant="secondary" />
               </Link>
             </div>
           </div>
