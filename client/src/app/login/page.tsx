@@ -143,7 +143,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
               </div>
             </form>
 
-            {/* <div className="mt-6 flex flex-col sm:flex-row justify-between items-center">
+            <div className="mt-6 flex flex-col sm:flex-row justify-between items-center">
               <div className="text-center sm:text-left text-black/70 text-sm md:text-base font-normal font-poppins leading-normal mb-2 sm:mb-0">
                 <span>Don&apos;t have an account?</span>
                 <a href="/signup" className="text-[#7e2ee7] ml-1">
@@ -156,7 +156,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
               >
                 Forgot Password
               </a>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
