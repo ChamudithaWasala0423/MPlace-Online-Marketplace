@@ -8,11 +8,13 @@ import Image from 'next/image';
 import Button from '@/components/ui/button';
 import Footer from '@/components/ui/footer';
 import InputArea from '@/components/ui/inputarea';
+import { useRouter } from 'next/navigation';
 
 interface SignupProps {}
 
 const Signup: React.FC<SignupProps> = () => {
   const [register, { isLoading }] = useRegisterMutation();
+  const router = useRouter()
 
   const formik = useFormik({
     initialValues: {
@@ -29,6 +31,8 @@ const Signup: React.FC<SignupProps> = () => {
       try {
         await register(values).unwrap();
         toast.success('Registration successful!');
+        router.push('../verfication');
+        
       } catch (error: any) {
         toast.error(error.data?.message || 'Registration failed!');
       }
