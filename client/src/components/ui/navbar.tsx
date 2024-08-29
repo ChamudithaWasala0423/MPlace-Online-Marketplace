@@ -8,6 +8,7 @@ import Link from "next/link";
 interface NavbarProps {
   title: string;
   subtitle?: string;
+  
 }
 
 const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
@@ -81,7 +82,8 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
             <SearchBar onSearch={(value) => console.log("Search:", value)} />
                 
             <div className="flex space-x-4">
-            <Link href= "/login">
+
+            <Link href= "/login" >
               <Button title="Login" variant="primary" />
               </Link>
               <Link href= "/dashboard/postAd">

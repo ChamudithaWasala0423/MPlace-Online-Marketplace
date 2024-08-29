@@ -4,7 +4,7 @@ import Textarea from "@/components/textarea";
 import SearchBar from "@/components/ui/searchbar";
 
 import DragAndDrop from "@/components/ui/draganddrop";
-import InputArea from "@/components/ui/Inputarea";
+import InputArea from "@/components/ui/inputarea";
 import Button from "@/components/ui/button";
 import Footer from "@/components/ui/footer";
 

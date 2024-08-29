@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import Button from '@/components/ui/button';
 import Footer from '@/components/ui/footer';
-import InputArea from '@/components/ui/Inputarea';
+import InputArea from '@/components/ui/inputarea';
 
 
 interface SignupProps {}

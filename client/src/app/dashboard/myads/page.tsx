@@ -69,6 +69,7 @@ const MyAds: React.FC<Props> = ({drafts=defaultAds}) => {
   return (
     <div className="w-full relative flex flex-row items-center justify-center flex-wrap content-center py-9 px-0 box-border gap-6">
         {drafts.map((item) => (
+          // eslint-disable-next-line react/jsx-key
           <Link href="./sellerAdDisplayMyAds">
           <Itemcard
             key={item.id}

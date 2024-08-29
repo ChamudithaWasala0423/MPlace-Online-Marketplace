@@ -7,7 +7,8 @@ import DragAndDrop from "@/components/ui/draganddrop";
 import SearchBarMain from "@/components/ui/SearchBarMain";
 import Footer from "@/components/ui/footer";
 import Button from "@/components/ui/button";
-import InputArea from "@/components/ui/Inputarea";
+import InputArea from "@/components/ui/inputarea";
+
 
 const EditAddPage: React.FC = () => {
   const [title, setTitle] = useState("");

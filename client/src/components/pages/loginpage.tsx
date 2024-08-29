@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Button from "../ui/button";
 import Footer from "../ui/footer";
-import InputArea from "../ui/Inputarea";
+import InputArea from "../ui/inputarea";
 
 interface LoginPageProps {}
 

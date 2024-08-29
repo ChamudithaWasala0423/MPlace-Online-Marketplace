@@ -65,18 +65,18 @@ type DraftAd = {
 const DraftsAd: React.FC<Props> = ({drafts=defaultAds}) => {
   return (
     <div className="w-full relative flex flex-row items-center justify-center flex-wrap content-center py-9 px-0 box-border gap-6">
-        {drafts.map((item) => (
-          <Link href="./sellerAdDisplayDraftAd">
+       {drafts.map((item) => (
+        <Link href="./sellerAdDisplayDraftAd" key={item.id}>
           <Itemcard
-            key={item.id}
             name={item.name || "Default Category"}
             description={item.description || "Default description"}
             price={item.price || "Default price"}
             location={item.location || "Default location"}
             daysAdded={item.daysAdded || 0}
-            itemImage={item.itemImage || "/images/chair.jpg"}/>
-            </Link>
-        ))}
+            itemImage={item.itemImage || "/images/chair.jpg"}
+          />
+        </Link>
+      ))}
     </div>
   )
 }

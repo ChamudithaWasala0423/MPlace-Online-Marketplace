@@ -1,20 +1,18 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/ui/navbar";
+import { Toaster } from "react-hot-toast";
+import { Providers } from "./Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ['100','200','300','400', '500', '600','700','800','900'],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-poppins",
 });
-
-export const metadata: Metadata = {
-  title: "MPlcae",
-  description: "Sri Lankas No.1 Online Marketplace",
-};
 
 export default function RootLayout({
   children,
@@ -23,11 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
-
-      <body className={`${inter.className} ${poppins.variable}`}><Navbar title="Mplace" />{children}
+      <body className={`${inter.className} ${poppins.variable}`}>
+        <Providers>
+          <Navbar title="Mplace" />
+          {children}
+          <Toaster position="top-center" reverseOrder={false} />
+        </Providers>
       </body>
     </html>
-
   );
 }

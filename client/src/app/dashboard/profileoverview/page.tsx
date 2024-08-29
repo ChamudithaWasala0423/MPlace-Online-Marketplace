@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import InputArea from "@/components/ui/Inputarea";
+import InputArea from "@/components/ui/inputarea";
+import Image from "next/image";
 
 const ProfileOverview: React.FC = () => {
   // State management for input values
@@ -17,10 +18,12 @@ const ProfileOverview: React.FC = () => {
     <div className="w-full bg-background-400 shadow-md p-6 lg:p-9 rounded-lg">
       {/* Profile Header */}
       <div className="flex items-center gap-6 mb-8">
-        <img
+        <Image
           className="w-12 h-12 lg:w-16 lg:h-16 rounded-full"
           src="/images/user.jpg"
           alt="User Profile"
+          width={100}
+          height={100}
         />
         <div>
           <div className="text-lg lg:text-2xl font-semibold font-sans text-black">Saman Perera</div>

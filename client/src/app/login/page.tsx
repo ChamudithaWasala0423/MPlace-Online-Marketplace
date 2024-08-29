@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
-import Footer from "@/components/ui/footer";
+import InputArea from "@/components/ui/inputarea";
 import Button from "@/components/ui/button";
-import InputArea from "@/components/ui/Inputarea";
-import { useLoginMutation } from "@/redux/auth/authApi";
+import Footer from "@/components/ui/footer";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useRouter }  from 'next/router';
 
 
-type Props = {
-  setRoute: (route: string) => void;
-  setOpen: (open: boolean) => void;
-};
-
-//check form validation for login using Yup
 const schema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid emnail!")
@@ -23,9 +20,13 @@ const schema = Yup.object().shape({
   password: Yup.string().required("Please Enter your password!").min(8),
 });
 
-const Login = async({ setRoute, setOpen }: Props) =>{
+interface LoginPageProps {}
+
+const LoginPage: React.FC<LoginPageProps> = () => {
   const [show, setShow] = useState(false);
   const [login, { isSuccess, isError, data, error }] = useLoginMutation();
+
+
 
   const formik = useFormik({
     initialValues: {
@@ -34,13 +35,29 @@ const Login = async({ setRoute, setOpen }: Props) =>{
     },
     validationSchema: schema,
     onSubmit: async ({ email, password }) => {
-      // console.log(email, password);
+      console.log(email, password);
       await login({ email, password });
     },
   });
 
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Login Successfully!");
+
+      
+    }
+    if (isError) {
+      if (error && "data" in error) {
+        const errorData = error as any;
+        toast.error(errorData.data.message);
+      }
+    }
+  }, [isSuccess, isError, error]);
+
+  const { errors, touched, values, handleChange, handleSubmit } = formik;
+
   return (
-    <div className="min-h-screen flex flex-col bg-white w-full mt-14">
+    <div className="min-h-screen flex flex-col bg-white w-full">
       {/* Main Content */}
       <div className="flex flex-grow flex-col md:flex-row w-full">
         {/* Left Side with Image */}
@@ -49,7 +66,7 @@ const Login = async({ setRoute, setOpen }: Props) =>{
             className="w-full h-full object-cover md:object-contain"
             src="/loginpageimage.jpeg"
             alt="Login Screen Background"
-            width = {800}
+            width={800}
             height={800}
           />
         </div>
@@ -61,32 +78,72 @@ const Login = async({ setRoute, setOpen }: Props) =>{
               Welcome Back!
             </div>
             <form
-              
               className="w-full flex flex-col gap-4"
+              onSubmit={handleSubmit}
             >
               <div className="space-y-1">
                 <div className="opacity-40 text-black text-sm md:text-base font-normal font-['Poppins'] leading-normal">
-                  Email or Phone Number
+                  Email
                 </div>
-                <InputArea className="h-12 w-full bg-white rounded p-3" />
+                <InputArea
+                  className={`${
+                    errors.email && touched.email && "border-red-500"
+                  }h-12 w-full bg-white rounded p-3 text-black `}
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  placeholder="login@email.com"
+                />
+                {errors.email && touched.email && (
+                  <span className="text-red-500 pt-2 block">
+                    {errors.email}
+                  </span>
+                )}
               </div>
               <div className="space-y-1">
                 <div className="opacity-40 text-black text-sm md:text-base font-normal font-['Poppins'] leading-normal">
                   Password
                 </div>
                 <InputArea
-                  className="h-12 w-full bg-white rounded p-3"
-                  type="password"
+                  className={`${
+                    errors.password && touched.password && "border-red-600"
+                  }h-12 w-full bg-white rounded p-3 text-black`}
+                  type={show ? "text" : "password"} // Adjusted here
+                  name="password"
+                  id="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  placeholder="password!@%#$"
                 />
+                {!show ? (
+                  <AiOutlineEyeInvisible
+                    className="absolute bottom-3 right-2 z-1 cursor-pointer"
+                    size={20}
+                    onClick={() => setShow(true)}
+                  />
+                ) : (
+                  <AiOutlineEye
+                    className="absolute bottom-3 right-2 z-1 cursor-pointer"
+                    size={20}
+                    onClick={() => setShow(false)}
+                  />
+                )}
+                {errors.password && touched.password && (
+                  <span className="text-red-500 pt-2 block">
+                    {errors.password}
+                  </span>
+                )}
               </div>
               <div className="space-y-1">
-                <div className="w-full">
-                  <Button variant="login" title="Log In" />
+                <div className="w-full bg-purple-600 p-4 flex items-center justify-center rounded-md cursor-pointer">
+                <input type="submit" value="Login" className="cursor-pointer" />
                 </div>
               </div>
             </form>
 
-            <div className="mt-6 flex flex-col sm:flex-row justify-between items-center">
+            {/* <div className="mt-6 flex flex-col sm:flex-row justify-between items-center">
               <div className="text-center sm:text-left text-black/70 text-sm md:text-base font-normal font-poppins leading-normal mb-2 sm:mb-0">
                 <span>Don&apos;t have an account?</span>
                 <a href="/signup" className="text-[#7e2ee7] ml-1">
@@ -99,7 +156,7 @@ const Login = async({ setRoute, setOpen }: Props) =>{
               >
                 Forgot Password
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -112,4 +169,4 @@ const Login = async({ setRoute, setOpen }: Props) =>{
   );
 };
 
-export default Login;
+export default LoginPage;
