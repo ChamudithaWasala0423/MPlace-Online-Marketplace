@@ -6,6 +6,7 @@ import Button from "@/components/ui/button";
 import InputArea from "@/components/ui/Inputarea";
 import { useLoginMutation } from "@/redux/auth/authApi";
 import { toast } from "react-hot-toast";
+import { useFormik } from "formik";
 
 
 type Props = {
@@ -16,6 +17,18 @@ type Props = {
 const Login = async({ setRoute, setOpen }: Props) =>{
   const [show, setShow] = useState(false);
   const [login, { isSuccess, isError, data, error }] = useLoginMutation();
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: schema,
+    onSubmit: async ({ email, password }) => {
+      // console.log(email, password);
+      await login({ email, password });
+    },
+  });
 
   return (
     <div className="min-h-screen flex flex-col bg-white w-full mt-14">
