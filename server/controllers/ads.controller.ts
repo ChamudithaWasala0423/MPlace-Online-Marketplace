@@ -26,29 +26,8 @@ export const uploadAd = CatchAsyncErrors(
         const myCloud = await cloudinary.v2.uploader.upload(ImageOne, {
           folder: "Ads",
         });
+
         data.ImageOne = {
-          url: myCloud.secure_url,
-          cloudinary_id: myCloud.public_id,
-        };
-      }
-
-      const ImageTwo = data.ImageTwo;
-      if (ImageTwo) {
-        const myCloud = await cloudinary.v2.uploader.upload(ImageTwo, {
-          folder: "Ads",
-        });
-        data.ImageTwo = {
-          url: myCloud.secure_url,
-          cloudinary_id: myCloud.public_id,
-        };
-      }
-
-      const ImageThree = data.ImageThree;
-      if (ImageThree) {
-        const myCloud = await cloudinary.v2.uploader.upload(ImageThree, {
-          folder: "Ads",
-        });
-        data.ImageThree = {
           url: myCloud.secure_url,
           cloudinary_id: myCloud.public_id,
         };
@@ -56,7 +35,7 @@ export const uploadAd = CatchAsyncErrors(
 
       // add user id for Ad Model
       data.userId = userId;
-
+      
       createAd(data, res, next);
     } catch (errors: any) {
       return next(new ErrorHandler(errors.message, 500));
@@ -124,6 +103,7 @@ export const editAd = CatchAsyncErrors(
         data.thumbnail = {
           url: myCloud.secure_url,
           cloudinary_id: myCloud.public_id,
+          console: myCloud.console,
         };
       }
 

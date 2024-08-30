@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Textarea from "@/components/textarea";
 import InputArea from "@/components/ui/inputarea";
 import Button from "@/components/ui/button";
@@ -9,7 +9,9 @@ import toast from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
-import { data } from "autoprefixer";
+import Image from "next/image";
+
+
 
 const schema = Yup.object().shape({
   name: Yup.string().required("Please enter the title"),
@@ -18,12 +20,13 @@ const schema = Yup.object().shape({
   price: Yup.string().required("Please enter the price"),
   estimatedPrice: Yup.string().required("Please enter the estimated price"),
   description: Yup.string().required("Please enter the description"),
-  // imageOne: Yup.mixed().required("Please upload an image"),
+  // ImageOne: Yup.string().required("Please upload an image")
 });
 
 const EditAddPage: React.FC = () => {
   const [createAds, { isLoading, isSuccess, error }] = useCreateAdsMutation();
   const router = useRouter();
+  const [draging, setDraging] =useState(false);
 
 
   const formik = useFormik({
@@ -34,14 +37,56 @@ const EditAddPage: React.FC = () => {
       price: "",
       estimatedPrice: "",
       description: "",
-      imageOne: null,
+      ImageOne: "",
     },
     validationSchema: schema,
-    onSubmit: async ({ name, level, tags, price, estimatedPrice, description}) => {
-      console.log(name, level, tags, price, estimatedPrice, description);
-      await createAds({ name, level, tags, price, estimatedPrice, description });
+    onSubmit: async ({ name, level, tags, price, estimatedPrice, description, ImageOne}) => {
+      await createAds({ name, level, tags, price, estimatedPrice, description, ImageOne });
     },
+ 
   });
+
+  const handleFileChange = (e: any) => {
+    const file = e.target.files?.[0];
+    if (file){
+      const reader = new FileReader()
+      reader.onload= ( e : any ) => {
+        if (reader.readyState === 1){
+          formik.setFieldValue("ImageOne", reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    };
+
+    
+
+  }
+
+  const handleDragOver = (e: any) => {
+    e.preventDefault();
+    setDraging(true);
+  }
+
+  const handleDragLeave = (e: any) => {
+    e.preventDefault();
+    setDraging(false);
+
+  }
+
+  const handleDrop = (e: any) => {
+    e.preventDefault();
+    setDraging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file){
+      const reader = new FileReader()
+      reader.onload= () => {
+       
+          formik.setFieldValue("ImageOne", reader.result);
+        
+      };
+      reader.readAsDataURL(file);
+    };
+  }
 
   useEffect(() => {
     if (isSuccess) {
@@ -60,6 +105,8 @@ const EditAddPage: React.FC = () => {
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
 
+
+  
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -146,29 +193,36 @@ const EditAddPage: React.FC = () => {
 
             <h2 className="text-2xl font-bold text-black mb-8">Content</h2>
 
-            {/* <div className="space-y-2">
-              <label className="block text-black text-base font-bold font-Poppins">
-                Add photos
+            <div className="space-y-2">
+            <label className="block text-black text-base font-bold font-Poppins">
+                Upload Product Image
+                <br/>
+                <span className="text-red-500 font-normal font-sm ">Drag and Drop One image only and less than 1MB</span>
               </label>
-              <p className="text-sm text-gray-500">
-                Upload clear, high-quality photos of your item. Showcase all
-                angles to attract buyers.
-              </p>
-              <input
-                type="file"
-                name="imageOne"
-                onChange={(event) => {
-                  setFieldValue(
-                    "imageOne",
-                    event.currentTarget.files?.[0] || null
-                  );
-                }}
-                className="w-full h-12 border-gray-300 rounded-md"
-              />
-              {touched.imageOne && errors.imageOne && (
-                <div className="text-red-500 text-sm">{errors.imageOne}</div>
-              )}
-            </div> */}
+              
+              <div>
+                <input 
+                type= "file"
+                name="ImageOne"
+                accept="image/*"
+                id="file"
+                className="hidden"
+                onChange={handleFileChange}
+                />
+                <label htmlFor="file"
+                className={`w-full min-h-10 border-purple-600 p-3 border flex items-center justify-center ${draging? "bg-blue-500" : "bg-transparent"}`} onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}>
+                  {
+                    values.ImageOne ? (
+                      <Image src={values.ImageOne} width={200} height={200} className="w-full h-full"  alt="adImage" />
+                    ):(
+                      <span className="text-purple-600">Darg and Drop or Upload Image</span>
+                    )
+                  }
+                </label>
+
+              </div>
+            </div>
+
 
             <h2 className="text-2xl font-bold text-black mb-8">
               Price Details
@@ -220,13 +274,17 @@ const EditAddPage: React.FC = () => {
                 features, condition, and any important information buyers should
                 know.
               </p>
+              <div className="text-black">
               <Textarea
                 customWidth="w-full"
                 customHeight="h-32"
                 name="description"
                 value={values.description}
                 onChange={handleChange}
+                
               />
+              </div>
+             
               {touched.description && errors.description && (
                 <div className="text-red-500 text-sm">{errors.description}</div>
               )}

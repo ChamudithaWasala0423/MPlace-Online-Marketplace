@@ -16,8 +16,6 @@ interface IComment extends Document {
     price: number;
     estimatedPrice: number;
     ImageOne: object;
-    ImageTwo: object;
-    ImageThree: object;
     tags: string;
     level: string;
     userId : IUser;
@@ -50,35 +48,9 @@ interface IComment extends Document {
       required: true,
     },
     ImageOne: {
-      public_id: {
-        type: String,
-        // required : true,
-      },
-      url: {
-        type: String,
-        // required: true,
-      },
+      public_id : String,
+      url : String
     },
-    ImageTwo: {
-        public_id: {
-          type: String,
-          // required : true,
-        },
-        url: {
-          type: String,
-          // required : true,
-        },
-      },
-    ImageThree: {
-        public_id: {
-          type: String,
-          // required : true,
-        },
-        url: {
-          type: String,
-          // required : true,
-        },
-      },
     tags: {
       type: String,
       required: true,

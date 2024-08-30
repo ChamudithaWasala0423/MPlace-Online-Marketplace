@@ -5,10 +5,11 @@ import Footer from "@/components/ui/footer";
 
 
 import React from "react";
-//import Navbar from '@/components/Navbar'; // Import your Navbar component
+
 
 const Home: React.FC = () => {
   return (
+
     <div className="bg-background-500">
     
       <Herosection />

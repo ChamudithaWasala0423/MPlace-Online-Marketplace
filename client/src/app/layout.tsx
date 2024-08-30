@@ -8,8 +8,6 @@ import { Toaster } from "react-hot-toast";
 import { Providers } from "./Provider";
 import Heading from "@/components/ui/Heading";
 
-
-
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
   subsets: ["latin"],
@@ -22,12 +20,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
- 
   return (
     <html lang="en">
       <body className={`${inter.className} ${poppins.variable}`}>
         <Providers>
-        <Heading title="MPlace" description="Sri Lanka's Number 01 Online market place." keywords="Marketplace, Sri Lanaka" />
+          <Heading
+            title="MPlace"
+            description="Sri Lanka's Number 01 Online market place."
+            keywords="Marketplace, Sri Lanaka"
+          />
           <Navbar title="Mplace" />
           {children}
           <Toaster position="top-center" reverseOrder={false} />

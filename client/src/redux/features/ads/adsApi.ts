@@ -3,7 +3,7 @@ import { apiSlice } from "../api/apiSlice";
 export const adsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createAds: builder.mutation({
-      query: ({ name, description, price, estimatedPrice, tags,  level}) => ({
+      query: ({ name, description, price, estimatedPrice, tags,  level, ImageOne }) => ({
         url: "upload-ad",
         method: "POST",
         body: {
@@ -13,6 +13,7 @@ export const adsApi = apiSlice.injectEndpoints({
           estimatedPrice,
           tags,
           level,
+          ImageOne,
         },  
         credentials: "include" as const,
       }),
@@ -22,3 +23,4 @@ export const adsApi = apiSlice.injectEndpoints({
 });
 
 export const { useCreateAdsMutation } = adsApi;
+

@@ -1,0 +1,29 @@
+  <div className="space-y-2">
+            <label className="block text-black text-base font-bold font-Poppins">
+                Upload Product Image
+                <br/>
+                <span className="text-red-500 font-normal font-sm ">Drag and Drop One image only and less than 1MB</span>
+              </label>
+              
+              <div>
+                <input 
+                type= "file"
+                name="ImageOne"
+                accept="image/*"
+                id="file"
+                className="hidden"
+                onChange={handleFileChange}
+                />
+                <label htmlFor="file"
+                className={`w-full min-h-10 border-purple-600 p-3 border flex items-center justify-center ${draging? "bg-blue-500" : "bg-transparent"}`} onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}>
+                  {
+                    values.ImageOne ? (
+                      <Image src={URL.createObjectURL(values.ImageOne)}     width={200} height={200} className="w-full h-full"  alt="adImage"/>
+                    ):(
+                      <span className="text-purple-600">Darg and Drop or Upload Image</span>
+                    )
+                  }
+                </label>
+
+              </div>
+            </div>

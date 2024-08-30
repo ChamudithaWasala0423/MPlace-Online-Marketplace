@@ -5,9 +5,9 @@ import InputArea from "@/components/ui/inputarea";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
-import { useUpdateUserMutation } from "@/redux/features/user/userApi";
 import { useLogoutMutation } from "@/redux/features/api/apiSlice";
 import { userLoggedOut} from "@/redux/features/auth/authSlice";
+import { useUpdateUserMutation } from "@/redux/features/user/userApi";
 
 const ProfileOverview: React.FC = () => {
   // Initialize mutation hook
@@ -21,6 +21,7 @@ const ProfileOverview: React.FC = () => {
   const user = useSelector((state: any) => state.auth.user);
 
   const dispatch = useDispatch();
+
 
   
 
