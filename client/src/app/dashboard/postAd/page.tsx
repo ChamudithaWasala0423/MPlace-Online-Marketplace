@@ -11,8 +11,6 @@ import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-
-
 const schema = Yup.object().shape({
   name: Yup.string().required("Please enter the title"),
   level: Yup.string().required("Please enter the category"),
@@ -20,14 +18,13 @@ const schema = Yup.object().shape({
   price: Yup.string().required("Please enter the price"),
   estimatedPrice: Yup.string().required("Please enter the estimated price"),
   description: Yup.string().required("Please enter the description"),
-  // ImageOne: Yup.string().required("Please upload an image")
+  address : Yup.string().required("Please enter the address"),
 });
 
 const EditAddPage: React.FC = () => {
   const [createAds, { isLoading, isSuccess, error }] = useCreateAdsMutation();
   const router = useRouter();
-  const [draging, setDraging] =useState(false);
-
+  const [draging, setDraging] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -38,61 +35,72 @@ const EditAddPage: React.FC = () => {
       estimatedPrice: "",
       description: "",
       ImageOne: "",
+      address : "",
     },
     validationSchema: schema,
-    onSubmit: async ({ name, level, tags, price, estimatedPrice, description, ImageOne}) => {
-      await createAds({ name, level, tags, price, estimatedPrice, description, ImageOne });
+    onSubmit: async ({
+      name,
+      level,
+      tags,
+      price,
+      estimatedPrice,
+      description,
+      ImageOne,
+      address,
+    }) => {
+      await createAds({
+        name,
+        level,
+        tags,
+        price,
+        estimatedPrice,
+        description,
+        ImageOne,
+        address,
+      });
     },
- 
   });
 
   const handleFileChange = (e: any) => {
     const file = e.target.files?.[0];
-    if (file){
-      const reader = new FileReader()
-      reader.onload= ( e : any ) => {
-        if (reader.readyState === 1){
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        if (reader.readyState === 1) {
           formik.setFieldValue("ImageOne", reader.result);
         }
       };
       reader.readAsDataURL(file);
-    };
-
-    
-
-  }
+    }
+  };
 
   const handleDragOver = (e: any) => {
     e.preventDefault();
     setDraging(true);
-  }
+  };
 
   const handleDragLeave = (e: any) => {
     e.preventDefault();
     setDraging(false);
-
-  }
+  };
 
   const handleDrop = (e: any) => {
     e.preventDefault();
     setDraging(false);
     const file = e.dataTransfer.files?.[0];
-    if (file){
-      const reader = new FileReader()
-      reader.onload= () => {
-       
-          formik.setFieldValue("ImageOne", reader.result);
-        
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        formik.setFieldValue("ImageOne", reader.result);
       };
       reader.readAsDataURL(file);
-    };
-  }
+    }
+  };
 
   useEffect(() => {
     if (isSuccess) {
       toast.success("Advertisement posted successfully!");
-        router.push("../dashboard/profileoverview");
-      
+      router.push("../dashboard/profileoverview");
     }
     if (error) {
       if (error && "data" in error) {
@@ -104,13 +112,9 @@ const EditAddPage: React.FC = () => {
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
-
-
-  
-
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <div className="flex-grow px-4 sm:px-6 lg:px-8 ml-2.5 sm:ml-1 lg:ml-15 mr-2.5 sm:mr-1 lg:mr-3.75">
+      <div className="flex-grow px-4 sm:px-6 lg:px-8 ml-2.5 sm:ml-1 lg:ml-15 mr-2.5 sm:mr-1 lg:mr-3.75 ">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col w-full justify-start mt-10">
             <div className="flex w-full justify-start mt-10">
@@ -162,8 +166,10 @@ const EditAddPage: React.FC = () => {
                 value={values.level}
                 onChange={handleChange}
                 type="text"
-                placeholder="Enter the category"
+                placeholder="Only add Laptops, Smart Phones , Property , Vehicles, Animals "
               />
+
+             
               {touched.level && errors.level && (
                 <div className="text-red-500 text-sm">{errors.level}</div>
               )}
@@ -184,7 +190,7 @@ const EditAddPage: React.FC = () => {
                 name="tags"
                 value={values.tags}
                 onChange={handleChange}
-                placeholder="Enter tags"
+                placeholder="Enter tags like your Advertising "
               />
               {touched.tags && errors.tags && (
                 <div className="text-red-500 text-sm">{errors.tags}</div>
@@ -194,35 +200,48 @@ const EditAddPage: React.FC = () => {
             <h2 className="text-2xl font-bold text-black mb-8">Content</h2>
 
             <div className="space-y-2">
-            <label className="block text-black text-base font-bold font-Poppins">
+              <label className="block text-black text-base font-bold font-Poppins">
                 Upload Product Image
-                <br/>
-                <span className="text-red-500 font-normal font-sm ">Drag and Drop One image only and less than 1MB</span>
+                <br />
+                <span className="text-red-500 font-normal font-sm ">
+                  Drag and Drop, upload one image only and size is less than 1MB
+                </span>
               </label>
-              
-              <div>
-                <input 
-                type= "file"
-                name="ImageOne"
-                accept="image/*"
-                id="file"
-                className="hidden"
-                onChange={handleFileChange}
-                />
-                <label htmlFor="file"
-                className={`w-full min-h-10 border-purple-600 p-3 border flex items-center justify-center ${draging? "bg-blue-500" : "bg-transparent"}`} onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}>
-                  {
-                    values.ImageOne ? (
-                      <Image src={values.ImageOne} width={200} height={200} className="w-full h-full"  alt="adImage" />
-                    ):(
-                      <span className="text-purple-600">Darg and Drop or Upload Image</span>
-                    )
-                  }
-                </label>
 
+              <div>
+                <input
+                  type="file"
+                  name="ImageOne"
+                  accept="image/*"
+                  id="file"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+                <label
+                  htmlFor="file"
+                  className={`w-full min-h-10 border-purple-600 p-3 border flex items-center justify-center ${
+                    draging ? "bg-blue-500" : "bg-transparent"
+                  }`}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                >
+                  {values.ImageOne ? (
+                    <Image
+                      src={values.ImageOne}
+                      width={200}
+                      height={200}
+                      className="w-full h-full"
+                      alt="adImage"
+                    />
+                  ) : (
+                    <span className="text-red-500 font-semibold">
+                       Darg and Drop Only
+                    </span>
+                  )}
+                </label>
               </div>
             </div>
-
 
             <h2 className="text-2xl font-bold text-black mb-8">
               Price Details
@@ -235,12 +254,12 @@ const EditAddPage: React.FC = () => {
               <div className="flex flex-wrap items-center gap-2">
                 <InputArea
                   type="text"
-                  customWidth="w-32"
+                  customWidth="w-full"
                   customHeight="h-10"
                   name="price"
                   value={values.price}
                   onChange={handleChange}
-                  placeholder="Price"
+                  placeholder="Price, Only add numbers and LKR currency"
                 />
                 {touched.price && errors.price && (
                   <div className="text-red-500 text-sm">{errors.price}</div>
@@ -255,7 +274,7 @@ const EditAddPage: React.FC = () => {
               <div className="flex flex-wrap items-center gap-2">
                 <InputArea
                   type="text"
-                  customWidth="w-32"
+                  customWidth="w-full"
                   customHeight="h-10"
                   name="estimatedPrice"
                   value={values.estimatedPrice}
@@ -275,16 +294,15 @@ const EditAddPage: React.FC = () => {
                 know.
               </p>
               <div className="text-black">
-              <Textarea
-                customWidth="w-full"
-                customHeight="h-32"
-                name="description"
-                value={values.description}
-                onChange={handleChange}
-                
-              />
+                <Textarea
+                  customWidth="w-full"
+                  customHeight="h-32"
+                  name="description"
+                  value={values.description}
+                  onChange={handleChange}
+                />
               </div>
-             
+
               {touched.description && errors.description && (
                 <div className="text-red-500 text-sm">{errors.description}</div>
               )}
@@ -299,13 +317,17 @@ const EditAddPage: React.FC = () => {
                 <p className="text-sm text-gray-500">
                   Enter the city where the item is located.
                 </p>
+               
                 <InputArea
-                  customWidth="w-full"
-                  customHeight="h-12"
-                  value="Colombo"
                   type="text"
-                  readOnly 
+                  customWidth="w-full"
+                  customHeight="h-10"
+                  name="address"
+                  value={values.address}
+                  onChange={handleChange}
+                  placeholder="Ex: Colombo, Western Province"
                 />
+                
               </div>
             </div>
 
@@ -317,7 +339,6 @@ const EditAddPage: React.FC = () => {
               />
             </div>
           </form>
-
         </div>
       </div>
       <Footer />

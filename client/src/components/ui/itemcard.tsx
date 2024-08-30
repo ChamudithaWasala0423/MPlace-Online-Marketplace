@@ -35,7 +35,7 @@ const Itemcard: React.FC <ItemcardProps>=({
                       lg:w-[405px]'>
         <p className='font-sans font-semibold w-full text-[16px] 
                       lg:text-[20px]'>{name}</p>
-        <p className='font-sans font-normal text-[14px] 
+        <p className='font-sans font-normal text-[10px] 
                       lg:text-[16px]'>{description}</p>
       </div>
       

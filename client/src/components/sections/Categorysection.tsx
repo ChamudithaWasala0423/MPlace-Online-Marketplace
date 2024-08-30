@@ -1,4 +1,5 @@
-import React from "react";
+'use client'
+import React, { useState } from "react";
 import Categorycard from "../ui/Categorycard";
 import Link from "next/link";
 import { MdLaptopMac } from "react-icons/md";
@@ -26,6 +27,8 @@ const defaultCategories: Category[] = [
 ];
 
 const Categorysection: React.FC<Props> = ({ categories = defaultCategories }) => {
+ 
+
   return (
     <section className="w-full flex flex-col items-center justify-center py-8 px-8 bg-gray-50">
       <h2 className="text-3xl font-bold font-sans mb-12 text-center text-black">

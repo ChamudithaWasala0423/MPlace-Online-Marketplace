@@ -19,7 +19,9 @@ interface IComment extends Document {
     tags: string;
     level: string;
     userId : IUser;
+    address : string;
     questions: IComment[];
+   
   }
 
   const commentSchema = new Schema<IComment>({
@@ -64,9 +66,13 @@ interface IComment extends Document {
       ref: "User",
       required: true,
     },
+    address: {
+      type: String,
+      required: true,
+    },
     questions: [commentSchema],
     
-  });
+  }, {timestamps: true});
   
 
 
