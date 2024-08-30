@@ -7,7 +7,7 @@ type ItemcardProps = {
   description: string;
   price: string;
   location: string;
-  daysAdded: number;
+  daysAdded: string;
   itemImage: string;
 }
 
