@@ -26,9 +26,23 @@ export const adsApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       })
     }),
+    getAdDetails : builder.query({
+      query: (id) => ({
+        url: `get-ad/${id}`,
+        method: "GET",
+        credentials: "include" as const,
+      })
+    }),
+    getUserAdDetails : builder.query({
+      query: (id) => ({
+        url: `get-single-ad/${id}`,
+        method: "GET",
+        credentials: "include" as const,
+      })
+    }),
   }),
   
 });
 
-export const { useCreateAdsMutation, useGetAllAdsQuery } = adsApi;
+export const { useCreateAdsMutation, useGetAllAdsQuery, useGetAdDetailsQuery, useGetUserAdDetailsQuery } = adsApi;
 

@@ -5,6 +5,7 @@ import Sidebar from "@/components/ui/Sidebar";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Footer from "@/components/ui/footer";
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -26,6 +27,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
         <main className="lg:col-start-2 lg:col-end-3 flex-1 bg-background-400  shadow-sm font-sans">
           {children}
         </main>
+        
       </div>
     </div>
   );

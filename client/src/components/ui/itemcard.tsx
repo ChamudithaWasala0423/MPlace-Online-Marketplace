@@ -40,12 +40,12 @@ const Itemcard: React.FC <ItemcardProps>=({
       </div>
       
       <p className='font-sans text-[16px] font-semibold text-limegreen mt-0 mr-4 ml-4 
-                    lg:text-[20px] lg:ml-4 lg:mr-4'>{price}</p>
+                    lg:text-[20px] lg:ml-4 lg:mr-4'>Rs.{price}.00</p>
       
       <div className='flex flex-row space-x-2 m-4 mt-0 
                       lg:space-x-4 lg:flex-row lg:m-4 lg:mt-0'>
         <p className='font-sans text-black text-opacity-75 w-full 
-                      lg:w-[190px]'>{location}</p>
+                      lg:w-[190px]'>{location}, Sri Lanka</p>
         <p className='font-sans text-black text-opacity-75 w-full m-0 mt-1 text-left 
                       lg:w-[190px] lg:m-4 lg:mt-0 lg:text-right'>Added {daysAdded} days ago</p>
       </div>
