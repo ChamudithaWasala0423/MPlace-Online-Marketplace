@@ -1,71 +1,65 @@
-'use client'
-import React, { useEffect, useState } from "react";
+"use client";
+import React, { useEffect } from "react";
 import Textarea from "@/components/textarea";
-import DragAndDrop from "@/components/ui/draganddrop";
 import InputArea from "@/components/ui/inputarea";
 import Button from "@/components/ui/button";
 import Footer from "@/components/ui/footer";
 import { useCreateAdsMutation } from "@/redux/features/ads/adsApi";
 import toast from "react-hot-toast";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useRouter } from "next/navigation";
+import { data } from "autoprefixer";
+
+const schema = Yup.object().shape({
+  name: Yup.string().required("Please enter the title"),
+  level: Yup.string().required("Please enter the category"),
+  tags: Yup.string().required("Please enter the tags"),
+  price: Yup.string().required("Please enter the price"),
+  estimatedPrice: Yup.string().required("Please enter the estimated price"),
+  description: Yup.string().required("Please enter the description"),
+  // imageOne: Yup.mixed().required("Please upload an image"),
+});
 
 const EditAddPage: React.FC = () => {
   const [createAds, { isLoading, isSuccess, error }] = useCreateAdsMutation();
+  const router = useRouter();
 
-  const [adData, setAdData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    estimatedPrice: "",
-    tags: "",
-    level: "",
-    imageOne: null, // This will store the image file
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      level: "",
+      tags: "",
+      price: "",
+      estimatedPrice: "",
+      description: "",
+      imageOne: null,
+    },
+    validationSchema: schema,
+    onSubmit: async ({ name, level, tags, price, estimatedPrice, description}) => {
+      console.log(name, level, tags, price, estimatedPrice, description);
+      await createAds({ name, level, tags, price, estimatedPrice, description });
+    },
   });
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Advertisement created successfully");
+      toast.success("Advertisement posted successfully!");
+        router.push("../dashboard/profileoverview");
+      
     }
-
     if (error) {
-      if ("data" in error) {
-        const errorMessage = error as any;
-        toast.error(errorMessage.data.message);
+      if (error && "data" in error) {
+        const errorData = error as any;
+        toast.error(errorData.data.message);
       }
     }
-  }, [isLoading, isSuccess, error]);
+  }, [isSuccess, error]);
 
-  const handleFormSubmit = async (e: any) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+  const { errors, touched, values, handleChange, handleSubmit } = formik;
 
-    // Validate required fields
-    if (!adData.name || !adData.description || !adData.price || !adData.tags) {
-      toast.error("Please fill out all required fields.");
-      return;
-    }
 
-    const formData = new FormData();
-
-    // Append form fields
-    formData.append("name", adData.name);
-    formData.append("description", adData.description);
-    formData.append("price", adData.price);
-    formData.append("estimatedPrice", adData.estimatedPrice || ""); // Optional
-    formData.append("tags", adData.tags);
-    formData.append("level", adData.level || ""); // Optional
-    if (adData.imageOne) {
-      formData.append("imageOne", adData.imageOne);
-    }
-
-    if (!isLoading) {
-      await createAds(formData);
-    }
-  };
-
-  // const handleFileDrop = (acceptedFiles: File[]) => {
-  //   if (acceptedFiles.length > 0) {
-  //     setAdData({ ...adData, imageOne: acceptedFiles[0] });
-  //   }
-  // };
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -84,7 +78,7 @@ const EditAddPage: React.FC = () => {
               Basic Information
             </h1>
           </div>
-          <form className="space-y-6" onSubmit={handleFormSubmit}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-2">
               <label className="block text-black text-base font-bold font-Poppins">
                 Title
@@ -96,10 +90,14 @@ const EditAddPage: React.FC = () => {
                 customWidth="w-full"
                 customHeight="h-12"
                 name="name"
-                value={adData.name}
-                onChange={(e) => setAdData({ ...adData, name: e.target.value })}
+                value={values.name}
+                onChange={handleChange}
                 type="text"
+                placeholder="Enter the title"
               />
+              {touched.name && errors.name && (
+                <div className="text-red-500 text-sm">{errors.name}</div>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -107,16 +105,21 @@ const EditAddPage: React.FC = () => {
                 Category
               </label>
               <p className="text-sm text-gray-500">
-                Choose the category that best fits your item or service.
-                (e.g.,Electronics, Lands, Furniture).
+                Choose the category that best fits your item or service. (e.g.,
+                Electronics, Lands, Furniture).
               </p>
-              <input
-                type="text"
+              <InputArea
+                customWidth="w-full"
+                customHeight="h-12"
                 name="level"
-                value={adData.level}
-                onChange={(e) => setAdData({ ...adData, level: e.target.value })}
-                className="w-full h-12 border-gray-300 rounded-md"
+                value={values.level}
+                onChange={handleChange}
+                type="text"
+                placeholder="Enter the category"
               />
+              {touched.level && errors.level && (
+                <div className="text-red-500 text-sm">{errors.level}</div>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -124,21 +127,26 @@ const EditAddPage: React.FC = () => {
                 Tags
               </label>
               <p className="text-sm text-gray-500">
-                Add relevant keywords to help buyers find your ad
-                (e.g., iPhone, Samsung).
+                Add relevant keywords to help buyers find your ad (e.g., iPhone,
+                Samsung).
               </p>
               <InputArea
                 type="text"
                 customWidth="w-full"
                 customHeight="h-12"
-                value={adData.tags}
-                onChange={(e) => setAdData({ ...adData, tags: e.target.value })}
+                name="tags"
+                value={values.tags}
+                onChange={handleChange}
+                placeholder="Enter tags"
               />
+              {touched.tags && errors.tags && (
+                <div className="text-red-500 text-sm">{errors.tags}</div>
+              )}
             </div>
 
             <h2 className="text-2xl font-bold text-black mb-8">Content</h2>
 
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <label className="block text-black text-base font-bold font-Poppins">
                 Add photos
               </label>
@@ -146,10 +154,25 @@ const EditAddPage: React.FC = () => {
                 Upload clear, high-quality photos of your item. Showcase all
                 angles to attract buyers.
               </p>
-              {/* <DragAndDrop /> */}
-            </div>
+              <input
+                type="file"
+                name="imageOne"
+                onChange={(event) => {
+                  setFieldValue(
+                    "imageOne",
+                    event.currentTarget.files?.[0] || null
+                  );
+                }}
+                className="w-full h-12 border-gray-300 rounded-md"
+              />
+              {touched.imageOne && errors.imageOne && (
+                <div className="text-red-500 text-sm">{errors.imageOne}</div>
+              )}
+            </div> */}
 
-            <h2 className="text-2xl font-bold text-black mb-8">Price Details</h2>
+            <h2 className="text-2xl font-bold text-black mb-8">
+              Price Details
+            </h2>
 
             <div className="space-y-2">
               <label className="block text-black text-base font-bold font-Poppins">
@@ -160,12 +183,17 @@ const EditAddPage: React.FC = () => {
                   type="text"
                   customWidth="w-32"
                   customHeight="h-10"
+                  name="price"
+                  value={values.price}
+                  onChange={handleChange}
                   placeholder="Price"
-                  value={adData.price}
-                  onChange={(e) => setAdData({ ...adData, price: e.target.value })}
                 />
+                {touched.price && errors.price && (
+                  <div className="text-red-500 text-sm">{errors.price}</div>
+                )}
               </div>
             </div>
+
             <div className="space-y-2">
               <label className="block text-black text-base font-bold font-Poppins">
                 Estimated Price details
@@ -175,9 +203,10 @@ const EditAddPage: React.FC = () => {
                   type="text"
                   customWidth="w-32"
                   customHeight="h-10"
+                  name="estimatedPrice"
+                  value={values.estimatedPrice}
+                  onChange={handleChange}
                   placeholder="Estimated Price"
-                  value={adData.estimatedPrice}
-                  onChange={(e) => setAdData({ ...adData, estimatedPrice: e.target.value })}
                 />
               </div>
             </div>
@@ -194,9 +223,13 @@ const EditAddPage: React.FC = () => {
               <Textarea
                 customWidth="w-full"
                 customHeight="h-32"
-                value={adData.description}
-                onChange={(e) => setAdData({ ...adData, description: e.target.value })}
+                name="description"
+                value={values.description}
+                onChange={handleChange}
               />
+              {touched.description && errors.description && (
+                <div className="text-red-500 text-sm">{errors.description}</div>
+              )}
             </div>
 
             <h2 className="text-2xl font-bold text-black mb-8">Location</h2>
@@ -213,15 +246,20 @@ const EditAddPage: React.FC = () => {
                   customHeight="h-12"
                   value="Colombo"
                   type="text"
-                  readOnly // ReadOnly for now, as it's hardcoded
+                  readOnly 
                 />
               </div>
             </div>
 
             <div className="flex justify-end mt-8">
-              <Button variant="primary" title="Post Adds" />
+              <input
+                type="submit"
+                value="Post Ad"
+                className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 cursor-pointer"
+              />
             </div>
           </form>
+
         </div>
       </div>
       <Footer />

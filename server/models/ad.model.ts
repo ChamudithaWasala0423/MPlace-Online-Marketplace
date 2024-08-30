@@ -47,6 +47,7 @@ interface IComment extends Document {
     },
     estimatedPrice: {
       type: Number,
+      required: true,
     },
     ImageOne: {
       public_id: {
@@ -55,7 +56,7 @@ interface IComment extends Document {
       },
       url: {
         type: String,
-        // required : true,
+        // required: true,
       },
     },
     ImageTwo: {
@@ -84,7 +85,7 @@ interface IComment extends Document {
     },
     level: {
       type: String,
-      required: false,
+      required: true,
     },
     userId: {
       type: Schema.Types.ObjectId,

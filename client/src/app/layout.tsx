@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} ${poppins.variable}`}>
         <Providers>
-        <Heading title="LMS P1" description="LMS P1" keywords="LMS P1" />
+        <Heading title="MPlace" description="Sri Lanka's Number 01 Online market place." keywords="Marketplace, Sri Lanaka" />
           <Navbar title="Mplace" />
           {children}
           <Toaster position="top-center" reverseOrder={false} />

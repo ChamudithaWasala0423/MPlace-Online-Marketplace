@@ -9,6 +9,7 @@ import Button from '@/components/ui/button';
 import Footer from '@/components/ui/footer';
 import InputArea from '@/components/ui/inputarea';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface SignupProps {}
 
@@ -128,7 +129,7 @@ const Signup: React.FC<SignupProps> = () => {
             <div className="mt-6 flex flex-col sm:flex-row justify-between items-center">
               <div className="text-center sm:text-left text-black/70 text-sm md:text-base font-normal font-poppins leading-normal mb-2 sm:mb-0">
                 <span>Already have an account?</span>
-                <a href="/login" className="text-[#7e2ee7] ml-1">Log In</a>
+                <Link href="/login" className="text-[#7e2ee7] ml-1">Log In</Link>
               </div>
             </div>
           </div>
