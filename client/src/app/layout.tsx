@@ -7,6 +7,7 @@ import Navbar from "../components/ui/navbar";
 import { Toaster } from "react-hot-toast";
 import { Providers } from "./Provider";
 import Heading from "@/components/ui/Heading";
+import Footer from "@/components/ui/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -31,6 +32,7 @@ export default function RootLayout({
           />
           <Navbar title="Mplace" />
           {children}
+          <Footer />
           <Toaster position="top-center" reverseOrder={false} />
         </Providers>
       </body>

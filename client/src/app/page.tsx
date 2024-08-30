@@ -18,7 +18,7 @@ const Home: React.FC = () => {
 
       <ItemsSection title="Featured Advertisments" allUrl="/featuresAds" />
       <ItemsSection title="Recently Added"  allUrl="/recentlyAdded"/>
-      <Footer />
+  
     </div>
   );
 };

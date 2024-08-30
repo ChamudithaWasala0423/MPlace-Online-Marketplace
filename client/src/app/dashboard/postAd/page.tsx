@@ -113,7 +113,7 @@ const EditAddPage: React.FC = () => {
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-white mb-10">
       <div className="flex-grow px-4 sm:px-6 lg:px-8 ml-2.5 sm:ml-1 lg:ml-15 mr-2.5 sm:mr-1 lg:mr-3.75 ">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col w-full justify-start mt-10">
@@ -341,7 +341,7 @@ const EditAddPage: React.FC = () => {
           </form>
         </div>
       </div>
-      <Footer />
+    
     </div>
   );
 };
