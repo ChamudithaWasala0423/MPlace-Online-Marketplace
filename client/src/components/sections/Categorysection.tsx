@@ -1,12 +1,16 @@
 import React from "react";
 import Categorycard from "../ui/Categorycard";
 import Link from "next/link";
+import { MdLaptopMac } from "react-icons/md";
+import { IoPhonePortraitOutline, IoHome } from "react-icons/io5";
+import { FaDog } from "react-icons/fa6";
+import { FaCar } from "react-icons/fa";
 
 
 type Category = {
   id?: number;
   name?: string;
-  icon?: string;
+  icon: React.ReactNode;
 };
 
 type Props = {
@@ -14,9 +18,11 @@ type Props = {
 };
 
 const defaultCategories: Category[] = [
-  { id: 1, name: "Electronics", icon: "/images/electronics.png" },
-  { id: 2, name: "Electronics", icon: "/images/electronics.png" },
-  { id: 3, name: "Electronics", icon: "/images/electronics.png" },
+  { id: 1, name: "Laptops", icon:<MdLaptopMac size={60} color="black" />},
+  { id: 2, name: "Smart Phones", icon:<IoPhonePortraitOutline size={60} color="black" /> },
+  { id: 3, name: "Animals", icon:<FaDog  size={60} color="black" />},
+  { id: 4, name: "Property", icon:<IoHome size={60} color="black" />  },
+  { id: 5, name: "Vehicles", icon:<FaCar size={60} color="black" />  },
 ];
 
 const Categorysection: React.FC<Props> = ({ categories = defaultCategories }) => {
@@ -27,13 +33,11 @@ const Categorysection: React.FC<Props> = ({ categories = defaultCategories }) =>
       </h2>
       <div className="flex flex-wrap items-center justify-center gap-8">
         {categories.map((category) => (
-          // eslint-disable-next-line react/jsx-key
-          <Link href="/category">
-          
+          <Link key={category.id} href="/category">
           <Categorycard
             key={category.id}
             category={category.name || 'Default Category'}
-            icon={category.icon || 'Default Category'}
+            icon={category.icon}
           />
           </Link>
         ))}
