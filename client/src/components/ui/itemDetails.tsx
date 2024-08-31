@@ -8,7 +8,7 @@ import { useGetAdDetailsQuery } from '@/redux/features/ads/adsApi';
 import Rating from './rating';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import Link from 'next/link';
-import Itemcard from './itemcard';
+import Itemcard from './ItemCardMain';
 import ItemsSection from '../sections/ItemsSection';
 type Props = {
   id : string;

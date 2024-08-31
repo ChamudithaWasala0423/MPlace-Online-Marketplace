@@ -36,13 +36,7 @@ const Herosection = () => {
 
                 {/* Buttons Section */}
                 <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-                  {/* <div className="flex items-center justify-center text-secondary-900 cursor-pointer gap-2">
-                    <div>
-                    
-                      <FaArrowRight className="w-6 h-6 md:w-8 md:h-8  " />
-
-                    </div>
-                  </div> */}
+                  
                   <div className=" rounded-lg">
                     <button className="w-full h-full bg-primary-100 text-white font-sans font-semibold text-base md:text-lg rounded-lg py-2 px-6 bg-purple-600 ">
                       Create an account
