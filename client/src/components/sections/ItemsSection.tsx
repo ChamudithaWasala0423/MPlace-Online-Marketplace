@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import Itemcard from "../ui/itemcard";
+import Itemcard from "@/components/ui/itemcard";
 import Link from "next/link";
 import { useGetAllAdsQuery } from "@/redux/features/ads/adsApi";
 
