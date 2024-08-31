@@ -7,7 +7,6 @@ const Page = ({params}: any) => {
   return (
     <div>
         <EditAddPageAd id={params.id} />
-        {/* <div>{params.id}</div> */}
     </div>
   );
 };

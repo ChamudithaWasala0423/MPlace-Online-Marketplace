@@ -1,8 +1,7 @@
 "use client"
 import { FC } from 'react';
 import ProductDetails from '@/components/ui/productDetails';
-import Button from '@/components/ui/button';
-import ItemDisplaySmall from '@/components/ui/itemDisplaySmall';
+import Button from '@/components/ui/button';;
 import Image from 'next/image';
 
 const SellerAdDisplayDraftAd: React.FC = () => {

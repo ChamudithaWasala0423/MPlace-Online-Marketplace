@@ -3,7 +3,6 @@ import React from 'react';
 import ItemDisplaySmall from '@/components/ui/itemDisplaySmall';
 
 
-
 const FeaturedAdvertisement: React.FC = () => {
     return (
         <div className='bg-white text-black'>

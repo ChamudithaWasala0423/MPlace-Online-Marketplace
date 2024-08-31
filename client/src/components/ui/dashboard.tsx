@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Sidebar from "./Sidebar"; // Make sure to import the updated Sidebar
 
 const Dashboard: React.FC = () => {
   return (

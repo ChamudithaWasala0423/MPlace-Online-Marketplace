@@ -8,11 +8,6 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 
-
-
-
-
-
 interface NavbarProps {
   title: string;
   subtitle?: string;
@@ -80,14 +75,6 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
                   About
                 </Link>
               </li>
-              {/* <li>
-                <Link
-                  href="/signup"
-                  className="text-black dark:text-black hover:text-purple-600 font-sans"
-                >
-                  Sign Up
-                </Link>
-              </li> */}
             </ul>
             <SearchBar onSearch={(value) => console.log("Search:", value)} />
 
