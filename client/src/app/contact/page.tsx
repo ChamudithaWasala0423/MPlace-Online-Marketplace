@@ -1,6 +1,7 @@
 import React from "react";
 import { FaPhone, FaEnvelope } from "react-icons/fa";
 import Textarea from "@/components/ui/contactText";
+import Footer from "@/components/ui/footer";
 
 
 
@@ -47,7 +48,7 @@ const Page: React.FC = () => {
           </div>
         </div>
       </div>
-  
+      <Footer />
     </div>
   );
 };
