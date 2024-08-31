@@ -72,7 +72,7 @@ const DraftsAd: React.FC<Props> = ({drafts=defaultAds}) => {
             description={item.description || "Default description"}
             price={item.price || "Default price"}
             location={item.location || "Default location"}
-            daysAdded={item.daysAdded || 0}
+            daysAdded="2" // Convert number to string
             itemImage={item.itemImage || "/images/chair.jpg"}
           />
         </Link>
@@ -81,4 +81,4 @@ const DraftsAd: React.FC<Props> = ({drafts=defaultAds}) => {
   )
 }
 
-export default DraftsAd
+export default DraftsAd;
