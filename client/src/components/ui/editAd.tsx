@@ -1,16 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Textarea from "@/components/ui/textarea";
+// import Textarea from "@/components/ui/textarea";
 import InputArea from "@/components/ui/inputarea";
 import {
   useEditAddMutation,
   useGetAdDetailsQuery,
-  useGetUserAdDetailsQuery,
 } from "@/redux/features/ads/adsApi";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import router from "next/router";
 
@@ -302,7 +300,8 @@ const EditAddPageAd = ({ id }: Props) => {
                 know.
               </p>
               <div className="text-black">
-                <Textarea
+                <InputArea
+                  type="text"
                   customWidth="w-full"
                   customHeight="h-32"
                   name="description"

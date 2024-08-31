@@ -1,14 +1,8 @@
 "use client"
-import { FC } from 'react';
-import ProductDetails from '@/components/ui//productDetails';
 import Button from '@/components/ui/button';
-import ItemDisplaySmall from '@/components/ui/itemDisplaySmall';
 import Image from 'next/image';
 import { useGetAdDetailsQuery } from '@/redux/features/ads/adsApi';
-import Rating from './rating';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-import Link from 'next/link';
-import Itemcard from './ItemCardMain';
 import ItemsSection from '../sections/ItemsSection';
 type Props = {
   id : string;
@@ -75,7 +69,6 @@ const ItemDetails= ({id}: Props) => {
         
           <span className="text-[14px]">{data.ad.userId}</span>
           <div className="border-r border-black/50 h-5 mx-2" />
-          {/* <Rating rating= 5 /> */}
         </div>
       </div>
       </div>

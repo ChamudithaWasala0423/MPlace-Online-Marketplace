@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 import { useLogoutMutation } from "@/redux/features/api/apiSlice";
-import { userLoggedOut} from "@/redux/features/auth/authSlice";
 import { useUpdateUserMutation } from "@/redux/features/user/userApi";
 
 const ProfileOverview: React.FC = () => {
@@ -20,7 +19,6 @@ const ProfileOverview: React.FC = () => {
   // Get the current user from the Redux store
   const user = useSelector((state: any) => state.auth.user);
 
-  const dispatch = useDispatch();
 
 
   
