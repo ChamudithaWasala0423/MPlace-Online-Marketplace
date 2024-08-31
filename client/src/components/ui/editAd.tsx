@@ -12,6 +12,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import router from "next/router";
 
 const schema = Yup.object().shape({
   name: Yup.string().required("Please enter the title"),
@@ -28,12 +29,14 @@ type Props = {
 };
 
 const EditAddPageAd = ({ id }: Props) => {
+
   const { data, isLoading } = useGetAdDetailsQuery(id);
 
-  if (isLoading) return <div>Loading...</div>;
 
-  const router = useRouter();
-  const [editAdd, { isSuccess, error }] = useEditAddMutation({});
+
+  const [editAdd, { isSuccess, error }] = useEditAddMutation();
+
+  
 
  
   
@@ -116,6 +119,7 @@ const EditAddPageAd = ({ id }: Props) => {
       }, [isSuccess, error]);
 
     const { errors, touched, values, handleChange, handleSubmit } = formik;
+    if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="flex flex-col min-h-screen bg-white mb-10">
@@ -349,3 +353,7 @@ const EditAddPageAd = ({ id }: Props) => {
 };
 
 export default EditAddPageAd;
+function setDraging(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}
+
