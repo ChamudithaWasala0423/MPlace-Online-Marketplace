@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react';
-import Rating from '../ui/rating';
 import { FaMapMarkerAlt } from 'react-icons/fa'; // Import location icon from react-icons
 
 interface ProductDetailsProps {
@@ -64,7 +63,6 @@ const ProductDetails: FunctionComponent<ProductDetailsProps> = ({
           {/* <img className="w-8 h-8 rounded-full" alt="seller" src={sellerImage} /> */}
           <span className="text-[14px]">{seller}</span>
           <div className="border-r border-black/50 h-5 mx-2" />
-          <Rating rating={sellerRating} />
         </div>
       </div>
     </div>
