@@ -1,5 +1,5 @@
 
-import Itemcard from '@/components/ui/itemcard';
+
 import Link from 'next/link';
 import React from 'react'
 
