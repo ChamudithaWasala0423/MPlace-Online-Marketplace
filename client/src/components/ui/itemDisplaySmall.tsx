@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import Itemcard from './itemcard';
+import Itemcard from './ItemCardMain';
 import { title } from 'process';
 
 interface ItemDisplaySmallProps {

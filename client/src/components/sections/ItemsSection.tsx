@@ -1,8 +1,9 @@
 'use client'
 import React from "react";
-import Itemcard from "@/components/ui/itemcard";
+
 import Link from "next/link";
 import { useGetAllAdsQuery } from "@/redux/features/ads/adsApi";
+import Itemcard from "../ui/ItemCardMain";
 
 interface adProps {
   title : string;
