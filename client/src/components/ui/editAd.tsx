@@ -2,127 +2,120 @@
 import React, { useEffect, useState } from "react";
 import Textarea from "@/components/textarea";
 import InputArea from "@/components/ui/inputarea";
-import { useEditAddMutation, useGetAdDetailsQuery, useGetUserAdDetailsQuery } from "@/redux/features/ads/adsApi";
+import {
+  useEditAddMutation,
+  useGetAdDetailsQuery,
+  useGetUserAdDetailsQuery,
+} from "@/redux/features/ads/adsApi";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-// const schema = Yup.object().shape({
-//   name: Yup.string().required("Please enter the title"),
-//   level: Yup.string().required("Please enter the category"),
-//   tags: Yup.string().required("Please enter the tags"),
-//   price: Yup.string().required("Please enter the price"),
-//   estimatedPrice: Yup.string().required("Please enter the estimated price"),
-//   description: Yup.string().required("Please enter the description"),
-//   address : Yup.string().required("Please enter the address"),
-// });
-
+const schema = Yup.object().shape({
+  name: Yup.string().required("Please enter the title"),
+  level: Yup.string().required("Please enter the category"),
+  tags: Yup.string().required("Please enter the tags"),
+  price: Yup.string().required("Please enter the price"),
+  estimatedPrice: Yup.string().required("Please enter the estimated price"),
+  description: Yup.string().required("Please enter the description"),
+  address : Yup.string().required("Please enter the address"),
+});
 
 type Props = {
-    id: string;
-  };
+  id: string;
+};
 
-const EditAddPageAd = ({id}: Props) => {
-   
-const { data, isLoading } = useGetAdDetailsQuery(id);
+const EditAddPageAd = ({ id }: Props) => {
+  const { data, isLoading } = useGetAdDetailsQuery(id);
 
-if (isLoading) return <div>Loading...</div>;
-
-
+  if (isLoading) return <div>Loading...</div>;
 
   const router = useRouter();
-//   const [draging, setDraging] = useState(true);
+  const [editAdd, { isSuccess, error }] = useEditAddMutation({});
+
+ 
   
 
+  const [draging, setDraging] = useState(true);
 
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      level: "",
+      tags: "",
+      price: "",
+      estimatedPrice: "",
+      description: "",
+      ImageOne: "",
+      address: "",
+    },
+    validationSchema: schema,
+    onSubmit: async (values) => {
+      await editAdd({
+        id: id, // You need to pass the ad id here
+        name: values.name,
+        level: values.level,
+        tags: values.tags,
+        price: values.price,
+        estimatedPrice: values.estimatedPrice,
+        description: values.description,
+        ImageOne: values.ImageOne,
+        address: values.address,
+      });
+    },
+  });
+    const handleFileChange = (e: any) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          if (reader.readyState === 1) {
+            formik.setFieldValue("ImageOne", reader.result);
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    };
 
-//   const formik = useFormik({
-//     initialValues: {
-//       name: "",
-//       level: "",
-//       tags: "",
-//       price: "",
-//       estimatedPrice: "",
-//       description: "",
-//       ImageOne: "",
-//       address : "",
-//     },
-//     validationSchema: schema,
-//     onSubmit: async ({
-//       name,
-//       level,
-//       tags,
-//       price,
-//       estimatedPrice,
-//       description,
-//       ImageOne,
-//       address,
-//     }) => {
-//       await createAds({
-//         name,
-//         level,
-//         tags,
-//         price,
-//         estimatedPrice,
-//         description,
-//         ImageOne,
-//         address,
-//       });
-//     },
-//   });
+    const handleDragOver = (e: any) => {
+      e.preventDefault();
+      setDraging(true);
+    };
 
-//   const handleFileChange = (e: any) => {
-//     const file = e.target.files?.[0];
-//     if (file) {
-//       const reader = new FileReader();
-//       reader.onload = (e: any) => {
-//         if (reader.readyState === 1) {
-//           formik.setFieldValue("ImageOne", reader.result);
-//         }
-//       };
-//       reader.readAsDataURL(file);
-//     }
-//   };
+    const handleDragLeave = (e: any) => {
+      e.preventDefault();
+      setDraging(false);
+    };
 
-//   const handleDragOver = (e: any) => {
-//     e.preventDefault();
-//     setDraging(true);
-//   };
+    const handleDrop = (e: any) => {
+      e.preventDefault();
+      setDraging(false);
+      const file = e.dataTransfer.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          formik.setFieldValue("ImageOne", reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    };
 
-//   const handleDragLeave = (e: any) => {
-//     e.preventDefault();
-//     setDraging(false);
-//   };
+    useEffect(() => {
+        if (isSuccess) {
+          toast.success("Advertisement updated successfully!");
+          router.push("/"); // Redirect to the home page
+        }
+        if (error) {
+          if (error && "data" in error) {
+            const errorData = error as any;
+            toast.error(errorData.data.message);
+          }
+        }
+      }, [isSuccess, error]);
 
-//   const handleDrop = (e: any) => {
-//     e.preventDefault();
-//     setDraging(false);
-//     const file = e.dataTransfer.files?.[0];
-//     if (file) {
-//       const reader = new FileReader();
-//       reader.onload = () => {
-//         formik.setFieldValue("ImageOne", reader.result);
-//       };
-//       reader.readAsDataURL(file);
-//     }
-//   };
-
-//   useEffect(() => {
-//     if (isSuccess) {
-//       toast.success("Advertisement posted successfully!");
-//       router.push("../dashboard/profileoverview");
-//     }
-//     if (error) {
-//       if (error && "data" in error) {
-//         const errorData = error as any;
-//         toast.error(errorData.data.message);
-//       }
-//     }
-//   }, [isSuccess, error]);
-
-//   const { errors, touched, values, handleChange, handleSubmit } = formik;
+    const { errors, touched, values, handleChange, handleSubmit } = formik;
 
   return (
     <div className="flex flex-col min-h-screen bg-white mb-10">
@@ -141,7 +134,7 @@ if (isLoading) return <div>Loading...</div>;
               Basic Information
             </h1>
           </div>
-          <form className="space-y-6" >
+          <form className="space-y-6">
             <div className="space-y-2">
               <label className="block text-black text-base font-bold font-Poppins">
                 Title
@@ -153,13 +146,14 @@ if (isLoading) return <div>Loading...</div>;
                 customWidth="w-full"
                 customHeight="h-12"
                 name="name"
-                value={data.ad.name}
+                value={data.ad.name }
+                onChange={handleChange}
                 type="text"
                 placeholder="Enter the title"
               />
-              {/* {touched.name && errors.name && (
+              {touched.name && errors.name && (
                 <div className="text-red-500 text-sm">{errors.name}</div>
-              )} */}
+              )}
             </div>
 
             <div className="space-y-2">
@@ -174,16 +168,15 @@ if (isLoading) return <div>Loading...</div>;
                 customWidth="w-full"
                 customHeight="h-12"
                 name="level"
-                value={data.ad.level}
-                
+                value={data.ad.level || ""}
+                onChange={handleChange}
                 type="text"
                 placeholder="Only add Laptops, Smart Phones , Property , Vehicles, Animals "
               />
 
-             
-              {/* {touched.level && errors.level && (
+              {touched.level && errors.level && (
                 <div className="text-red-500 text-sm">{errors.level}</div>
-              )} */}
+              )}
             </div>
 
             <div className="space-y-2">
@@ -200,11 +193,12 @@ if (isLoading) return <div>Loading...</div>;
                 customHeight="h-12"
                 name="tags"
                 value={data.ad.tags}
+                onChange={handleChange}
                 placeholder="Enter tags like your Advertising "
               />
-              {/* {touched.tags && errors.tags && (
+              {touched.tags && errors.tags && (
                 <div className="text-red-500 text-sm">{errors.tags}</div>
-              )} */}
+              )}
             </div>
 
             <h2 className="text-2xl font-bold text-black mb-8">Content</h2>
@@ -225,16 +219,15 @@ if (isLoading) return <div>Loading...</div>;
                   accept="image/*"
                   id="file"
                   className="hidden"
-                  
                 />
                 <label
                   htmlFor="file"
-                //   className={`w-full min-h-10 border-purple-600 p-3 border flex items-center justify-center ${
-                //     draging ? "bg-blue-500" : "bg-transparent"
-                //   }`}
-                //   onDragOver={handleDragOver}
-                //   onDragLeave={handleDragLeave}
-                //   onDrop={handleDrop}
+                    className={`w-full min-h-10 border-purple-600 p-3 border flex items-center justify-center ${
+                      draging ? "bg-blue-500" : "bg-transparent"
+                    }`}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
                 >
                   {data.ImageOne ? (
                     <Image
@@ -243,10 +236,11 @@ if (isLoading) return <div>Loading...</div>;
                       height={200}
                       className="w-full h-full"
                       alt="adImage"
+                      onChange={handleFileChange}
                     />
                   ) : (
                     <span className="text-red-500 font-semibold">
-                       Darg and Drop Only
+                      Darg and Drop Only
                     </span>
                   )}
                 </label>
@@ -268,11 +262,12 @@ if (isLoading) return <div>Loading...</div>;
                   customHeight="h-10"
                   name="price"
                   value={data.ad.price}
+                  onChange={handleChange}
                   placeholder="Price, Only add numbers and LKR currency"
                 />
-                {/* {touched.price && errors.price && (
+                {touched.price && errors.price && (
                   <div className="text-red-500 text-sm">{errors.price}</div>
-                )} */}
+                )}
               </div>
             </div>
 
@@ -287,8 +282,8 @@ if (isLoading) return <div>Loading...</div>;
                   customHeight="h-10"
                   name="estimatedPrice"
                   value={data.ad.estimatedPrice}
-                  
                   placeholder="Estimated Price"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -308,13 +303,13 @@ if (isLoading) return <div>Loading...</div>;
                   customHeight="h-32"
                   name="description"
                   value={data.ad.description}
-                  
+                  onChange={handleChange}
                 />
               </div>
 
-              {/* {touched.description && errors.description && (
+              {touched.description && errors.description && (
                 <div className="text-red-500 text-sm">{errors.description}</div>
-              )} */}
+              )}
             </div>
 
             <h2 className="text-2xl font-bold text-black mb-8">Location</h2>
@@ -326,31 +321,29 @@ if (isLoading) return <div>Loading...</div>;
                 <p className="text-sm text-gray-500">
                   Enter the city where the item is located.
                 </p>
-               
+
                 <InputArea
                   type="text"
                   customWidth="w-full"
                   customHeight="h-10"
                   name="address"
                   value={data.ad.address}
-                //   onChange={handleChange}
+                    onChange={handleChange}
                   placeholder="Ex: Colombo, Western Province"
                 />
-                
               </div>
             </div>
 
             <div className="flex justify-end mt-8">
               <input
                 type="submit"
-                value="Post Ad"
+                value="Update"
                 className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 cursor-pointer"
               />
             </div>
           </form>
         </div>
       </div>
-    
     </div>
   );
 };
