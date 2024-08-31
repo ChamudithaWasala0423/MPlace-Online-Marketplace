@@ -1,9 +1,6 @@
 "use client";
 import React from "react";
-import { FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
-import SearchBar from "../ui/searchbar";
-import SearchBarMain from "../ui/SearchBarMain";
 
 const Herosection = () => {
   return (
@@ -17,13 +14,6 @@ const Herosection = () => {
             Your All-in-One Ad Solution
           </p>
         </div>
-        {/* <div className="w-full flex flex-row items-center justify-center py-0 px-4 box-border relative max-w-[664px] mt-[65px]">
-        
-            <SearchBarMain onSearch={function (value: string): void {
-              throw new Error("Function not implemented.");
-            } } />
-          
-        </div> */}
         <div className="w-full flex flex-col items-center justify-center">
           <div className="w-full flex justify-center items-center md:py-12">
             <div className="w-full max-w-[1168px] flex flex-col md:flex-row items-center justify-between bg-secondary-100 rounded-lg overflow-hidden object-cover h-full">

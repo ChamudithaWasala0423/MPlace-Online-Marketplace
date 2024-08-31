@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemDisplaySmall from '@/components/ui/itemDisplaySmall';
-import Footer from '@/components/ui/footer';
+
 
 const RecentlyAdded: React.FC = () => {
     return (
@@ -15,7 +15,7 @@ const RecentlyAdded: React.FC = () => {
                     <ItemDisplaySmall />
                 </div>
             </div>
-            <Footer />
+          
         </div>
     );
 };

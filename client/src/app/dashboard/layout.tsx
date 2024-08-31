@@ -2,20 +2,12 @@
 
 import React from "react";
 import Sidebar from "@/components/ui/Sidebar";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
-import Footer from "@/components/ui/footer";
+
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // const user = useSelector((state: any) => state.auth.user);
-  // const router = useRouter();
-  // if(!user){
-  //   toast.error("Please login to continue");
-  //   router.push("../login");
-  // }
+ 
   return (
     <div className="bg-background-400">
       <div className="flex px-4 align- w-full justify-end bg-background-400 text-black font-sans font-normal lg:my-12 sm:my-6 lg:px-32 ">Welcome </div>
@@ -23,7 +15,6 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
         <Sidebar />
 
-        {/* Main Content */}
         <main className="lg:col-start-2 lg:col-end-3 flex-1 bg-background-400  shadow-sm font-sans">
           {children}
         </main>

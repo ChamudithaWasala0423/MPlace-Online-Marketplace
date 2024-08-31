@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import { FaShippingFast, FaDollarSign, FaUsers, FaWallet, FaHeadset, FaCheckCircle } from 'react-icons/fa';
 import EmployeeCard from '@/components/ui/employcard';
-import Footer from '@/components/ui/footer';
+
 
 
 const About: React.FC = () => {
@@ -143,7 +143,7 @@ const About: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+          
         </div>
     );
 };

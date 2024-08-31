@@ -1,7 +1,6 @@
 "use client";
-import Footer from "@/components/ui/footer";
+
 import Itemcard from "@/components/ui/itemcard";
-import ItemDetails from "@/components/ui/itemDetails";
 import { useGetUserAdDetailsQuery } from "@/redux/features/ads/adsApi";
 import Link from "next/link";
 import React, { useEffect } from "react";

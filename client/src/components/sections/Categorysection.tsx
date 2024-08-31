@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import Categorycard from "../ui/Categorycard";
+import Categorycard from "@/components/ui/Categorycard";
 import Link from "next/link";
 import { MdLaptopMac } from "react-icons/md";
 import { IoPhonePortraitOutline, IoHome } from "react-icons/io5";
