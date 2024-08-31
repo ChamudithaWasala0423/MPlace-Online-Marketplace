@@ -2,16 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Mplace",
-  "type" : "commonjs",
-  "main": "build/server.js",
-  "engines": {
-    "node": "18.x"
-  },
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only server.ts" ,
-    "start": "node build/server.js",
-    "build": "tsc"
+    "dev": "ts-node-dev --respawn --transpile-only server.ts"
   },
   "author": "H.M.C.P.B.Wasala",
   "license": "ISC",
