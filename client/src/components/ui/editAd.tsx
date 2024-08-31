@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Textarea from "@/components/textarea";
+import Textarea from "@/components/ui/textarea";
 import InputArea from "@/components/ui/inputarea";
 import {
   useEditAddMutation,
