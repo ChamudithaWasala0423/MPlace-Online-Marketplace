@@ -1,5 +1,4 @@
 "use client";
-
 import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -7,7 +6,6 @@ import Navbar from "../components/ui/navbar";
 import { Toaster } from "react-hot-toast";
 import { Providers } from "./Provider";
 import Heading from "@/components/ui/Heading";
-
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -31,9 +29,9 @@ export default function RootLayout({
             keywords="Marketplace, Sri Lanaka"
           />
           <Navbar title="Mplace" />
-         
+
           {children}
-          
+
           <Toaster position="top-center" reverseOrder={false} />
         </Providers>
       </body>
