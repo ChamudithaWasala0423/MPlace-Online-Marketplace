@@ -138,7 +138,7 @@ const Signup: React.FC<SignupProps> = () => {
 
       {/* Footer */}
       <div className="w-full bg-gray-200">
-        <Footer />
+   
       </div>
     </div>
   );

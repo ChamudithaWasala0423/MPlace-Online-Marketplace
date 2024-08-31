@@ -30,7 +30,7 @@ const Category: React.FC = () => {
             ))}
         </div>
       </div>
-      <Footer />
+    
     </div>
   );
 };

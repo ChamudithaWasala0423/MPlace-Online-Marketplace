@@ -15,7 +15,7 @@ const RecentlyAdded: React.FC = () => {
                     <ItemDisplaySmall />
                 </div>
             </div>
-            <Footer />
+          
         </div>
     );
 };
