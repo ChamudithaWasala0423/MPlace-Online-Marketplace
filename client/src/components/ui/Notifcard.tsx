@@ -42,7 +42,7 @@ const Notifcard:React.FC <NotifcardProps> =  ({
           className="flex self-center font-sans text-[12px] w-[160px] font-normal text-black text-pretty 
                       lg:text-[16px] lg:w-[463px]"
         >
-          Your ad 'Vintage Chair' has been approved and is now live!
+         
         </p>
       </div>
     </div>

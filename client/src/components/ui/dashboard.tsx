@@ -16,9 +16,9 @@ const Dashboard: React.FC = () => {
             Create New Ad
           </button>
         </div>
-        // Content Grid *
+   
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          //Example Card
+      
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <h3 className="text-xl font-medium text-gray-800 mb-4">
               Ad Performance
@@ -27,7 +27,7 @@ const Dashboard: React.FC = () => {
               Detailed analytics of your ads will appear here.
             </p>
           </div>
-          //Add more cardscomponents as needed
+         
         </div>
       </main>
     </div>

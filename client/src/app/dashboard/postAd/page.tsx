@@ -6,7 +6,7 @@ import { useCreateAdsMutation } from "@/redux/features/ads/adsApi";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useRouter } from "next/navigation";
+
 import Image from "next/image";
 
 const schema = Yup.object().shape({
@@ -16,12 +16,12 @@ const schema = Yup.object().shape({
   price: Yup.string().required("Please enter the price"),
   estimatedPrice: Yup.string().required("Please enter the estimated price"),
   description: Yup.string().required("Please enter the description"),
-  address : Yup.string().required("Please enter the address"),
+  address: Yup.string().required("Please enter the address"),
 });
 
 const EditAddPage: React.FC = () => {
   const [createAds, { isLoading, isSuccess, error }] = useCreateAdsMutation();
-  const router = useRouter();
+
   const [draging, setDraging] = useState(false);
 
   const formik = useFormik({
@@ -33,7 +33,7 @@ const EditAddPage: React.FC = () => {
       estimatedPrice: "",
       description: "",
       ImageOne: "",
-      address : "",
+      address: "",
     },
     validationSchema: schema,
     onSubmit: async ({
@@ -98,7 +98,6 @@ const EditAddPage: React.FC = () => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Advertisement posted successfully!");
-      router.push("../dashboard/profileoverview");
     }
     if (error) {
       if (error && "data" in error) {
@@ -167,7 +166,6 @@ const EditAddPage: React.FC = () => {
                 placeholder="Only add Laptops, Smart Phones , Property , Vehicles, Animals "
               />
 
-             
               {touched.level && errors.level && (
                 <div className="text-red-500 text-sm">{errors.level}</div>
               )}
@@ -234,7 +232,7 @@ const EditAddPage: React.FC = () => {
                     />
                   ) : (
                     <span className="text-red-500 font-semibold">
-                       Darg and Drop Only
+                      Darg and Drop Only
                     </span>
                   )}
                 </label>
@@ -315,7 +313,7 @@ const EditAddPage: React.FC = () => {
                 <p className="text-sm text-gray-500">
                   Enter the city where the item is located.
                 </p>
-               
+
                 <InputArea
                   type="text"
                   customWidth="w-full"
@@ -325,7 +323,6 @@ const EditAddPage: React.FC = () => {
                   onChange={handleChange}
                   placeholder="Ex: Colombo, Western Province"
                 />
-                
               </div>
             </div>
 
@@ -339,7 +336,6 @@ const EditAddPage: React.FC = () => {
           </form>
         </div>
       </div>
-    
     </div>
   );
 };
