@@ -16,18 +16,19 @@
   }
 }
 
+
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+ background-color: #ffff;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  .lg:grid-cols-sidebar-main {
+    grid-template-columns: 217px 1fr; /* Sidebar width + flexible content */
+  }
+
 }
