@@ -5,10 +5,6 @@ import AdModel from "../models/ad.model";
 import cloudinary from "cloudinary"; //for upload media files to cloudinary
 import { createAd } from "../services/ad.service";
 import mongoose from "mongoose";
-import ejs from "ejs";
-import path from "path";
-import sendMail from "../utils/sendMail";
-import UserModel from "../models/user.model";
 import notificationModel from "../models/notification.model";
 
 //upload Ad
@@ -33,7 +29,6 @@ export const uploadAd = CatchAsyncErrors(
         };
       }
 
-      // add user id for Ad Model
       data.userId = userId;
       
       createAd(data, res, next);
@@ -54,8 +49,6 @@ export const editAd = CatchAsyncErrors(
 
       const adId = req.params.id;
       const ad = await AdModel.findById(adId);
-
-      // Check if the ad exists and belongs to the authenticated user
       if (!ad || ad.userId.toString() !== userId.toString()) {
         return next(
           new ErrorHandler("You are not authorized to edit this ad", 403)
@@ -72,41 +65,11 @@ export const editAd = CatchAsyncErrors(
           folder: "Ads",
         });
 
-        data.thumbnail = {
+        data.ImageOne = {
           url: myCloud.secure_url,
           cloudinary_id: myCloud.public_id,
         };
       }
-
-      const ImageTwo = data.ImageTwo;
-      if (ImageTwo) {
-        await cloudinary.v2.uploader.destroy(ImageTwo.public_id);
-
-        const myCloud = await cloudinary.v2.uploader.upload(ImageTwo, {
-          folder: "Ads",
-        });
-
-        data.thumbnail = {
-          url: myCloud.secure_url,
-          cloudinary_id: myCloud.public_id,
-        };
-      }
-
-      const ImageThree = data.ImageThree;
-      if (ImageThree) {
-        await cloudinary.v2.uploader.destroy(ImageThree.public_id);
-
-        const myCloud = await cloudinary.v2.uploader.upload(ImageThree, {
-          folder: "Ads",
-        });
-
-        data.thumbnail = {
-          url: myCloud.secure_url,
-          cloudinary_id: myCloud.public_id,
-          console: myCloud.console,
-        };
-      }
-
       const updatedAd = await AdModel.findByIdAndUpdate(
         adId,
         { $set: data },
@@ -147,7 +110,6 @@ export const getSingleAd = CatchAsyncErrors(
 export const getAdsByUser = CatchAsyncErrors(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      // Find all ads created by the authenticated user
       const userAds = await AdModel.find({ userId: req.user?._id });
 
       if (!userAds || userAds.length === 0) {

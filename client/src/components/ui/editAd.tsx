@@ -2,113 +2,127 @@
 import React, { useEffect, useState } from "react";
 import Textarea from "@/components/textarea";
 import InputArea from "@/components/ui/inputarea";
-import { useCreateAdsMutation } from "@/redux/features/ads/adsApi";
+import { useEditAddMutation, useGetAdDetailsQuery, useGetUserAdDetailsQuery } from "@/redux/features/ads/adsApi";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-const schema = Yup.object().shape({
-  name: Yup.string().required("Please enter the title"),
-  level: Yup.string().required("Please enter the category"),
-  tags: Yup.string().required("Please enter the tags"),
-  price: Yup.string().required("Please enter the price"),
-  estimatedPrice: Yup.string().required("Please enter the estimated price"),
-  description: Yup.string().required("Please enter the description"),
-  address : Yup.string().required("Please enter the address"),
-});
+// const schema = Yup.object().shape({
+//   name: Yup.string().required("Please enter the title"),
+//   level: Yup.string().required("Please enter the category"),
+//   tags: Yup.string().required("Please enter the tags"),
+//   price: Yup.string().required("Please enter the price"),
+//   estimatedPrice: Yup.string().required("Please enter the estimated price"),
+//   description: Yup.string().required("Please enter the description"),
+//   address : Yup.string().required("Please enter the address"),
+// });
 
-const EditAddPage: React.FC = () => {
-  const [createAds, { isLoading, isSuccess, error }] = useCreateAdsMutation();
+
+type Props = {
+    id: string;
+  };
+
+const EditAddPageAd = ({id}: Props) => {
+   
+const { data, isLoading } = useGetAdDetailsQuery(id);
+
+if (isLoading) return <div>Loading...</div>;
+
+
+
   const router = useRouter();
-  const [draging, setDraging] = useState(false);
+//   const [draging, setDraging] = useState(true);
+  
 
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      level: "",
-      tags: "",
-      price: "",
-      estimatedPrice: "",
-      description: "",
-      ImageOne: "",
-      address : "",
-    },
-    validationSchema: schema,
-    onSubmit: async ({
-      name,
-      level,
-      tags,
-      price,
-      estimatedPrice,
-      description,
-      ImageOne,
-      address,
-    }) => {
-      await createAds({
-        name,
-        level,
-        tags,
-        price,
-        estimatedPrice,
-        description,
-        ImageOne,
-        address,
-      });
-    },
-  });
 
-  const handleFileChange = (e: any) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        if (reader.readyState === 1) {
-          formik.setFieldValue("ImageOne", reader.result);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
-  const handleDragOver = (e: any) => {
-    e.preventDefault();
-    setDraging(true);
-  };
+//   const formik = useFormik({
+//     initialValues: {
+//       name: "",
+//       level: "",
+//       tags: "",
+//       price: "",
+//       estimatedPrice: "",
+//       description: "",
+//       ImageOne: "",
+//       address : "",
+//     },
+//     validationSchema: schema,
+//     onSubmit: async ({
+//       name,
+//       level,
+//       tags,
+//       price,
+//       estimatedPrice,
+//       description,
+//       ImageOne,
+//       address,
+//     }) => {
+//       await createAds({
+//         name,
+//         level,
+//         tags,
+//         price,
+//         estimatedPrice,
+//         description,
+//         ImageOne,
+//         address,
+//       });
+//     },
+//   });
 
-  const handleDragLeave = (e: any) => {
-    e.preventDefault();
-    setDraging(false);
-  };
+//   const handleFileChange = (e: any) => {
+//     const file = e.target.files?.[0];
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onload = (e: any) => {
+//         if (reader.readyState === 1) {
+//           formik.setFieldValue("ImageOne", reader.result);
+//         }
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//   };
 
-  const handleDrop = (e: any) => {
-    e.preventDefault();
-    setDraging(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        formik.setFieldValue("ImageOne", reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+//   const handleDragOver = (e: any) => {
+//     e.preventDefault();
+//     setDraging(true);
+//   };
 
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success("Advertisement posted successfully!");
-      router.push("../dashboard/profileoverview");
-    }
-    if (error) {
-      if (error && "data" in error) {
-        const errorData = error as any;
-        toast.error(errorData.data.message);
-      }
-    }
-  }, [isSuccess, error]);
+//   const handleDragLeave = (e: any) => {
+//     e.preventDefault();
+//     setDraging(false);
+//   };
 
-  const { errors, touched, values, handleChange, handleSubmit } = formik;
+//   const handleDrop = (e: any) => {
+//     e.preventDefault();
+//     setDraging(false);
+//     const file = e.dataTransfer.files?.[0];
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onload = () => {
+//         formik.setFieldValue("ImageOne", reader.result);
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (isSuccess) {
+//       toast.success("Advertisement posted successfully!");
+//       router.push("../dashboard/profileoverview");
+//     }
+//     if (error) {
+//       if (error && "data" in error) {
+//         const errorData = error as any;
+//         toast.error(errorData.data.message);
+//       }
+//     }
+//   }, [isSuccess, error]);
+
+//   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
   return (
     <div className="flex flex-col min-h-screen bg-white mb-10">
@@ -127,7 +141,7 @@ const EditAddPage: React.FC = () => {
               Basic Information
             </h1>
           </div>
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-6" >
             <div className="space-y-2">
               <label className="block text-black text-base font-bold font-Poppins">
                 Title
@@ -139,14 +153,13 @@ const EditAddPage: React.FC = () => {
                 customWidth="w-full"
                 customHeight="h-12"
                 name="name"
-                value={values.name}
-                onChange={handleChange}
+                value={data.ad.name}
                 type="text"
                 placeholder="Enter the title"
               />
-              {touched.name && errors.name && (
+              {/* {touched.name && errors.name && (
                 <div className="text-red-500 text-sm">{errors.name}</div>
-              )}
+              )} */}
             </div>
 
             <div className="space-y-2">
@@ -161,16 +174,16 @@ const EditAddPage: React.FC = () => {
                 customWidth="w-full"
                 customHeight="h-12"
                 name="level"
-                value={values.level}
-                onChange={handleChange}
+                value={data.ad.level}
+                
                 type="text"
                 placeholder="Only add Laptops, Smart Phones , Property , Vehicles, Animals "
               />
 
              
-              {touched.level && errors.level && (
+              {/* {touched.level && errors.level && (
                 <div className="text-red-500 text-sm">{errors.level}</div>
-              )}
+              )} */}
             </div>
 
             <div className="space-y-2">
@@ -186,13 +199,12 @@ const EditAddPage: React.FC = () => {
                 customWidth="w-full"
                 customHeight="h-12"
                 name="tags"
-                value={values.tags}
-                onChange={handleChange}
+                value={data.ad.tags}
                 placeholder="Enter tags like your Advertising "
               />
-              {touched.tags && errors.tags && (
+              {/* {touched.tags && errors.tags && (
                 <div className="text-red-500 text-sm">{errors.tags}</div>
-              )}
+              )} */}
             </div>
 
             <h2 className="text-2xl font-bold text-black mb-8">Content</h2>
@@ -213,20 +225,20 @@ const EditAddPage: React.FC = () => {
                   accept="image/*"
                   id="file"
                   className="hidden"
-                  onChange={handleFileChange}
+                  
                 />
                 <label
                   htmlFor="file"
-                  className={`w-full min-h-10 border-purple-600 p-3 border flex items-center justify-center ${
-                    draging ? "bg-blue-500" : "bg-transparent"
-                  }`}
-                  onDragOver={handleDragOver}
-                  onDragLeave={handleDragLeave}
-                  onDrop={handleDrop}
+                //   className={`w-full min-h-10 border-purple-600 p-3 border flex items-center justify-center ${
+                //     draging ? "bg-blue-500" : "bg-transparent"
+                //   }`}
+                //   onDragOver={handleDragOver}
+                //   onDragLeave={handleDragLeave}
+                //   onDrop={handleDrop}
                 >
-                  {values.ImageOne ? (
+                  {data.ImageOne ? (
                     <Image
-                      src={values.ImageOne}
+                      src={data.ImageOne && data.ad.ImageOne}
                       width={200}
                       height={200}
                       className="w-full h-full"
@@ -255,13 +267,12 @@ const EditAddPage: React.FC = () => {
                   customWidth="w-full"
                   customHeight="h-10"
                   name="price"
-                  value={values.price}
-                  onChange={handleChange}
+                  value={data.ad.price}
                   placeholder="Price, Only add numbers and LKR currency"
                 />
-                {touched.price && errors.price && (
+                {/* {touched.price && errors.price && (
                   <div className="text-red-500 text-sm">{errors.price}</div>
-                )}
+                )} */}
               </div>
             </div>
 
@@ -275,8 +286,8 @@ const EditAddPage: React.FC = () => {
                   customWidth="w-full"
                   customHeight="h-10"
                   name="estimatedPrice"
-                  value={values.estimatedPrice}
-                  onChange={handleChange}
+                  value={data.ad.estimatedPrice}
+                  
                   placeholder="Estimated Price"
                 />
               </div>
@@ -296,14 +307,14 @@ const EditAddPage: React.FC = () => {
                   customWidth="w-full"
                   customHeight="h-32"
                   name="description"
-                  value={values.description}
-                  onChange={handleChange}
+                  value={data.ad.description}
+                  
                 />
               </div>
 
-              {touched.description && errors.description && (
+              {/* {touched.description && errors.description && (
                 <div className="text-red-500 text-sm">{errors.description}</div>
-              )}
+              )} */}
             </div>
 
             <h2 className="text-2xl font-bold text-black mb-8">Location</h2>
@@ -321,8 +332,8 @@ const EditAddPage: React.FC = () => {
                   customWidth="w-full"
                   customHeight="h-10"
                   name="address"
-                  value={values.address}
-                  onChange={handleChange}
+                  value={data.ad.address}
+                //   onChange={handleChange}
                   placeholder="Ex: Colombo, Western Province"
                 />
                 
@@ -344,4 +355,4 @@ const EditAddPage: React.FC = () => {
   );
 };
 
-export default EditAddPage;
+export default EditAddPageAd;

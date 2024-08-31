@@ -1,13 +1,13 @@
 'use client'
 import React from "react";
-import ItemDetails from "@/components/ui/itemDetails";
+import EditAddPageAd from "@/components/ui/editAd";
 
 
 const Page = ({params}: any) => {
   return (
     <div>
-      <ItemDetails id={params.id} />
-  
+        <EditAddPageAd id={params.id} />
+        {/* <div>{params.id}</div> */}
     </div>
   );
 };

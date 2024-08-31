@@ -40,9 +40,33 @@ export const adsApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       })
     }),
+    editAdd: builder.mutation({
+      query: ({ id, name, description, price, estimatedPrice, tags,  level, ImageOne, address }) => ({
+        url: `edit-ad/${id}`,
+        method: "PUT",
+        body: {
+          name,
+          description,
+          price,
+          estimatedPrice,
+          tags,
+          level,
+          ImageOne,
+          address,
+        },  
+        credentials: "include" as const,
+      }),
+    }),
+    deleteAd : builder.mutation({
+      query: (id) => ({
+        url: `delete-ad/${id}`,
+        method: "DELETE",
+        credentials: "include" as const,
+      })
+    }),
   }),
   
 });
 
-export const { useCreateAdsMutation, useGetAllAdsQuery, useGetAdDetailsQuery, useGetUserAdDetailsQuery } = adsApi;
+export const { useCreateAdsMutation, useGetAllAdsQuery, useGetAdDetailsQuery, useGetUserAdDetailsQuery, useEditAddMutation, useDeleteAdMutation } = adsApi;
 

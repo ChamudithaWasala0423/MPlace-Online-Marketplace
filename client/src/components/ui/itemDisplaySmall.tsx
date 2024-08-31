@@ -58,7 +58,7 @@ const ItemDisplaySmall: FunctionComponent<ItemDisplaySmallProps> = ({ items = de
             description={item.description || "Default description"}
             price={item.price || "$0.00"}
             location={item.location || "Default Location"}
-            daysAdded={item.daysAdded || 0}
+            daysAdded="2"
             itemImage={item.itemImage || "/path-to-your-default-image.jpg"}
           />
         ))}
