@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { FaYoutube } from 'react-icons/fa6';
@@ -20,12 +21,14 @@ const Footer: React.FC = () => {
                         <p>or discover great deals. Join our community and start trading today.</p>
                     </div>
                     <div className="m-4 text-black w-full">
+                        <Link href="/contact">
                         <button
                             type="button"
                             className="text-black-700 border border-black-700 font-medium rounded-lg text-sm px-4 py-2 text-center dark:border-black dark:text-black-500 dark:focus:ring-black-800 font-Poppins"
                         >
                             Contact us
                         </button>
+                        </Link>
                     </div>
                 </div>
 
