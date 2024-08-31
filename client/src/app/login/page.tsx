@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 import InputArea from "@/components/ui/inputarea";
-import Button from "@/components/ui/button";
-import Footer from "@/components/ui/footer";
+
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
 import { useFormik } from "formik";
@@ -162,10 +161,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="w-full bg-gray-200">
-        <Footer />
-      </div>
+     
     </div>
   );
 };

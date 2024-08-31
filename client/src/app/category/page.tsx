@@ -1,7 +1,5 @@
 'use client'
 import React from "react";
-import ItemDisplaySmall from "@/components/ui/itemDisplaySmall";
-import Footer from "@/components/ui/footer";
 import { useGetAllAdsQuery } from "@/redux/features/ads/adsApi";
 import Link from "next/link";
 import Itemcard from "@/components/ui/itemcard";

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ItemDisplaySmall from '@/components/ui/itemDisplaySmall';
-import Footer from '@/components/ui/footer';
+
 
 
 const FeaturedAdvertisement: React.FC = () => {
@@ -17,7 +17,7 @@ const FeaturedAdvertisement: React.FC = () => {
                     <ItemDisplaySmall />
                 </div>
             </div>
-            <Footer />
+            
         </div>
     );
 };

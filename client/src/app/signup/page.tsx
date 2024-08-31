@@ -6,7 +6,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Image from 'next/image';
 import Button from '@/components/ui/button';
-import Footer from '@/components/ui/footer';
 import InputArea from '@/components/ui/inputarea';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -136,10 +135,7 @@ const Signup: React.FC<SignupProps> = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="w-full bg-gray-200">
-   
-      </div>
+      
     </div>
   );
 };
