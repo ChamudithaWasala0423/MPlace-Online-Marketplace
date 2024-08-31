@@ -62,7 +62,7 @@ type DraftAd = {
       itemImage: "/images/chair.jpg",
     },
   ]; 
-const DraftsAd: React.FC<Props> = ({drafts=defaultAds}) => {
+const DraftsAd = ({drafts=defaultAds}) => {
   return (
     <div className="w-full relative flex flex-row items-center justify-center flex-wrap content-center py-9 px-0 box-border gap-6">
        {drafts.map((item) => (
