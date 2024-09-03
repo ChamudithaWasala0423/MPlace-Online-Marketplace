@@ -16,7 +16,6 @@ const adRouter = express.Router();
 //upload Ad
 adRouter.post(
   "/upload-ad",
-  isAuthenticated,
   authorizeRoles("user"),
   (req: any, res: any, next: any) => {
     uploadAd(req, res, next);
@@ -24,13 +23,9 @@ adRouter.post(
 );
 
 //Edit Ad
-adRouter.put(
-  "/edit-ad/:id",
-  isAuthenticated,
-  (req: any, res: any, next: any) => {
-    editAd(req, res, next);
-  }
-);
+adRouter.put("/edit-ad/:id", (req: any, res: any, next: any) => {
+  editAd(req, res, next);
+});
 
 //get single ad - public
 adRouter.get("/get-ad/:id", (req: any, res: any, next: any) => {
@@ -38,13 +33,9 @@ adRouter.get("/get-ad/:id", (req: any, res: any, next: any) => {
 });
 
 //get all ad by user - authenticated
-adRouter.get(
-  "/get-single-ad/:id",
-  isAuthenticated,
-  (req: any, res: any, next: any) => {
-    getAdsByUser(req, res, next);
-  }
-);
+adRouter.get("/get-single-ad/:id", (req: any, res: any, next: any) => {
+  getAdsByUser(req, res, next);
+});
 
 //get all ads - public
 adRouter.get("/get-ads", (req: any, res: any, next: any) => {
@@ -52,23 +43,13 @@ adRouter.get("/get-ads", (req: any, res: any, next: any) => {
 });
 
 //delete ad
-adRouter.delete(
-  "/delete-ad/:id",
-  isAuthenticated,
-  (req: any, res: any, next: any) => {
-    deleteAd(req, res, next);
-  }
-);
-
+adRouter.delete("/delete-ad/:id", (req: any, res: any, next: any) => {
+  deleteAd(req, res, next);
+});
 
 //add question in course
-adRouter.put(
-  "/add-question",
-  isAuthenticated,
-  (req: any, res: any, next: any) => {
-    addQuestion(req, res, next);
-  }
-);
-
+adRouter.put("/add-question", (req: any, res: any, next: any) => {
+  addQuestion(req, res, next);
+});
 
 export default adRouter;
