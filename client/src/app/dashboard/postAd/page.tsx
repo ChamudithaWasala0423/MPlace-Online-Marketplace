@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Textarea from "@/components/ui/textarea";
 import InputArea from "@/components/ui/inputarea";
 import { useCreateAdsMutation } from "@/redux/features/ads/adsApi";
 import toast from "react-hot-toast";
@@ -290,7 +289,7 @@ const EditAddPage: React.FC = () => {
                 know.
               </p>
               <div className="text-black">
-                <Textarea
+                <InputArea
                   customWidth="w-full"
                   customHeight="h-32"
                   name="description"
