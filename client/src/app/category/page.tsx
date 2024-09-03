@@ -1,8 +1,8 @@
-'use client'
+"use client";
 import React from "react";
 import { useGetAllAdsQuery } from "@/redux/features/ads/adsApi";
 import Link from "next/link";
-import Itemcard from "@/components/ui/itemcard";
+import Itemcard from "@/components/ui/ItemCardMain";
 
 const Category: React.FC = () => {
   const { isLoading, data, error } = useGetAllAdsQuery({});
@@ -28,7 +28,6 @@ const Category: React.FC = () => {
             ))}
         </div>
       </div>
-    
     </div>
   );
 };

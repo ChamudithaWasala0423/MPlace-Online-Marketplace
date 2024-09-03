@@ -1,6 +1,6 @@
 "use client";
 
-import Itemcard from "@/components/ui/itemcard";
+import Itemcard from "@/components/ui/ItemCardMain";
 import { useGetUserAdDetailsQuery } from "@/redux/features/ads/adsApi";
 import Link from "next/link";
 import React, { useEffect } from "react";
@@ -8,7 +8,9 @@ import { useSelector } from "react-redux";
 
 const MyAds = () => {
   const user = useSelector((state: any) => state.auth.user);
-  const { data, isLoading, refetch } = useGetUserAdDetailsQuery(user.id, {refetchOnMountOrArgChange: true});
+  const { data, isLoading, refetch } = useGetUserAdDetailsQuery(user.id, {
+    refetchOnMountOrArgChange: true,
+  });
 
   useEffect(() => {
     refetch();
