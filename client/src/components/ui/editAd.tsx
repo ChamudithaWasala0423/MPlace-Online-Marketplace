@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Textarea from "@/components/ui/textarea";
 import InputArea from "@/components/ui/inputarea";
 import {
   useEditAddMutation,
@@ -21,7 +20,7 @@ const schema = Yup.object().shape({
   price: Yup.string().required("Please enter the price"),
   estimatedPrice: Yup.string().required("Please enter the estimated price"),
   description: Yup.string().required("Please enter the description"),
-  address : Yup.string().required("Please enter the address"),
+  address: Yup.string().required("Please enter the address"),
 });
 
 type Props = {
@@ -29,17 +28,9 @@ type Props = {
 };
 
 const EditAddPageAd = ({ id }: Props) => {
-
   const { data, isLoading } = useGetAdDetailsQuery(id);
 
-
-
   const [editAdd, { isSuccess, error }] = useEditAddMutation();
-
-  
-
- 
-  
 
   const [draging, setDraging] = useState(true);
 
@@ -69,57 +60,57 @@ const EditAddPageAd = ({ id }: Props) => {
       });
     },
   });
-    const handleFileChange = (e: any) => {
-      const file = e.target.files?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          if (reader.readyState === 1) {
-            formik.setFieldValue("ImageOne", reader.result);
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-
-    const handleDragOver = (e: any) => {
-      e.preventDefault();
-      setDraging(true);
-    };
-
-    const handleDragLeave = (e: any) => {
-      e.preventDefault();
-      setDraging(false);
-    };
-
-    const handleDrop = (e: any) => {
-      e.preventDefault();
-      setDraging(false);
-      const file = e.dataTransfer.files?.[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
+  const handleFileChange = (e: any) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        if (reader.readyState === 1) {
           formik.setFieldValue("ImageOne", reader.result);
-        };
-        reader.readAsDataURL(file);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDragOver = (e: any) => {
+    e.preventDefault();
+    setDraging(true);
+  };
+
+  const handleDragLeave = (e: any) => {
+    e.preventDefault();
+    setDraging(false);
+  };
+
+  const handleDrop = (e: any) => {
+    e.preventDefault();
+    setDraging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        formik.setFieldValue("ImageOne", reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Advertisement updated successfully!");
+      router.push("/"); // Redirect to the home page
+    }
+    if (error) {
+      if (error && "data" in error) {
+        const errorData = error as any;
+        toast.error(errorData.data.message);
       }
-    };
+    }
+  }, [isSuccess, error]);
 
-    useEffect(() => {
-        if (isSuccess) {
-          toast.success("Advertisement updated successfully!");
-          router.push("/"); // Redirect to the home page
-        }
-        if (error) {
-          if (error && "data" in error) {
-            const errorData = error as any;
-            toast.error(errorData.data.message);
-          }
-        }
-      }, [isSuccess, error]);
-
-    const { errors, touched, values, handleChange, handleSubmit } = formik;
-    if (isLoading) return <div>Loading...</div>;
+  const { errors, touched, values, handleChange, handleSubmit } = formik;
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="flex flex-col min-h-screen bg-white mb-10">
@@ -150,7 +141,7 @@ const EditAddPageAd = ({ id }: Props) => {
                 customWidth="w-full"
                 customHeight="h-12"
                 name="name"
-                value={data.ad.name }
+                value={data.ad.name}
                 onChange={handleChange}
                 type="text"
                 placeholder="Enter the title"
@@ -226,12 +217,12 @@ const EditAddPageAd = ({ id }: Props) => {
                 />
                 <label
                   htmlFor="file"
-                    className={`w-full min-h-10 border-purple-600 p-3 border flex items-center justify-center ${
-                      draging ? "bg-blue-500" : "bg-transparent"
-                    }`}
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
-                    onDrop={handleDrop}
+                  className={`w-full min-h-10 border-purple-600 p-3 border flex items-center justify-center ${
+                    draging ? "bg-blue-500" : "bg-transparent"
+                  }`}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
                 >
                   {data.ImageOne ? (
                     <Image
@@ -302,7 +293,7 @@ const EditAddPageAd = ({ id }: Props) => {
                 know.
               </p>
               <div className="text-black">
-                <Textarea
+                <InputArea
                   customWidth="w-full"
                   customHeight="h-32"
                   name="description"
@@ -332,7 +323,7 @@ const EditAddPageAd = ({ id }: Props) => {
                   customHeight="h-10"
                   name="address"
                   value={data.ad.address}
-                    onChange={handleChange}
+                  onChange={handleChange}
                   placeholder="Ex: Colombo, Western Province"
                 />
               </div>
@@ -356,4 +347,3 @@ export default EditAddPageAd;
 function setDraging(arg0: boolean) {
   throw new Error("Function not implemented.");
 }
-
