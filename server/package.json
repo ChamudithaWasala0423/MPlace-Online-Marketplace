@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only server.ts",
     "start": "node build/server.js",
-    "build": "tsc"
+    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false",
+    "build" : "tsc"
   },
   "author": "H.M.C.P.B.Wasala",
   "license": "ISC",
